@@ -1,0 +1,58 @@
+<?php require('template/header.phtml') ?>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Cost</th>
+            <th>Purchase</th>
+        </tr>
+        <tr>
+            <td>TV</td>
+            <td>xxxxxx</td>
+            <td>50</td>
+            <td><a href="purchase.php?name=TV&price=£150">buy</a></td>
+        </tr>
+        <tr>
+            <td>DVD</td>
+            <td>xxxxxx</td>
+            <td>94</td>
+            <td><a>buy</a></td>
+        </tr>
+        <tr>
+            <td>PC</td>
+            <td>xxxxxx</td>
+            <td>80</td>
+            <td><a>buy</a></td>
+        </tr>
+        <tr>
+            <td>Laptop</td>
+            <td>xxxxxx</td>
+            <td>80</td>
+            <td><a>buy</a></td>
+        </tr>
+    </table>
+    <br>
+    <h3><strong>SQL Test</strong></h3>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Course</th>
+        </tr>
+
+        <?php
+        foreach ($data as $row) {?>
+            <tr>
+                <td><?php echo $row[1]?></td>
+                <td><?php echo $row[2]?></td>
+                <td><?php echo $row[3]?></td>
+            </tr>
+        <?php } var_dump($data);?>
+    </table>
+    <br>
+
+</div>
+
+<?php require('template/footer.phtml') ?>

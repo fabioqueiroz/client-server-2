@@ -1,0 +1,21 @@
+<?php require('template/header.phtml') ?>
+
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Student ID</th><th>First name</th><th>Last name</th><th>International</th><th>Course name</th><th>Programme Leader</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($view->studentsExtendedDataSet as $studentExtendedData) {
+                echo '<tr> <td>' . $studentExtendedData->getStudentID() . '</td> <td>' . $studentExtendedData->getFirstname() . '</td> <td>'
+                    . $studentExtendedData->getLastName() . '</td> <td>' . $studentExtendedData->getInternational() . '</td> <td>'
+                    . $studentExtendedData->getCourseName() . '</td> <td>' . $studentExtendedData->getProgrammeLeader() . '</td> </tr>';
+            }
+            ?>
+            </tbody>
+        </table>
+    </form>
+
+<?php require('template/footer.phtml') ?>

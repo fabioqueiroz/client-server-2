@@ -1,0 +1,29 @@
+<?php require('template/header.phtml') ?>
+
+<h3><?php echo '(from querystring.php) Product: '. $productName. '  Price: '. $productPrice ?> </h3>
+
+<div class="container">
+    <h3><?php echo '(populated from the array in purchase.php)'?> </h3>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Cost</th>
+        </tr>
+
+    <?php
+    foreach ($items as $item) {?>
+
+            <tr>
+                <td><?php echo $item['name']?></td>
+                <td>xxxxxx</td>
+                <td><?php echo $item['price']?></td>
+            </tr>
+
+    <?php } ?>
+    </table>
+</div>
+
+<h4><a href="querystring.php">Return</a></h4>
+
+<?php require('template/footer.phtml') ?>

@@ -1,0 +1,35 @@
+<?php require('template/header.phtml'); ?>
+
+<?php if ($view->isLogged ) {
+    require_once('Views/productList.phtml');
+    ?>
+
+<?php } elseif(isset($_POST['item'])) {?>
+    <form method="post" action="shop.php">
+        <h3>You: purchased <?php echo $_POST['item']?></h3>
+        <div class="spacing">
+            <input type="submit" name="login" value="Log Out" class="btn btn-danger">
+        </div>
+    </form>
+
+<?php } elseif(!isset($_POST['item'])) {?>
+    <h3><strong>Login to shop</strong></h3>
+    <form name="form1" method="post" action="shop.php"> <!-- change to productList -->
+        <div class="spacing">
+            <label>Username</label>
+            <input type="text" name="userName">
+        </div>
+
+        <div class="spacing">
+            <label>Password</label>
+            <input type="password" name="password">
+        </div>
+
+        <div class="spacing">
+            <input type="submit" name="login" value="Login" class="btn btn-success">
+        </div>
+    </form>
+
+<?php } ?>
+
+<?php require('template/footer.phtml') ?>

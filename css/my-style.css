@@ -1,0 +1,102 @@
+#title {
+    margin-top: 12px;
+    background-color: #fff;
+    color: #000;
+
+}
+#menu {
+    border-top: solid 6px #333;
+    /*background-color: #f00;*/
+    background-color: #333;
+    color: #fff;
+    /*height: 400px;*/
+    height: auto;
+}
+
+#menu a {
+    /*background-color: #f00;*/
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+#menu a:hover {
+    background-color: #f00;
+    color: #ddd;
+    text-decoration:underline;
+    display: block;
+}
+
+#content {
+    background-color: #fff;
+    border-top: solid 6px #f00;
+
+}
+
+#footer {
+    margin_top: 20px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+
+.navbar .navbar-header {
+    float: none;
+}
+.navbar .navbar-toggle {
+    display: block;
+}
+.navbar .navbar-collapse.collapse {
+    display: none!important;
+}
+.navbar .navbar-nav {
+    float: none!important;
+}
+.navbar .navbar-nav > li {
+    float: none;
+    display: table-cell!important;
+}
+.navbar .navbar-collapse.collapse.in {
+    display: block !important;
+}
+
+.navbar-brand a:hover {
+    text-decoration:none;
+}
+
+.nav-stacked > li {
+    display: table-cell;
+    padding: 0px 16px;
+}
+
+.spacing {
+    padding: 15px;
+}
+
+input {
+    margin-right: 10px;
+}
+
+table {
+    width:90%;
+    min-width: 50%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+@media all and (max-width: 770px) {
+    .col-xs-6 {
+        width: 100%;
+    }
+
+    .nav-stacked > li {
+        display: block;
+        padding: 0 0;
+    }
+}

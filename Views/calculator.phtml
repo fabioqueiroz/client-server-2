@@ -1,0 +1,44 @@
+<?php require('template/header.phtml') ?>
+
+<?php
+//setcookie('first', $_POST['numberOne']);
+//setcookie('second', $_POST['numberTwo']);
+//?>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+        <div class="row">
+            <div class="col-xs-4">
+                <label>1st number </label>
+                <input type="text" name="numberOne" value=" <?php if (isset($_POST['numberOne'])) {
+                    echo $_POST['numberOne'];
+                } ?>"/>
+
+            </div>
+
+            <div class="col-xs-4 pull-left">
+                <label>Operation </label>
+                <select name="operation">
+                    <option>add</option>
+                    <option>subtract</option>
+                    <option>multiply</option>
+                    <option>divide</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <label>2nd number </label>
+            <input type="text" name="numberTwo" value=" <?php if (isset($_POST['numberTwo'])) {
+                echo $_POST['numberTwo'];
+            } ?>"/>
+
+        </div>
+
+        <div>
+            <input type="submit" value="calculate" name="submit" />
+        </div>
+    </form>
+<?php if (isset($view->result)) : ?>
+    <p><?php echo $view->result; ?></p>
+<?php endif; ?>
+
+<?php require('template/footer.phtml') ?>

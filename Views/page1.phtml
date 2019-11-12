@@ -1,0 +1,15 @@
+<?php require('template/header.phtml') ?>
+
+<h3>Welcome to Page1</h3>
+
+<?php
+//    echo 'Session value from calculator.php: ' . $_SESSION['firstNumber']."<br>";
+
+if (isset($_SESSION['inputName']) && !empty($_SESSION['inputName'])) {
+    echo 'Name: ' . $_SESSION['inputName']."<br>";
+    echo 'DOB: ' . $_SESSION['inputDOB']."<br>";
+}
+
+?>
+
+<?php require('template/footer.phtml') ?>
