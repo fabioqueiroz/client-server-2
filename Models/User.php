@@ -3,7 +3,7 @@
 
 class User
 {
-    private $_userID, $_firstName, $_lastName, $_email, $_password, $_photo;
+    private $_userID, $_firstName, $_lastName, $_email, $_password, $_photo, $_registrationDate;
 
     public function __construct($dbRow)
     {
@@ -13,6 +13,7 @@ class User
         $this->_email = $dbRow['email'];
         $this->_password = $dbRow['password'];
         $this->_photo = $dbRow['photo'];
+        $this->_registrationDate = $dbRow['registrationDate'];
     }
 
     public function getUserID()
@@ -43,5 +44,10 @@ class User
     public function getPhoto()
     {
         return $this->_photo;
+    }
+
+    public function getRegistrationDate()
+    {
+        return $this->_registrationDate;
     }
 }
