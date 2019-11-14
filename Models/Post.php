@@ -3,14 +3,15 @@
 
 class Post
 {
-    private $_postID, $_postingUser, $_subject, $_message, $_image;
+    private $_postID, $_postingUser, $_topicSubject, $_content, $_postDate, $_image;
 
     public function __construct($dbRow)
     {
         $this->_postID = $dbRow['postID'];
         $this->_postingUser = $dbRow['postingUser'];
-        $this->_subject = $dbRow['subject'];
-        $this->_message = $dbRow['message'];
+        $this->_topicSubject = $dbRow['topicSubject'];
+        $this->_content = $dbRow['content'];
+        $this->_postDate = $dbRow['postDate'];
         $this->_image = $dbRow['image'];
     }
 
@@ -24,14 +25,19 @@ class Post
         return $this->_postingUser;
     }
 
-    public function getSubject()
+    public function getTopicSubject()
     {
-        return $this->_subject;
+        return $this->_topicSubject;
     }
 
-    public function getMessage()
+    public function getContent()
     {
-        return $this->_message;
+        return $this->_content;
+    }
+
+    public function getPostDate()
+    {
+        return $this->_postDate;
     }
 
     public function getImage()
