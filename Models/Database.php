@@ -18,6 +18,13 @@ class Database {
      * @param $database
      */
     private function __construct($username, $password, $host, $database) {
+
+//        $options = [
+//            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+//            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+//            PDO::ATTR_EMULATE_PREPARES   => false,
+//        ];
+
         try {
             $this->_dbHandle = new PDO("mysql:host=$host;dbname=$database",  $username, $password); // creates the database handle with connection info
             //$this->_dbHandle = new PDO('mysql:host=' . $host . ';dbname=' . $database,  $username, $password); // creates the database handle with connection info
@@ -25,6 +32,7 @@ class Database {
         }
         catch (PDOException $e) { // catch any failure to connect to the database
             echo $e->getMessage();
+//            throw new PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
 
