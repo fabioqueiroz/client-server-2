@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
 $view = new stdClass();
 $view->pageTitle = 'Logged';

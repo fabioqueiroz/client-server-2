@@ -1,11 +1,10 @@
 <?php
 session_start();
 require_once ('Models/UserDataSet.php');
-//$_SESSION['email'] = $_POST['email'];
-//$_SESSION['password'] = $_POST['password'];
 
 $view = new stdClass();
 $view->isLogged = false;
+$_SESSION['signed_in'] = false;
 
 $userDataSet = new UserDataSet();
 
@@ -17,9 +16,6 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
     foreach ($result as $value) {
         $firstName = $value->getFirstName();
         $lastName = $value->getLastName();
-
-        echo $firstName;
-        echo $lastName;
     }
 
     $_SESSION['firstName'] = $firstName;
