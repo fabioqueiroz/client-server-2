@@ -14,11 +14,14 @@ class UserDataSet
 
     public function createUser($firstName, $lastName, $email, $password) {
         $hashedPassword = sha1($password);
-        $sqlQuery = 'INSERT INTO laf873.users (firstName, lastName, email, password)
-                     VALUES ('."$firstName".', '."$lastName".', '."$email".', '."$hashedPassword".')';
+//        $sqlQuery = 'INSERT INTO laf873.users (firstName, lastName, email, password)
+//                     VALUES ('."$firstName".', '."$lastName".', '."$email".', '."$hashedPassword".')';
+
+        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password)
+                     VALUES (?,?,?,?)";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute();
+        $statement->execute([$firstName, $lastName, $email,$hashedPassword]);
 
     }
 
@@ -33,6 +36,19 @@ class UserDataSet
             $dataSet[] = new User($row);
         }
         return $dataSet;
+    }
+
+    public function authenticateUser($email, $password) {
+        $sqlQuery = 'SELECT firstName, lastName FROM laf873.users WHERE email = '."$email".' AND password = '."$password".' ';
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $row = $statement->fetch();
+        $result[] = new User($row);
+
+        return $result;
+
     }
 
 }
