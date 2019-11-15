@@ -61,7 +61,8 @@ if (isset($_POST['password'])) {
 //    $view->isLogged = true;
 //}
 
-if(empty($errors && isset($_POST['password']))) {
+if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) {
+
     $userDataSet->createUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password']);
 
     $_SESSION['firstName'] = $_POST['firstName'];
@@ -70,5 +71,7 @@ if(empty($errors && isset($_POST['password']))) {
 
     $view->isRegistered = true;
 }
+
+$status1 =  $view->isRegistered;
 
 require_once('Views/registerUser.phtml');

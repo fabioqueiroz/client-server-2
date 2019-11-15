@@ -1,8 +1,11 @@
 <?php require('template/header.phtml') ?>
 
+<?php $status =  $view->isRegistered?>
+
+<?php if(!$view->isRegistered){?>
 <h3>Register here to post</h3>
 
-<form name="register-form" method="post" action="registerUser.php"> <!-- page1.php -->
+<form name="register-form" method="post" action="registerUser.php">
     <div class="spacing">
         <label>First name:</label>
         <input type="text" name="firstName">
@@ -39,8 +42,50 @@
         <input type="submit" name="register" value="Register" class="btn btn-success">
     </div>
 
-
 </form>
+<?php } else if($view->isRegistered) {
+    require_once('forum.phtml');
+}?>
 
+<!--<h3>Register here to post</h3>-->
+<!---->
+<!--<form name="register-form" method="post" action="registerUser.php">-->
+<!--    <div class="spacing">-->
+<!--        <label>First name:</label>-->
+<!--        <input type="text" name="firstName">-->
+<!--    </div>-->
+<!--    <div class="spacing">-->
+<!--        <label>Last name:</label>-->
+<!--        <input type="text" name="lastName">-->
+<!--    </div>-->
+<!--    <div class="spacing">-->
+<!--        <label>Email:</label>-->
+<!--        <input type="text" name="email">-->
+<!--    </div>-->
+<!---->
+<!--    <div class="spacing">-->
+<!--        <label>Password:</label>-->
+<!--        <input type="password" name="password">-->
+<!--    </div>-->
+<!--    <div class="spacing">-->
+<!--        <label>Re-enter password:</label>-->
+<!--        <input type="password" name="re-typed-password">-->
+<!--    </div>-->
+<!--    <div class="error-message">-->
+<!--        --><?php
+//        if (!empty($errors) && isset($_POST['password'])){
+//            echo '<p>' . $errors . '</p>';
+//        }
+//        ?>
+<!--    </div>-->
+<!--    <div class="spacing">-->
+<!--        <label>Select image (optional):</label>-->
+<!--        <input type="file" name="photo" value="Choose file" class="btn btn-primary btn-sm">-->
+<!--    </div>-->
+<!--    <div class="spacing">-->
+<!--        <input type="submit" name="register" value="Register" class="btn btn-success">-->
+<!--    </div>-->
+<!---->
+<!--</form>-->
 
 <?php require('template/footer.phtml') ?>
