@@ -48,6 +48,10 @@
     border-color: #333;
 }
 
+.error-message {
+    color: #c12e2a;
+}
+
 .navbar .navbar-header {
     float: none;
 }

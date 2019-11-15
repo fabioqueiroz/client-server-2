@@ -14,8 +14,6 @@ class UserDataSet
 
     public function createUser($firstName, $lastName, $email, $password) {
         $hashedPassword = sha1($password);
-//        $sqlQuery = 'INSERT INTO laf873.users (firstName, lastName, email, password)
-//                     VALUES ('."$firstName".', '."$lastName".', '."$email".', '."$hashedPassword".')';
 
         $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password)
                      VALUES (?,?,?,?)";
@@ -24,21 +22,6 @@ class UserDataSet
         $statement->execute([$firstName, $lastName, $email,$hashedPassword]);
 
     }
-
-//    public function createUser($firstName, $lastName, $email, $password) {
-//        $hashedPassword = sha1($password);
-//        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password)
-//                     VALUES (:firstName, :lastName, :email, :password)";
-//
-//
-//        $statement = $this->_dbHandle->prepare($sqlQuery);
-//        $statement->bindParam(':firstName', $_POST['firstName'], PDO::PARAM_STR);
-//        $statement->bindParam(':lastName', $_POST['lastName'], PDO::PARAM_STR);
-//        $statement->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
-//        $statement->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
-//        $statement->execute();
-//
-//    }
 
     public function fetchAllUsers() {
         $sqlQuery = 'SELECT * FROM laf873.users';
