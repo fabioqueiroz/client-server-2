@@ -23,5 +23,8 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['signed_in'] = true;
     $view->isLogged = true;
 }
+else {
+    session_destroy();
+}
 
 require_once('Views/signIn.phtml');
