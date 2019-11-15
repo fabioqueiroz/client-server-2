@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once ('Models/UserDataSet.php');
 
@@ -35,32 +34,6 @@ if (isset($_POST['password'])) {
     }
 }
 
-//if(!empty($errors && isset($_POST['password']))) {
-//
-//    var_dump($errors);
-//    print_r($errors);
-//    echo $errors;
-//    echo is_array($errors);
-//
-////    echo '<ul>';
-////    foreach($errors as $key => $value)
-////    {
-////        echo '<li>' . $value . '</li>';
-////    }
-////    echo '</ul>';
-//}
-//
-//else {
-//
-//    $userDataSet->createUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password']);
-//
-//    $_SESSION['firstName'] = $_POST['firstName'];
-//    $_SESSION['lastName'] = $_POST['lastName'];
-//    $_SESSION['email'] = $_POST['email'];
-//
-//    $view->isLogged = true;
-//}
-
 if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) {
 
     $userDataSet->createUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password']);
@@ -68,10 +41,9 @@ if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) 
     $_SESSION['firstName'] = $_POST['firstName'];
     $_SESSION['lastName'] = $_POST['lastName'];
     $_SESSION['email'] = $_POST['email'];
+    $_SESSION['signed_in'] = true;
 
     $view->isRegistered = true;
 }
-
-$status1 =  $view->isRegistered;
 
 require_once('Views/registerUser.phtml');

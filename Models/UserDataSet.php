@@ -37,12 +37,14 @@ class UserDataSet
     }
 
     public function authenticateUser($email, $password) {
-        $sqlQuery = 'SELECT firstName, lastName FROM laf873.users WHERE email = '."$email".' AND password = '."$password".' ';
+        $hashedPassword = sha1($password);
+        $sqlQuery = 'SELECT firstName, lastName FROM laf873.users WHERE email = ? AND password = ? ';
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute();
+        $statement->execute([$email, $hashedPassword]);
 
         $row = $statement->fetch();
+
         $result[] = new User($row);
 
         return $result;
