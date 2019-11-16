@@ -4,7 +4,7 @@ require_once ('Models/UserDataSet.php');
 
 $view = new stdClass();
 $view->isLogged = false;
-$_SESSION['signed_in'] = false;
+//$_SESSION['signed_in'] = false;
 
 $userDataSet = new UserDataSet();
 
@@ -21,6 +21,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['firstName'] = $firstName;
     $_SESSION['lastName'] = $lastName;
     $_SESSION['signed_in'] = true;
+    $_COOKIE['logged'] = true;
     $view->isLogged = true;
 }
 else {

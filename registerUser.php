@@ -5,7 +5,7 @@ require_once ('Models/UserDataSet.php');
 $view = new stdClass();
 $view->isRegistered = false;
 $userDataSet = new UserDataSet();
-$_SESSION['signed_in'] = false;
+//$_SESSION['signed_in'] = false;
 
 $errors = array();
 
