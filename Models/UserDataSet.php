@@ -37,6 +37,7 @@ class UserDataSet
     }
 
     public function authenticateUser($email, $password) {
+
         $hashedPassword = sha1($password);
         $sqlQuery = 'SELECT firstName, lastName FROM laf873.users WHERE email = ? AND password = ? ';
 

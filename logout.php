@@ -1,11 +1,13 @@
 <?php
 
 unset($_SESSION);
-setcookie('first', '');
-setcookie('second', '');
 $_SESSION['signed_in'] = false;
+$_SESSION['login_error'] = false;
 $_SESSION['firstName'] = '';
 
-//header('Location: signIn.php');
 require_once ('signIn.php');
+
+//header('Location: signIn.php');
+//setcookie('first', '');
+//setcookie('second', '');
 

@@ -13,7 +13,9 @@
         <label>Password:</label>
         <input type="password" name="password">
     </div>
-
+    <div class="error-message">
+        <?php if($view->loginError) {echo "Email and password do not match";}?>
+    </div>
     <div class="spacing">
         <input type="submit" name="signIn" value="Sign In" class="btn btn-success">
     </div>
