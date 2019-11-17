@@ -102,6 +102,33 @@ th, td {
     text-align: left;
 }
 
+.dropdown-position {
+    padding-top: 24px;
+    /*color: whitesmoke;*/
+}
+
+.dropdown-position ,.link-text {
+  color: whitesmoke;
+}
+
+.search-box {
+    padding-top: 20px;
+}
+
+.search-icon {
+    margin-top: -34px;
+}
+
+.start-topic {
+    padding-top: 20px;
+}
+.envelope {
+    padding: 14px 16px;
+}
+.forum-top-bar {
+    background-color: darkgrey;
+}
+
 @media all and (max-width: 770px) {
     .col-xs-6 {
         width: 100%;

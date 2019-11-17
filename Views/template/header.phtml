@@ -47,8 +47,8 @@
                     <button type="button" id ="sign-in-button" class="pull-right"><a href="logout.php" class="navbar-brand">Sign Out</a></button>
                 <?php }?>
 
-                <p class="navbar-brand">Menu</p>
-                <p class="navbar-brand pull-right"><?php if (isset($_SESSION['signed_in'] )) { echo $_SESSION['firstName'];}?></p>
+                <p class="navbar-brand">Salford Wine Forum</p>
+                <p class="navbar-brand pull-right"><?php if (isset($_SESSION['signed_in'] )) { echo 'Hello '.$_SESSION['firstName'].'!';}?></p>
             </div>
 
             <div class="container">

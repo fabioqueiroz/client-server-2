@@ -1,5 +1,182 @@
 <?php require('template/header.phtml') ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<h3>Forum Test</h3>
+
+<!-- Search bar -->
+<div class="row forum-top-bar">
+<!--        <h3>Forum</h3>-->
+<!--        <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a href="index.html"><img src="images/new_uos_logo.jpg" alt=""></a></div>-->
+        <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><h3>Forum</h3></div>
+        <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
+            <div class="dropdown dropdown-position">
+                <a class="link-text" data-toggle="dropdown" href="#">Test Links</a> <b class="caret"></b>
+                <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Borderlands 1</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Borderlands 2</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Borderlands 3</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
+            <div class="wrap search-box">
+                <form action="#" method="post" class="form">
+                    <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"></div>
+                    <div class="pull-right search-icon"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
+            <div class="start-topic pull-left">
+                <form action="03_new_topic.html" method="post" class="form">
+                    <button class="btn btn-primary">Start New Topic</button>
+                </form>
+            </div>
+            <div class="envelope pull-left"><i class="fa fa-envelope fa-3x"></i></div>
+
+<!--            <div class="avatar pull-left dropdown">-->
+<!--                <a data-toggle="dropdown" href="#"><img src="images/avatar.jpg" alt=""></a> <b class="caret"></b>-->
+<!--                <div class="status green">&nbsp;</div>-->
+<!--                <ul class="dropdown-menu" role="menu">-->
+<!--                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Profile</a></li>-->
+<!--                    <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>-->
+<!--                    <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Log Out</a></li>-->
+<!--                    <li role="presentation"><a role="menuitem" tabindex="-4" href="04_new_account.html">Create account</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+            <div class="clearfix"></div>
+        </div>
+</div>
+
+<!-- Post area-->
+<div class="col-lg-8 col-md-8">
+    <!-- POST -->
+    <div class="post">
+        <div class="wrap-ut pull-left">
+            <div class="userinfo pull-left">
+                <div class="avatar">
+                    <img src="images/avatar.jpg" alt="">
+                    <div class="status green">&nbsp;</div>
+                </div>
+
+                <div class="icons">
+                    <img src="images/icon1.jpg" alt=""><img src="images/icon4.jpg" alt="">
+                </div>
+            </div>
+            <div class="posttext pull-left">
+                <h2><a href="02_topic.html">Test Post 1</a></h2>
+                <p>It's one thing to subject yourself to a Halloween costume mishap because, hey, that's your prerogative.</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="postinfo pull-left">
+            <div class="comments">
+                <div class="commentbg">
+                    560
+                    <div class="mark"></div>
+                </div>
+
+            </div>
+            <div class="views"><i class="fa fa-eye"></i> 1,568</div>
+            <div class="time"><i class="fa fa-clock-o"></i> 24 min</div>
+        </div>
+        <div class="clearfix"></div>
+    </div><!-- POST -->
+
+
+    <!-- POST -->
+    <div class="post">
+        <div class="wrap-ut pull-left">
+            <div class="userinfo pull-left">
+                <div class="avatar">
+                    <img src="images/avatar2.jpg" alt="">
+                    <div class="status red">&nbsp;</div>
+                </div>
+
+                <div class="icons">
+                    <img src="images/icon3.jpg" alt=""><img src="images/icon4.jpg" alt=""><img src="images/icon5.jpg" alt=""><img src="images/icon6.jpg" alt="">
+                </div>
+            </div>
+            <div class="posttext pull-left">
+                <h2><a href="02_topic.html">Test Post 2</a></h2>
+                <p>Instagram offered a first glimpse at what its ads will look like in a blog post Thursday. The sample ad, which you can see below.</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="postinfo pull-left">
+            <div class="comments">
+                <div class="commentbg">
+                    89
+                    <div class="mark"></div>
+                </div>
+
+            </div>
+            <div class="views"><i class="fa fa-eye"></i> 1,568</div>
+            <div class="time"><i class="fa fa-clock-o"></i> 15 min</div>
+        </div>
+        <div class="clearfix"></div>
+    </div><!-- POST -->
+
+
+
+
+
+    <!-- POST -->
+    <div class="post">
+        <div class="wrap-ut pull-left">
+            <div class="userinfo pull-left">
+                <div class="avatar">
+                    <img src="images/avatar4.jpg" alt="">
+                    <div class="status yellow">&nbsp;</div>
+                </div>
+
+                <div class="icons">
+                    <img src="images/icon1.jpg" alt=""><img src="images/icon4.jpg" alt=""><img src="images/icon6.jpg" alt="">
+                </div>
+            </div>
+            <div class="posttext pull-left">
+                <h2><a href="02_topic.html">Test Post 3</a></h2>
+                <p>Pinterest's valuation is closing in on $4 billion after its latest funding round of $225 million, according to a report.</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="postinfo pull-left">
+            <div class="comments">
+                <div class="commentbg">
+                    78
+                    <div class="mark"></div>
+                </div>
+
+            </div>
+            <div class="views"><i class="fa fa-eye"></i> 1,568</div>
+            <div class="time"><i class="fa fa-clock-o"></i> 24 min</div>
+        </div>
+        <div class="clearfix"></div>
+    </div><!-- POST -->
+
+</div>
+
+<div class="col-lg-4 col-md-4">
+
+    <!-- -->
+    <div class="sidebarblock">
+        <h3>Categories</h3>
+        <div class="divline"></div>
+        <div class="blocktxt">
+            <ul class="cats">
+                <li><a href="#">Red Wines <span class="badge pull-right">20</span></a></li>
+                <li><a href="#">White Wines<span class="badge pull-right">10</span></a></li>
+                <li><a href="#">Rose Wines <span class="badge pull-right">50</span></a></li>
+                <li><a href="#">Wines By Country <span class="badge pull-right">36</span></a></li>
+                <li><a href="#">French Wines<span class="badge pull-right">41</span></a></li>
+                <li><a href="#">Italian Wines <span class="badge pull-right">11</span></a></li>
+                <li><a href="#">New World Wines<span class="badge pull-right">5</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
 
 <?php require('template/footer.phtml') ?>
