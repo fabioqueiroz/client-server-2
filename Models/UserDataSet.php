@@ -15,15 +15,14 @@ class UserDataSet
     public function createUser($firstName, $lastName, $email, $password) {
         $hashedPassword = sha1($password);
 
-        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password)
-                     VALUES (?,?,?,?)";
+        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password) VALUES (?,?,?,?)";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$firstName, $lastName, $email,$hashedPassword]);
 
     }
 
-    public function fetchAllUsers() {
+    public function getAllUsers() {
         $sqlQuery = 'SELECT * FROM laf873.users';
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -51,7 +50,7 @@ class UserDataSet
 
     }
 
-    // to complete
+    // ******* to complete ********
     public function updateUser($email, $password) {
        $user = $this->authenticateUser($email, $password);
        $sqlQuery = 'UPDATE laf873.users SET () WHERE email = ? AND password = ? ';
@@ -64,5 +63,4 @@ class UserDataSet
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$email, $hashedPassword]);
     }
-
 }

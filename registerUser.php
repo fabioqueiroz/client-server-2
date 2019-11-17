@@ -44,6 +44,8 @@ if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) 
     $_SESSION['signed_in'] = true;
 
     $view->isRegistered = true;
+
+    $userDataSet->authenticateUser($_POST['email'], $_POST['password']);
 }
 
 require_once('Views/registerUser.phtml');
