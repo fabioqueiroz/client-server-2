@@ -21,7 +21,7 @@
     display: block;
 }
 #menu a:hover {
-    background-color: #f00;
+    background-color: #2a6496;
     color: #ddd;
     text-decoration:underline;
     display: block;
@@ -104,7 +104,7 @@ th, td {
 
 .dropdown-position {
     padding-top: 24px;
-    /*color: whitesmoke;*/
+    font-size: 15px;
 }
 
 .dropdown-position ,.link-text {
@@ -129,6 +129,9 @@ th, td {
     background-color: darkgrey;
 }
 
+#categories {
+    padding-top: 5px;
+}
 @media all and (max-width: 770px) {
     .col-xs-6 {
         width: 100%;
