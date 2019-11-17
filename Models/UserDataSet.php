@@ -37,9 +37,8 @@ class UserDataSet
     }
 
     public function authenticateUser($email, $password) {
-
         $hashedPassword = sha1($password);
-        $sqlQuery = 'SELECT firstName, lastName FROM laf873.users WHERE email = ? AND password = ? ';
+        $sqlQuery = 'SELECT * FROM laf873.users WHERE email = ? AND password = ? ';
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$email, $hashedPassword]);
@@ -50,6 +49,20 @@ class UserDataSet
 
         return $result;
 
+    }
+
+    // to complete
+    public function updateUser($email, $password) {
+       $user = $this->authenticateUser($email, $password);
+       $sqlQuery = 'UPDATE laf873.users SET () WHERE email = ? AND password = ? ';
+
+    }
+
+    public function deleteUser($email, $password) {
+        $hashedPassword = sha1($password);
+        $sqlQuery = 'DELETE FROM laf873.users WHERE email = ? AND password = ? ';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$email, $hashedPassword]);
     }
 
 }

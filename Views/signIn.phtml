@@ -1,5 +1,6 @@
 <?php require('template/header.phtml'); ?>
 
+<?php if(!$view->isLogged){?>
 <h3><strong>Sign in to post</strong></h3>
 <h5> ( Do not have an account? Register <a href="registerUser.php">here</a>. )</h5>
 
@@ -20,5 +21,8 @@
         <input type="submit" name="signIn" value="Sign In" class="btn btn-success">
     </div>
 </form>
+<?php } else if($view->isLogged) {
+    echo '<h3> Welcome '.$_SESSION['firstName']. ' '.$_SESSION['lastName']. '! Click <a href="forum.php">here</a> to post.</h3>';
+}?>
 
 <?php require('template/footer.phtml') ?>

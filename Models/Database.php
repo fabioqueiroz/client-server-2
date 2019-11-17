@@ -53,23 +53,6 @@ class Database {
         return self::$_dbInstance;
     }
 
-//    /**
-//     * @param $username
-//     * @param $password
-//     * @param $host
-//     * @param $database
-//     */
-//    private function __construct($username, $password, $host, $database) {
-//        try {
-//            $this->_dbHandle = new PDO("mysql:host=$host;dbname=$database",  $username, $password); // creates the database handle with connection info
-//            //$this->_dbHandle = new PDO('mysql:host=' . $host . ';dbname=' . $database,  $username, $password); // creates the database handle with connection info
-//
-//        }
-//        catch (PDOException $e) { // catch any failure to connect to the database
-//            echo $e->getMessage();
-//        }
-//    }
-
     /**
      * @return PDO
      */
