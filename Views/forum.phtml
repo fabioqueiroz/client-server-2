@@ -30,7 +30,60 @@
         <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
             <div class="start-topic pull-left">
                 <form action="newTopic.php" method="post" class="form">
-                    <button class="btn btn-primary">Start New Topic</button>
+<!--                    <button class="btn btn-primary">Start New Topic</button>-->
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Start New Topic
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="exampleModalLabel">New Topic</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                            <div class="form-row">
+                                                <div class="col-md-7 mb-4">
+                                                    <label for="validationDefault01">Subject</label>
+                                                    <input type="text" class="form-control" id="validationDefault01" name="topicSubject" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-7 mb-4">
+                                                    <label for="inputState">Category</label>
+                                                    <select id="inputState" class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+<!--                                            <div class="form-row">-->
+<!--                                                <div class="col-md-4 mb-4">-->
+<!--                                                    <label for="validationDefault03">Description</label>-->
+<!--                                                    <input type="text" class="form-control" required>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Create Topic</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal ends -->
                 </form>
             </div>
             <div class="envelope pull-left"><i class="fa fa-envelope fa-3x"></i></div>
