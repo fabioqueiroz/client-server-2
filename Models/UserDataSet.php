@@ -18,7 +18,7 @@ class UserDataSet
         $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password) VALUES (?,?,?,?)";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$firstName, $lastName, $email,$hashedPassword]);
+        $statement->execute([$firstName, $lastName, $email, $hashedPassword]);
 
     }
 

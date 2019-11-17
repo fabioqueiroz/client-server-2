@@ -26,9 +26,19 @@ class User
         return $this->_firstName;
     }
 
+    public function setFirstName($firstName)
+    {
+        $this->_firstName = $firstName;
+    }
+
     public function getLastName()
     {
         return $this->_lastName;
+    }
+
+    public function setLastName($lastName)
+    {
+        $this->_lastName = $lastName;
     }
 
     public function getEmail()
@@ -41,9 +51,19 @@ class User
         return $this->_password;
     }
 
+    public function setEmail($email)
+    {
+        $this->_email = $email;
+    }
+
     public function getPhoto()
     {
         return $this->_photo;
+    }
+
+    public function setPhoto($photo)
+    {
+        $this->_photo = $photo;
     }
 
     public function getRegistrationDate()
