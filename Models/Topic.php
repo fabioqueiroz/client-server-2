@@ -3,7 +3,7 @@
 
 class Topic
 {
-    private $_topicID, $_topicSubject, $_topicDate, $_topicCategory, $_postingUser;
+    private $_topicID, $_topicSubject, $_topicDate, $_topicCategory, $_postingUser, $_topicDescription;
 
     public function __construct($dbRow)
     {
@@ -12,6 +12,7 @@ class Topic
         $this->_topicDate = $dbRow['topicDate'];
         $this->_topicCategory = $dbRow['topicCategory'];
         $this->_postingUser = $dbRow['postingUser'];
+        $this->_topicDescription = $dbRow['topicDescription'];
     }
 
     public function getTopicID()
@@ -37,5 +38,10 @@ class Topic
     public function getPostingUser()
     {
         return $this->_postingUser;
+    }
+
+    public function getTopicDescription()
+    {
+        return $this->_topicDescription;
     }
 }
