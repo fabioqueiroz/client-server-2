@@ -2,14 +2,16 @@
 
 require_once ('Models/Database.php');
 require_once ('Models/User.php');
+require_once ('Models/BaseDataSet.php');
 
-class UserDataSet
+class UserDataSet extends BaseDataSet
 {
-    protected $_dbHandle, $_dbInstance;
+//    protected $_dbHandle, $_dbInstance;
 
     public function __construct() {
-        $this->_dbInstance = Database::getInstance();
-        $this->_dbHandle = $this->_dbInstance->getdbConnection();
+//        $this->_dbInstance = Database::getInstance();
+//        $this->_dbHandle = $this->_dbInstance->getdbConnection();
+        parent::__construct();
     }
 
     public function createUser($firstName, $lastName, $email, $password) {
