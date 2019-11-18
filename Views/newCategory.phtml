@@ -1,0 +1,34 @@
+<?php require('template/header.phtml'); ?>
+
+<div class="container">
+    <h3>New Category</h3>
+    <form name="topic-form" method="post" action="newCategory.php">
+        <div class="form-row">
+            <div class="col-md-6 mb-4">
+                <label for="validationDefault01">Category Name</label>
+                <input type="text" class="form-control" id="validationDefault01" name="category-name" required>
+            </div>
+
+        <div class="form-row">
+            <div class="col-md-12 mb-4">
+                <label for="validationDefault03">Description</label>
+                <input type="text" class="form-control" name="category-description" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-8 mb-3 spacing">
+                <button class="btn btn-primary" type="submit">Create Category</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="col-md-12 mb-3 spacing">
+    <?php if($view->isCategoryCreated) {
+        echo '<h3> Category created! Create another one or click <a href="forum.php">here</a> to go back to the forum.</h3><br>';
+    }?>
+</div>
+
+<?php require('template/footer.phtml') ?>
+
+
