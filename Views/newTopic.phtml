@@ -2,7 +2,7 @@
 
 <div class="container">
     <h3>New Topic</h3>
-        <form name="topic-form" method="post" action="newTopic.php"> <!--**** change to forum.php ***** -->
+        <form name="topic-form" method="post" action="newTopic.php">
             <div class="form-row">
                 <div class="col-md-6 mb-4">
                     <label for="validationDefault01">Subject</label>
@@ -32,9 +32,12 @@
                     <button class="btn btn-primary" type="submit">Create Topic</button>
                 </div>
             </div>
-
         </form>
 </div>
+<?php if($view->isTopicCreated) {
+    echo '<h3> Topic created! Create another one or click <a href="forum.php">here</a> to go back to the forum.</h3><br>';
+}?>
+
 
 <?php require('template/footer.phtml') ?>
 
