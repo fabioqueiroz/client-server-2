@@ -43,6 +43,4 @@ class TopicDataSet
         $statement->execute([$topicSubject, $topicCategory, $postingUser, $topicDescription]);
     }
 
-
-
 }

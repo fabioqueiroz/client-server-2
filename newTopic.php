@@ -12,7 +12,8 @@ if(isset($_POST['subject']) && isset($_POST['category']) && isset($_POST['descri
     $result = $topicDataSet->createTopic($_POST['subject'], $categoryID, $postingUser, $_POST['description']);
 }
 
-require_once('Views/newTopic.phtml');
+// uncomment to stop using modal
+//require_once('Views/newTopic.phtml');
 
-// using modal
-//require_once('forum.php');
+// comment out if not using modal
+require_once('forum.php');
