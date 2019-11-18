@@ -15,7 +15,7 @@ class UserDataSet
     public function createUser($firstName, $lastName, $email, $password) {
         $hashedPassword = sha1($password);
 
-        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password) VALUES (?,?,?,?)";
+        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password, registrationDate) VALUES (?,?,?,?, NOW())";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$firstName, $lastName, $email, $hashedPassword]);

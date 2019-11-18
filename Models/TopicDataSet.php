@@ -12,11 +12,11 @@ class TopicDataSet
         $this->_dbHandle = $this->_dbInstance->getdbConnection();
     }
 
-    public function createTopic($topicSubject, $topicCategory, $postingUser) {
-        $sqlQuery = "INSERT INTO laf873.topics (topicSubject, topicDate, topicCategory, postingUser) VALUES (?,?,?,?)";
+    public function createTopic($topicSubject, $topicCategory, $postingUser, $topicDescription) {
+        $sqlQuery = "INSERT INTO laf873.topics (topicSubject, topicDate, topicCategory, postingUser, topicDescription) VALUES (?,?,?,?,?)";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$topicSubject, $topicCategory, NOW(), $topicCategory, $postingUser]);
+        $statement->execute([$topicSubject, NOW(), $topicCategory, $postingUser, $topicDescription]);
     }
 
 

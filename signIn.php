@@ -11,10 +11,10 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 
     $result = $userDataSet->authenticateUser($_POST['email'], $_POST['password']);
     $firstName = $lastName = $email = $password = '';
-    $photo = '';
-    $registrationDate = '';
+    $userID = $photo = $registrationDate = '';
 
     foreach ($result as $value) {
+        $userID = $value->getUserID();
         $firstName = $value->getFirstName();
         $lastName = $value->getLastName();
         $email = $value->getEmail();
@@ -24,6 +24,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
     }
 
     if($firstName != null && $lastName != null) {
+        $_SESSION['userID'] = $userID;
         $_SESSION['firstName'] = $firstName;
         $_SESSION['lastName'] = $lastName;
         $_SESSION['email'] = $email;
