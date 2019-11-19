@@ -142,6 +142,10 @@ th, td {
     padding-top: 30px;
 }
 
+.clearfix {
+    padding-bottom: 20px;
+}
+
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {
     .col-xs-6 {
