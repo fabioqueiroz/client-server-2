@@ -134,16 +134,29 @@ th, td {
     color: floralwhite;
 }
 
-#categories {
+#categories, #topics {
     padding-top: 5px;
+    margin-top: 10px;
 }
 
 #stats-position {
     padding-top: 30px;
+    padding-bottom: 10px;
+    border-left-style: outset;
+    margin-top: 15px;
 }
 
 .clearfix {
     padding-bottom: 20px;
+}
+
+.forum-layout {
+    border-style: outset;
+    border-radius: 10px;
+}
+
+#post-layout h2 {
+
 }
 
 <!-- Mobile Medias -->
