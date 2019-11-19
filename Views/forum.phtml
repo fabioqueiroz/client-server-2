@@ -31,69 +31,74 @@
         <!-- New post area -->
         <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
             <div class="start-topic pull-left">
-
                 <form action="newPost.php" method="post" class="form">
-
-                    <!-- Button trigger modal -->
                     <?php if(isset($_SESSION['userID'])) {?>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Start New Post
-                    </button>
-
-                    <!-- New Post Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="modal-title" id="exampleModalLabel">New Post</h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                            <div class="form-row">
-                                                <div class="col-md-7 mb-4">
-                                                    <label for="validationDefault01">Title</label>
-                                                    <input type="text" class="form-control" id="validationDefault01" name="title" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-7 mb-4">
-                                                    <label for="inputState">Topic</label>
-                                                    <select id="inputState" class="form-control" name="topicSubject">
-                                                        <?php foreach ($topics as $topic){?>
-                                                        <option>
-                                                            <?php
-                                                            echo $topic->getTopicSubject();
-                                                            $_POST['topicSubject'] = $topic;
-                                                            ?>
-                                                        </option>
-                                                        <?php }?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="col-md-7 mb-4">
-                                                    <label for="validationDefault03">Message</label>
-                                                    <textarea type="text" class="form-control" rows="3" name="postMessage" required></textarea>
-                                                </div>
-                                            </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Create Post</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <!-- New Post Modal Ends -->
+                    <button type="submit" class="btn btn-primary">Start New Post</button>
                     <?php } else {?>
-                        <div class="col-xs-12 col-md-12">
-                            <?php echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
-                        </div>
-                    <?php }?>
+                       <div class="col-xs-12 col-md-12">
+                          <?php echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
+                               </div>
+                          <?php }?>
+                    <!-- Button trigger modal -->
+<!--                    --><?php //if(isset($_SESSION['userID'])) {?>
+<!--                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
+<!--                        Start New Post-->
+<!--                    </button>-->
+<!---->
+<!--                    <!- New Post Modal -->
+<!--                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                        <div class="modal-dialog" role="document">-->
+<!--                            <div class="modal-content">-->
+<!--                                <div class="modal-header">-->
+<!--                                    <h3 class="modal-title" id="exampleModalLabel">New Post</h3>-->
+<!--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                        <span aria-hidden="true">&times;</span>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                                <div class="modal-body">-->
+<!--                                    <div class="container">-->
+<!--                                            <div class="form-row">-->
+<!--                                                <div class="col-md-7 mb-4">-->
+<!--                                                    <label for="validationDefault01">Title</label>-->
+<!--                                                    <input type="text" class="form-control" id="validationDefault01" name="title" required>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-row">-->
+<!--                                                <div class="form-group col-md-7 mb-4">-->
+<!--                                                    <label for="inputState">Topic</label>-->
+<!--                                                    <select id="inputState" class="form-control" name="topicSubject">-->
+<!--                                                        --><?php //foreach ($topics as $topic){?>
+<!--                                                        <option>-->
+<!--                                                            --><?php
+//                                                            echo $topic->getTopicSubject();
+//                                                            $_POST['topicSubject'] = $topic;
+//                                                            ?>
+<!--                                                        </option>-->
+<!--                                                        --><?php //}?>
+<!--                                                    </select>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-row">-->
+<!--                                                <div class="col-md-7 mb-4">-->
+<!--                                                    <label for="validationDefault03">Message</label>-->
+<!--                                                    <textarea type="text" class="form-control" rows="3" name="postMessage" required></textarea>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="modal-footer">-->
+<!--                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                                    <button type="submit" class="btn btn-primary">Create Post</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                        <!- New Post Modal Ends -->
+<!--                    --><?php //} else {?>
+<!--                        <div class="col-xs-12 col-md-12">-->
+<!--                            --><?php //echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
+<!--                        </div>-->
+<!--                    --><?php //}?>
                 </form>
             </div>
             <div class="envelope pull-right"><i class="fa fa-envelope fa-3x"></i></div>

@@ -1,1 +1,44 @@
-<h3>new post</h3>
+<?php require('template/header.phtml'); ?>
+
+<div class="container">
+    <h3>New Post</h3>
+    <form name="topic-form" method="post" action="newPost.php">
+        <div class="form-row">
+            <div class="col-md-6 mb-4">
+                <label for="validationDefault01">Title</label>
+                <input type="text" class="form-control" id="validationDefault01" name="title" required>
+            </div>
+
+            <div class="form-group col-md-6 mb-4">
+                <label for="inputState">Topic</label>
+                <select id="inputState" class="form-control" name="topicSubject">
+                    <?php foreach ($topics as $topic){?>
+                        <option>
+                            <?php
+                            echo $topic->getTopicSubject();
+                            $_POST['topicSubject'] = $topic;
+                            ?>
+                        </option>
+                    <?php }?>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-12 mb-4">
+                <label for="validationDefault03">Message</label>
+                <textarea type="text" class="form-control" rows="3" name="postMessage" required></textarea>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-8 mb-3 spacing">
+                <button class="btn btn-primary" type="submit">Create Post</button>
+            </div>
+        </div>
+    </form>
+</div>
+<?php if($view->isPostCreated) {
+    echo '<h3> Post created! Create another one or click <a href="forum.php">here</a> to see your post in the forum.</h3><br>';
+}?>
+
+<?php require('template/footer.phtml') ?>
