@@ -66,8 +66,10 @@
                                                     <select id="inputState" class="form-control" name="topicSubject">
                                                         <?php foreach ($topics as $topic){?>
                                                         <option>
-                                                            <?php echo $topic->getTopicSubject();
-                                                            echo ' '. $topic->getTopicID();
+                                                            <?php
+                                                            echo $topic->getTopicSubject();
+                                                            $_POST['topicSubject'] = $topic;
+
                                                             ?>
                                                         </option>
                                                         <?php }?>
