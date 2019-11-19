@@ -11,7 +11,6 @@ $topicID ='';
 $topics = $topicDataSet->getAllTopics();
 $posts = $postDataSet->getAllPosts();
 
-//var_dump($posts);
 
 if(isset($_POST['title']) && isset($_POST['topicSubject']) && isset($_POST['postMessage']) && $_SESSION['userID'] != null) {
     // get the id from the topic selection
