@@ -17,4 +17,17 @@ class PostDataSet extends BaseDataSet
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$title, $postMessage, $topicSubject, $postingUser]);
     }
+
+    public function getAllPosts() {
+        $sqlQuery = "SELECT * FROM laf873.posts";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $posts = [];
+        while ($row = $statement->fetch()) {
+            $posts[] = new Post($row);
+        }
+        return $posts;
+    }
 }

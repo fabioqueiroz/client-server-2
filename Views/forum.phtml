@@ -21,8 +21,8 @@
         <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
             <div class="wrap search-box">
                 <form action="#" method="post" class="form">
-                    <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics">
-                        <div class="pull-right search-icon"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></div>
+                    <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Posts">
+                        <div class="pull-right search-icon"><button class="btn btn-success" type="button"><i class="fa fa-search"></i></button></div>
                     </div>
 
                     <div class="clearfix"></div>
@@ -33,11 +33,12 @@
         <!-- New post area -->
         <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
             <div class="start-topic pull-left">
-                <!-- ******** TO DO: PUT CHECK TO CONFIRM THE USER IS LOGGED ********* -->
+
                 <form action="newPost.php" method="post" class="form">
 <!--                    <button class="btn btn-primary">Start New Topic</button>-->
 
                     <!-- Button trigger modal -->
+                    <?php if(isset($_SESSION['userID'])) {?>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Start New Post
                     </button>
@@ -92,7 +93,15 @@
                             </div>
                         </div>
                     </div>
-                    <!-- New Post Modal Ends -->
+                        <!-- New Post Modal Ends -->
+<!--                    --><?php //} else {
+//                        echo '<h5><a href="signIn.php">Sign in</a> to post!</h5>';
+//                    }?>
+                    <?php } else {?>
+                        <div class="col-xs-12 col-md-12">
+                            <?php echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
+                        </div>
+                    <?php }?>
                 </form>
                 <!-- ******** TO DO: ADD ANOTHER MODAL OR REDIRECT TO THE SIGN IN PAGE IN CASE THE USER IS NOT LOGGED ********* -->
             </div>

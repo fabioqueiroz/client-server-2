@@ -108,7 +108,7 @@ th, td {
 }
 
 .dropdown-position ,.link-text {
-  color: whitesmoke;
+  color: black;
 }
 
 .search-box {
@@ -129,9 +129,17 @@ th, td {
     background-color: darkgrey;
 }
 
+.sign-in-message{
+    font-weight: bolder;
+    color: floralwhite;
+}
+
 #categories {
     padding-top: 5px;
 }
+
+
+<!-- Mobile Medias -->
 @media all and (max-width: 770px) {
     .col-xs-6 {
         width: 100%;
