@@ -7,7 +7,7 @@ class Topic
 
     public function __construct($dbRow)
     {
-        $this->_topicID = $dbRow['$topicID'];
+        $this->_topicID = $dbRow['topicID'];
         $this->_topicSubject = $dbRow['topicSubject'];
         $this->_topicDate = $dbRow['topicDate'];
         $this->_topicCategory = $dbRow['topicCategory'];

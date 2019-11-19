@@ -45,4 +45,17 @@ class TopicDataSet extends BaseDataSet
         $statement->execute([$topicSubject, $topicCategory, $postingUser, $topicDescription]);
     }
 
+    public function getAllTopics() {
+        $sqlQuery = "SELECT * FROM laf873.topics";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $topics = [];
+        while ($row = $statement->fetch()) {
+            $topics[] = new Topic($row);
+        }
+        return $topics;
+    }
+
 }

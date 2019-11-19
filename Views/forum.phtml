@@ -34,7 +34,7 @@
         <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
             <div class="start-topic pull-left">
                 <!-- ******** TO DO: PUT CHECK TO CONFIRM THE USER IS LOGGED ********* -->
-                <form action="about.php" method="post" class="form">
+                <form action="newPost.php" method="post" class="form">
 <!--                    <button class="btn btn-primary">Start New Topic</button>-->
 
                     <!-- Button trigger modal -->
@@ -56,26 +56,29 @@
                                     <div class="container">
                                             <div class="form-row">
                                                 <div class="col-md-7 mb-4">
-                                                    <label for="validationDefault01">Subject</label>
-                                                    <input type="text" class="form-control" id="validationDefault01" name="subject" required>
+                                                    <label for="validationDefault01">Title</label>
+                                                    <input type="text" class="form-control" id="validationDefault01" name="title" required>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-7 mb-4">
-                                                    <label for="inputState">Category</label>
-                                                    <select id="inputState" class="form-control" name="category">
-                                                        <option>Countries</option>
-                                                        <option>Regions</option>
-                                                        <option>Red Wine</option>
-                                                        <option>White Wine</option>
-                                                        <option>Food Pairing</option>
+                                                    <label for="inputState">Topic</label>
+                                                    <select id="inputState" class="form-control" name="topicSubject">
+                                                        <?php foreach ($topics as $topic){?>
+                                                        <option>
+                                                            <?php echo $topic->getTopicSubject();
+                                                            echo ' '. $topic->getTopicID();
+                                                            ?>
+                                                        </option>
+                                                        <?php }?>
                                                     </select>
+<!--                                                    <input type="hidden" name="topicID" value="--><?php //foreach ($topics as $t) {echo $t->getTopicID();} ?><!--"/>-->
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-7 mb-4">
-                                                    <label for="validationDefault03">Description</label>
-                                                    <textarea type="text" class="form-control" rows="3" name="description" required></textarea>
+                                                    <label for="validationDefault03">Message</label>
+                                                    <textarea type="text" class="form-control" rows="3" name="postMessage" required></textarea>
                                                 </div>
                                             </div>
                                     </div>
@@ -220,13 +223,11 @@
         <div class="divline"></div>
         <div class="blocktxt">
             <ul class="cats">
-                <li><a href="#">Red Wines <span class="badge pull-right">20</span></a></li>
-                <li><a href="#">White Wines<span class="badge pull-right">10</span></a></li>
-                <li><a href="#">Rose Wines <span class="badge pull-right">50</span></a></li>
-                <li><a href="#">Wines By Country <span class="badge pull-right">36</span></a></li>
-                <li><a href="#">French Wines<span class="badge pull-right">41</span></a></li>
-                <li><a href="#">Italian Wines <span class="badge pull-right">11</span></a></li>
-                <li><a href="#">New World Wines<span class="badge pull-right">5</span></a></li>
+                <li><a href="#">Countries<span class="badge pull-right">20</span></a></li>
+                <li><a href="#">Regions<span class="badge pull-right">10</span></a></li>
+                <li><a href="#">Red Wine<span class="badge pull-right">50</span></a></li>
+                <li><a href="#">White Wine<span class="badge pull-right">36</span></a></li>
+                <li><a href="#">Food Pairing<span class="badge pull-right">41</span></a></li>
             </ul>
         </div>
         <div class="start-topic pull-left">
@@ -283,11 +284,13 @@
         <div class="divline"></div>
         <div class="blocktxt">
             <ul class="cats">
-                <li><a href="#">Countries<span class="badge pull-right">20</span></a></li>
-                <li><a href="#">Regions<span class="badge pull-right">10</span></a></li>
-                <li><a href="#">Red Wine<span class="badge pull-right">50</span></a></li>
-                <li><a href="#">White Wine<span class="badge pull-right">36</span></a></li>
-                <li><a href="#">Food Pairing<span class="badge pull-right">41</span></a></li>
+                <li><a href="#">Red Wines <span class="badge pull-right">20</span></a></li>
+                <li><a href="#">White Wines<span class="badge pull-right">10</span></a></li>
+                <li><a href="#">Rose Wines <span class="badge pull-right">50</span></a></li>
+                <li><a href="#">Wines By Country <span class="badge pull-right">36</span></a></li>
+                <li><a href="#">French Wines<span class="badge pull-right">41</span></a></li>
+                <li><a href="#">Italian Wines <span class="badge pull-right">11</span></a></li>
+                <li><a href="#">New World Wines<span class="badge pull-right">5</span></a></li>
             </ul>
         </div>
         <div class="start-topic pull-left">
