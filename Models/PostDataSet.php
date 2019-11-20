@@ -33,4 +33,20 @@ class PostDataSet extends BaseDataSet
         }
         return $posts;
     }
+
+    public function filterPostsByTitle($title) {
+        $sqlQuery = "SELECT * 
+                     FROM laf873.posts 
+                     WHERE title LIKE '%{$title}%'
+                     ORDER BY postDate DESC";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $filteredPosts = [];
+        while ($row = $statement->fetch()) {
+            $filteredPosts[] = new PostDisplay($row);
+        }
+        return $filteredPosts;
+    }
 }

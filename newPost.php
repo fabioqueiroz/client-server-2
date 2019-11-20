@@ -29,6 +29,5 @@ if(isset($_POST['title']) && isset($_POST['topicSubject']) && isset($_POST['post
     $view->errorMessage = true;
 }
 
-// test
 require_once('Views/newPost.phtml');
 //require_once('forum.php');
