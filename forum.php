@@ -15,6 +15,7 @@ $posts = $postDataSet->getAllPosts();
 if(isset($_POST['filter']) && !empty($_POST['filter']) && $_SESSION['userID'] != null) {
    $posts = $postDataSet->filterPostsByTitle($_POST['filter']);
    unset($_POST);
+   $view->isFiltered = true;
 
 } else {
     $view->erroMessage = true;

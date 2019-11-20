@@ -35,6 +35,7 @@ class PostDataSet extends BaseDataSet
     }
 
     public function filterPostsByTitle($title) {
+//        $title = $this->_dbHandle->quote($title);
         $sqlQuery = "SELECT * 
                      FROM laf873.posts 
                      WHERE title LIKE '%{$title}%'
@@ -49,4 +50,6 @@ class PostDataSet extends BaseDataSet
         }
         return $filteredPosts;
     }
+
+
 }

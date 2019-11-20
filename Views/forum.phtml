@@ -24,6 +24,9 @@
                     <div class="pull-left txt">
                         <input type="text" class="form-control" placeholder="Search Posts" name="filter">
                         <div class="pull-right search-icon"><button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button></div>
+                        <?php if($view->isFiltered) {?>
+                        <button class="btn btn-group-justified" type="submit">Clear Search</button>
+                        <?php }?>
                     </div>
                 </form>
             </div>
