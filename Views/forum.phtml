@@ -166,11 +166,9 @@
                                                         <div class="form-row">
                                                             <div class="form-group col-md-7 mb-4">
                                                                     <?php foreach ($replies as $reply){?>
-                                                                        <h4>
-                                                                            <?php
-                                                                            echo $reply->getReplyTo();
-                                                                            ?>
-                                                                        </h4>
+                                                                        <h4><?php echo $reply->getReplyMessage(); ?></h4>
+                                                                        <h5><?php echo $reply->getReplyFrom(); ?></h5>
+                                                                        <h5><?php echo $reply->getReplyDate(); ?></h5>
                                                                     <?php }?>
                                                             </div>
                                                         </div>

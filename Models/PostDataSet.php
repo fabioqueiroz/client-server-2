@@ -59,40 +59,7 @@ class PostDataSet extends BaseDataSet
         $statement->execute([$replyMessage, $postingUser, $replyTo, $postingUser, $postID]);
     }
 
-//    public function getAllReplies($userID) {
-//        $sqlQuery = "select r.ID, r.message, r.messageDate, r.postingUser, r.replyTo, r.image, r.postID,
-//                           p.title, p.message
-//                     from laf873.replies r
-//                     inner join laf873.posts p on r.postID = p.ID
-//                     where r.replyTo = '{$userID}'
-//                     order by r.messageDate desc";
-//
-//        $statement = $this->_dbHandle->prepare($sqlQuery);
-//        $statement->execute([$userID]);
-//
-//        $replies = [];
-//        while ($row = $statement->fetch()) {
-//            $replies[] = new PostReply($row);
-//        }
-//        return $replies;
-//    }
-    public function getAllReplies() {
-        $sqlQuery = "select r.ID, r.message, r.messageDate, r.postingUser, r.replyTo, r.image, r.postID,
-                           p.title, p.message
-                     from laf873.replies r
-                     inner join laf873.posts p on r.postID = p.ID
-                     where r.replyTo = 41
-                     order by r.messageDate desc";
 
-        $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute();
-
-        $replies = [];
-        while ($row = $statement->fetch()) {
-            $replies[] = new PostReply($row);
-        }
-        return $replies;
-    }
 
 
 
