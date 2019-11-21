@@ -10,9 +10,10 @@ $postDataSet = new PostDataSet();
 $topicID ='';
 $topics = $topicDataSet->getAllTopics();
 $posts = $postDataSet->getAllPosts();
-var_dump($posts);
+//var_dump($posts);
 
-//$replies = $postDataSet->getAllReplies();
+$replies = $postDataSet->getAllReplies();
+var_dump($replies);
 
 if(isset($_POST['filter']) && !empty($_POST['filter']) && $_SESSION['userID'] != null) {
    $posts = $postDataSet->filterPostsByTitle($_POST['filter']);

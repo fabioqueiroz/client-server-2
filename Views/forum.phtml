@@ -152,38 +152,26 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h3 class="modal-title" id="exampleModalLabel">New Post</h3>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
+
+                                                    <!-- Display the post again -->
+                                                    <h3 class="modal-title" id="exampleModalLabel"><?php echo $post->getTitle()?></h3>
+                                                    <h4><?php echo $post->getMessage()?></h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="container">
-                                                        <div class="form-row">
-                                                            <div class="col-md-7 mb-4">
-                                                                <label for="validationDefault01">Title</label>
-                                                                <input type="text" class="form-control" id="validationDefault01" name="title" required>
-                                                            </div>
-                                                        </div>
+
                                                         <div class="form-row">
                                                             <div class="form-group col-md-7 mb-4">
-                                                                <label for="inputState">Topic</label>
-                                                                <select id="inputState" class="form-control" name="topicSubject">
-                                                                    <?php foreach ($topics as $topic){?>
-                                                                        <option>
+                                                                    <?php foreach ($replies as $reply){?>
+                                                                        <h4>
                                                                             <?php
-                                                                            echo $topic->getTopicSubject();
-                                                                            $_POST['topicSubject'] = $topic;
+                                                                            echo $reply->getReplyTo();
                                                                             ?>
-                                                                        </option>
+                                                                        </h4>
                                                                     <?php }?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="col-md-7 mb-4">
-                                                                <label for="validationDefault03">Message</label>
-                                                                <textarea type="text" class="form-control" rows="3" name="postMessage" required></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -195,7 +183,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!- Reply Modal Ends
+                                    <!-- Reply Modal Ends -->
                                 <?php } else {?>
                                     <div class="col-xs-12 col-md-12">
                                         <?php echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
