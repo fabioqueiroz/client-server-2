@@ -1,8 +1,8 @@
 <?php
 
-require_once ('Models/Database.php');
-require_once ('Models/Topic.php');
-require_once ('Models/BaseDataSet.php');
+require_once('Models/Database.php');
+require_once('Models/Topics/Topic.php');
+require_once('Models/BaseDataSet.php');
 
 class TopicDataSet extends BaseDataSet
 {
