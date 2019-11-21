@@ -59,6 +59,10 @@ class PostDataSet extends BaseDataSet
         $statement->execute([$replyMessage, $postingUser, $replyTo, $postingUser, $postID]);
     }
 
+    public function getAllReplies($postID) {
+
+    }
+
 
 
 
