@@ -125,6 +125,12 @@ th, td {
 .envelope {
     padding: 14px 16px;
 }
+
+.envelope button{
+    background-color: darkgray;
+    border: none;
+}
+
 .forum-top-bar {
     background-color: darkgrey;
 }

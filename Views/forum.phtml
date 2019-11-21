@@ -5,14 +5,14 @@
 <div>
 <!-- Search bar -->
 <div class="row forum-top-bar">
-        <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><h3>Forum</h3></div>
+        <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><h3>Posts</h3></div>
         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3">
             <div class="dropdown dropdown-position pull-right">
                 <a class="link-text" data-toggle="dropdown" href="#">My Profile</a> <b class="caret"></b>
                 <ul class="dropdown-menu" role="menu">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Details</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Borderlands 3</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Watchlist</a></li>
                 </ul>
             </div>
         </div>
@@ -105,7 +105,9 @@
 <!--                    --><?php //}?>
                 </form>
             </div>
-            <div class="envelope pull-right"><i class="fa fa-envelope fa-3x"></i></div>
+            <form action="#" method="post" class="form">
+                <div class="envelope pull-right"><button type="submit"><i class="fa fa-envelope fa-3x"></i></button></div>
+            </form>
 
 <!--            <div class="avatar pull-left dropdown">-->
 <!--                <a data-toggle="dropdown" href="#"><img src="images/avatar.jpg" alt=""></a> <b class="caret"></b>-->
@@ -132,12 +134,12 @@
                 <?php foreach ($posts as $post){?>
                     <div class="col-md-8 col-sm-12 pull-left">
                         <h2><a><?php echo $post->getTitle()?></a></h2>
-                        <p><?php echo $post->getPostMessage()?></p>
+                        <p><?php echo $post->getMessage()?></p>
                     </div>
                     <div id="stats-position" class="col-md-4 col-sm-12 pull-left col-md-pull-1">
                         <div class="fas fa-user col-md-pull-8"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></div>
                         <div class="far fa-address-card col-md-push-12">78 replies</div>
-                        <div class="time col-md-pull-12"><i class="far fa-calendar-alt"></i><?php echo $post->getPostDate()?></div>
+                        <div class="time col-md-pull-12"><i class="far fa-calendar-alt"></i><?php echo $post->getMessageDate()?></div>
                     </div>
                 <?php }?>
                 </div>
@@ -162,11 +164,6 @@
     </div>
     <div class="clearfix"></div>
 </div>
-
-    <!-- DYNAMIC POST -->
-
-
-
 
 <!-- Categories -->
 <div id="categories" class="col-lg-4 col-md-4 forum-layout">
