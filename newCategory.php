@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once ('Models/CategoryDataSet.php');
+require_once('Models/Categories/CategoryDataSet.php');
 
 $view = new stdClass();
 $categoryDataSet = new CategoryDataSet();
