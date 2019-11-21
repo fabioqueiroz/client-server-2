@@ -21,7 +21,7 @@ class PostDataSet extends BaseDataSet
     }
 
     public function getAllPosts() {
-        $sqlQuery = "SELECT ID, title, message, messageDate , topicSubject, firstName, lastName 
+        $sqlQuery = "SELECT ID, title, message, messageDate , topicSubject, postingUser ,firstName, lastName 
                      FROM laf873.users, laf873.posts 
                      WHERE postingUser = userID ORDER BY messageDate DESC";
 
@@ -59,8 +59,21 @@ class PostDataSet extends BaseDataSet
         $statement->execute([$replyMessage, $postingUser, $replyTo, $postingUser, $postID]);
     }
 
-    public function getAllReplies($postID) {
+    public function getAllReplies($postID, $user) {
+        $sqlQuery = "select r.ID, r.message, r.messageDate, r.postingUser, r.replyTo, r.image, r.postID,
+                        p.title, p.message, p.image
+                     from laf873.replies r, laf873.posts p
+                     where r.postID = '{$postID}'
+                     and r.replyTo = '{$user}' order by r.messageDate desc";
 
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$postID]);
+
+        $replies = [];
+        while ($row = $statement->fetch()) {
+            $replies[] = new PostReply($row);
+        }
+        return $replies;
     }
 
 
