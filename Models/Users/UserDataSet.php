@@ -1,8 +1,8 @@
 <?php
 
-require_once ('Models/Database.php');
-require_once ('Models/User.php');
-require_once ('Models/BaseDataSet.php');
+require_once('Models/Database.php');
+require_once('Models/Users/User.php');
+require_once('Models/BaseDataSet.php');
 
 class UserDataSet extends BaseDataSet
 {
