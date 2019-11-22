@@ -2,20 +2,28 @@
 
 <h3>Post Replies</h3>
 
-<div class="modal-body">
-    <div class="container">
 
-        <div class="form-row">
-            <div class="form-group col-md-7 mb-4">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 pull-left">
+            <?php foreach ($post as $p){?>
+                <h3><?php echo $p->getTitle(); ?></h3>
+                <h4><?php echo $p->getMessage(); ?></h4>
+            <?php }?>
+        </div>
+            <div id="reply-layout" class="col-md-4 mb-4">
                 <?php foreach ($replies as $reply){?>
                     <h4><?php echo $reply->getReplyMessage(); ?></h4>
                     <h5><?php echo $reply->getReplyFrom(); ?></h5>
                     <h5><?php echo $reply->getReplyDate(); ?></h5>
                 <?php }?>
             </div>
-        </div>
+            <div class="col-md-4 pull-right">
+                <h4><a href="newReply.php">Reply</a></h4>
+            </div>
     </div>
 </div>
+
 <div class="fas fa-arrow-alt-circle-left">
     <h3>Back to all the <a href="forum.php">posts</a>.</h3><br>
 </div>

@@ -161,8 +161,9 @@ th, td {
     border-radius: 10px;
 }
 
-#post-layout h2 {
-
+#reply-layout {
+    padding-top: 80px;
+    text-align: right;
 }
 
 <!-- Mobile Medias -->

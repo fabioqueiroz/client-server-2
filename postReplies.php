@@ -11,9 +11,9 @@ $postID = $_GET['postID'];
 $postingUser = $_GET['postingUser'];
 echo $postID . ' '.$postingUser;
 
-$post = $postDataSet->getPostById($postID);
-var_dump($post);
+$post = $postDataSet->getPostById($_GET['postID']);
+//var_dump($post);
 
-$replies = $replyDataSet->getAllReplies($postingUser);
+$replies = $replyDataSet->getAllReplies($_GET['postingUser']);
 
 require_once('Views/postReplies.phtml');
