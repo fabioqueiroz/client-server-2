@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('Models/PostDataSet.php');
-require_once('Models/TopicDataSet.php');
+require_once('Models/Topics/TopicDataSet.php');
 
 
 $view = new stdClass();
