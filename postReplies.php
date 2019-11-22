@@ -13,7 +13,7 @@ $postingUser = $_GET['postingUser'];
 echo $postID . ' '.$postingUser;
 
 $post = $postDataSet->getPostById($_GET['postID']);
-var_dump($post);
+//var_dump($post);
 
 $replies = $replyDataSet->getAllReplies($_GET['postingUser']);
 //var_dump($replies);

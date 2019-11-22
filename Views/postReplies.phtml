@@ -14,11 +14,16 @@
                 <?php foreach ($replies as $reply){?>
                     <h4><?php echo $reply->getReplyMessage(); ?></h4>
                     <h5 class="fas fa-user col-md-12"><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></h5>
-                    <h5 class="far fa-calendar-alt col-md-12 bottom-message"><?php echo $reply->getReplyDate(); ?></h5>
+                    <h5 class="far fa-calendar-alt col-md-12 "><?php echo $reply->getReplyDate(); ?></h5>
+                    <div class="bottom-message">
+                        <a href="newReply.php?replyFrom=<?php echo $reply->getReplyFrom();?>&replyTo=<?php echo $reply->getReplyTo();?>&postID=<?php echo $postID;?>">Reply</a>
+                    </div>
                 <?php }?>
             </div>
             <div class="col-md-2 pull-right">
-                <h4><a href="newReply.php">Reply</a></h4>
+                <h4>
+<!--                    <a href="newReply.php?replyFrom=--><?php //echo $reply->getReplyFrom();?><!--&replyTo=--><?php //echo $reply->getReplyTo();?><!--&postID=--><?php //echo $postID;?><!--">Reply</a>-->
+                </h4>
             </div>
     </div>
 </div>
@@ -29,3 +34,4 @@
 
 
 <?php require('template/footer.phtml') ?>
+
