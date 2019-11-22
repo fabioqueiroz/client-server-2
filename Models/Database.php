@@ -29,6 +29,9 @@ class Database {
             $this->_dbHandle = new PDO("mysql:host=$host;dbname=$database",  $username, $password); // creates the database handle with connection info
             //$this->_dbHandle = new PDO('mysql:host=' . $host . ';dbname=' . $database,  $username, $password); // creates the database handle with connection info
 
+            // using SQLite local db
+            //$this->_dbHandle = new PDO("sqlite:localdb.db");
+
         }
         catch (PDOException $e) { // catch any failure to connect to the database
             echo $e->getMessage();

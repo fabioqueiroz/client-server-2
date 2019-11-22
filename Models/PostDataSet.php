@@ -52,12 +52,35 @@ class PostDataSet extends BaseDataSet
         return $filteredPosts;
     }
 
-    public function createReply($replyMessage, $postingUser, $replyTo, $postID) {
-        $sqlQuery = "INSERT INTO laf873.replies (message, messageDate, postingUser, replyTo, postID) VALUE (?,NOW(),?,?,?)";
+    public function getPostById($postID) {
+        $sqlQuery = "select * from laf873.posts where ID = '{$postID}'";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$replyMessage, $postingUser, $replyTo, $postingUser, $postID]);
+        $statement->execute();
+
+        $post = [];
+        while ($row = $statement->fetch()) {
+            $post[] = new Post($row);
+        }
+        return $post;
     }
+
+    ///////// ************* SQLite **************
+
+//    public function getAllPostsSQLite() {
+//        $sqlQuery = "SELECT ID, title, message, messageDate , topicSubject, postingUser ,firstName, lastName
+//                     FROM users, posts
+//                     WHERE postingUser = userID ORDER BY messageDate DESC";
+//
+//        $statement = $this->_dbHandle->prepare($sqlQuery);
+//        $statement->execute();
+//
+//        $posts = [];
+//        while ($row = $statement->fetch()) {
+//            $posts[] = new PostDisplay($row);
+//        }
+//        return $posts;
+//    }
 
 
 
