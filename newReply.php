@@ -11,4 +11,6 @@ $postID = $_GET['postID'];
 
 echo $replyFrom. ' ' .$replyTo. ' '.$postID;
 
+echo $_POST['reply'];
+
 require_once('Views/newReply.phtml');

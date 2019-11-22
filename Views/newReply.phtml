@@ -2,23 +2,22 @@
 
 <h3>Reply to this post</h3>
 
-<!--<div class="modal-body">-->
-<!--    <div class="container">-->
-<!---->
-<!--        <div class="form-row">-->
-<!--            <div class="form-group col-md-7 mb-4">-->
-<!--                --><?php //foreach ($replies as $reply){?>
-<!--                    <h4>--><?php //echo $reply->getReplyMessage(); ?><!--</h4>-->
-<!--                    <h5>--><?php //echo $reply->getReplyFrom(); ?><!--</h5>-->
-<!--                    <h5>--><?php //echo $reply->getReplyDate(); ?><!--</h5>-->
-<!--                --><?php //}?>
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div class="fas fa-arrow-alt-circle-left">-->
-<!--    <h3>Back to all the <a href="forum.php">posts</a>.</h3><br>-->
-<!--</div>-->
+<form name="reply-form" method="post" action="newReply.php">
+    <div class="container">
+         <div class="row col-md-12 ">
+            <div class="form-group col-md-12 mb-4">
+                <textarea name="reply" rows="5"></textarea>
+            </div>
+         </div>
+    </div>
+    <div>
+        <button type="submit"  class="btn btn-primary">Reply</button>
+    </div>
+</form>
+
+<div class="fas fa-arrow-alt-circle-left">
+    <h3>Back to all the <a href="forum.php">posts</a>.</h3><br>
+</div>
 
 
 <?php require('template/footer.phtml') ?>
