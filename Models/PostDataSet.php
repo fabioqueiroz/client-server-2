@@ -53,14 +53,17 @@ class PostDataSet extends BaseDataSet
     }
 
     public function getPostById($postID) {
-        $sqlQuery = "select * from laf873.posts where ID = '{$postID}'";
+        $sqlQuery = "select p.title, p.message, p.messageDate, p.postingUser, p.topicSubject, p.image, u.firstName, u.lastName
+                    from laf873.posts p
+                    inner join laf873.users u on u.userID = p.postingUser
+                    where p.ID = '{$postID}'";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
 
         $post = [];
         while ($row = $statement->fetch()) {
-            $post[] = new Post($row);
+            $post[] = new PostDisplay($row);
         }
         return $post;
     }

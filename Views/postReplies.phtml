@@ -7,6 +7,7 @@
             <?php foreach ($post as $p){?>
                 <h3><?php echo $p->getTitle(); ?></h3>
                 <h4><?php echo $p->getMessage(); ?></h4>
+                <h5 class="fas fa-user col-md-12"><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></h5>
             <?php }?>
         </div>
             <div id="reply-layout" class="col-md-5 mb-4">

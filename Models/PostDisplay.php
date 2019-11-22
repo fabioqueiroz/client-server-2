@@ -11,17 +11,11 @@ class PostDisplay extends Post
         $this->_lastName = $dbRow['lastName'];
     }
 
-    /**
-     * @return mixed
-     */
     public function getFirstName()
     {
         return $this->_firstName;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLastName()
     {
         return $this->_lastName;
