@@ -133,19 +133,23 @@
                 <div id="post-layout">
                 <?php foreach ($posts as $post){?>
                     <div class="col-md-7 col-sm-12 pull-left">
-                        <h2><a><?php echo $post->getTitle()?></a></h2>
+                        <h2><a href="newReply.php?postID=<?php echo $post->getID();?>&postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getTitle()?></a></h2>
                         <p><?php echo $post->getMessage()?></p>
+                        <?php $_GET['replyTo'] = $post->getPostingUser();?>
                     </div>
                     <div id="stats-position" class="col-md-3 col-sm-12 pull-left col-md-pull-1">
+                        <div class="fas fa-user col-md-pull-8">Image here</div>
                         <div class="fas fa-user col-md-pull-8"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></div>
 <!--                        <div class="far fa-address-card col-md-push-12">78 replies</div>-->
+
                         <div class="row">
-                        <div class="far fa-address-card col-md-push-12">78
+                        <div class="col-md-push-12">
+<!--                            <div class="far fa-address-card col-md-push-12">78-->
                             <form action="forum.php" method="post" class="form">
 
-                                <!-- Button trigger modal -->
+                                <!-- ***** MODAL DEACTIVATED ***** Button trigger modal -->
                                 <?php if(isset($_SESSION['userID'])) {?>
-                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">replies</button>
+<!--                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">replies</button>-->
 
                                     <!-- Reply Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -165,18 +169,18 @@
 
                                                         <div class="form-row">
                                                             <div class="form-group col-md-7 mb-4">
-                                                                    <?php foreach ($replies as $reply){?>
-                                                                        <h4><?php echo $reply->getReplyMessage(); ?></h4>
-                                                                        <h5><?php echo $reply->getReplyFrom(); ?></h5>
-                                                                        <h5><?php echo $reply->getReplyDate(); ?></h5>
-                                                                    <?php }?>
+                                                                <?php foreach ($replies as $reply){?>
+                                                                    <h4><?php echo $reply->getReplyMessage(); ?></h4>
+                                                                    <h5><?php echo $reply->getReplyFrom(); ?></h5>
+                                                                    <h5><?php echo $reply->getReplyDate(); ?></h5>
+                                                                <?php }?>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Create Post</button>
+                                                    <a href="newReply.php?postingUser=<?php echo $post->getPostingUser();?>">Reply</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -198,6 +202,7 @@
             </div>
         </div>
     </div>
+
     <!-- Pagination -->
     <div>
         <nav aria-label="Page navigation example">

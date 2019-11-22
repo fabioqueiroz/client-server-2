@@ -14,8 +14,9 @@ $topics = $topicDataSet->getAllTopics();
 $posts = $postDataSet->getAllPosts();
 //var_dump($posts);
 
-$replies = $replyDataSet->getAllReplies();
-var_dump($replies);
+
+//$replies = $replyDataSet->getAllReplies($_GET['replyTo']);
+//var_dump($replies);
 
 if(isset($_POST['filter']) && !empty($_POST['filter']) && $_SESSION['userID'] != null) {
    $posts = $postDataSet->filterPostsByTitle($_POST['filter']);

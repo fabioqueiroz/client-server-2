@@ -1,3 +1,24 @@
 <?php require('template/header.phtml') ?>
-<h3>Reply</h3>
+
+<h3>Replies</h3>
+
+<div class="modal-body">
+    <div class="container">
+
+        <div class="form-row">
+            <div class="form-group col-md-7 mb-4">
+                <?php foreach ($replies as $reply){?>
+                    <h4><?php echo $reply->getReplyMessage(); ?></h4>
+                    <h5><?php echo $reply->getReplyFrom(); ?></h5>
+                    <h5><?php echo $reply->getReplyDate(); ?></h5>
+                <?php }?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fas fa-arrow-alt-circle-left">
+    <h3>Back to all the <a href="forum.php">posts</a>.</h3><br>
+</div>
+
+
 <?php require('template/footer.phtml') ?>
