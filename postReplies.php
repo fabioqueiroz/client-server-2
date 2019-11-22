@@ -15,5 +15,6 @@ $post = $postDataSet->getPostById($_GET['postID']);
 //var_dump($post);
 
 $replies = $replyDataSet->getAllReplies($_GET['postingUser']);
+var_dump($replies);
 
 require_once('Views/postReplies.phtml');

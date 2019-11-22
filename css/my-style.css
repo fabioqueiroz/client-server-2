@@ -161,9 +161,20 @@ th, td {
     border-radius: 10px;
 }
 
+#post-layout {
+    border-bottom-style: inset;
+    border-left-style: inset;
+}
+
 #reply-layout {
-    padding-top: 80px;
+    margin-top: 125px;
     text-align: right;
+    background-color: aliceblue;
+    border-right-style: groove;
+}
+.bottom-message {
+    border-bottom-style: groove;
+    padding-bottom: 20px;
 }
 
 <!-- Mobile Medias -->

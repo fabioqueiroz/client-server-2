@@ -1,30 +1,28 @@
 <?php require('template/header.phtml') ?>
-
-<h3>Post Replies</h3>
-
+<script src="https://kit.fontawesome.com/015b65f61b.js" crossorigin="anonymous"></script>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 pull-left">
+        <div id="post-layout" class="col-md-6 col-xs-12 pull-left">
             <?php foreach ($post as $p){?>
                 <h3><?php echo $p->getTitle(); ?></h3>
                 <h4><?php echo $p->getMessage(); ?></h4>
             <?php }?>
         </div>
-            <div id="reply-layout" class="col-md-4 mb-4">
+            <div id="reply-layout" class="col-md-5 mb-4">
                 <?php foreach ($replies as $reply){?>
                     <h4><?php echo $reply->getReplyMessage(); ?></h4>
-                    <h5><?php echo $reply->getReplyFrom(); ?></h5>
-                    <h5><?php echo $reply->getReplyDate(); ?></h5>
+                    <h5 class="fas fa-user col-md-12"><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></h5>
+                    <h5 class="far fa-calendar-alt col-md-12 bottom-message"><?php echo $reply->getReplyDate(); ?></h5>
                 <?php }?>
             </div>
-            <div class="col-md-4 pull-right">
+            <div class="col-md-2 pull-right">
                 <h4><a href="newReply.php">Reply</a></h4>
             </div>
     </div>
 </div>
 
-<div class="fas fa-arrow-alt-circle-left">
+<div>
     <h3>Back to all the <a href="forum.php">posts</a>.</h3><br>
 </div>
 
