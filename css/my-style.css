@@ -177,6 +177,11 @@ th, td {
     padding-bottom: 20px;
 }
 
+.reply-text textarea{
+    width: 85%;
+    margin-bottom: 10px;
+}
+
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {
     .col-xs-6 {
