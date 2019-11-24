@@ -45,7 +45,10 @@
                     <h3><?php echo $p->getTitle(); ?></h3>
                     <h4><?php echo $p->getMessage(); ?></h4>
                     <h5 class="fas fa-user col-md-12"><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></h5>
-
+                    <?php
+                    $rand = rand();
+                    $_SESSION['rand'] = $rand;
+                    ?>
 
                     <?php if(!empty($replies)) {?>
                         <div id="reply-layout" class="col-md-12 mb-4">
@@ -53,9 +56,6 @@
                                 <h4><?php echo $reply->getReplyMessage(); ?></h4>
                                 <h5 class="fas fa-user col-md-12"><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></h5>
                                 <h5 class="far fa-calendar-alt col-md-12 bottom-message"><?php echo $reply->getReplyDate(); ?></h5>
-<!--                                <div class="bottom-message">-->
-<!--                                    <a href="newReply.php?replyFrom=--><?php //echo $reply->getReplyFrom();?><!--&replyTo=--><?php //echo $reply->getReplyTo();?><!--&postID=--><?php //echo $postID;?><!--">Reply</a>-->
-<!--                                </div>-->
                             <?php }?>
                         </div>
                     <?php }?>
@@ -70,7 +70,8 @@
                         </div>
 
                         <div class="row col-md-12 mb-4 col-xs-12 pull-left">
-                            <button type="submit"  class="btn btn-primary">Reply</button>
+                            <button type="submit" value="Submit" class="btn btn-primary">Reply</button>
+                            <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
                             <input type="hidden" name="getUserID" value="<?php echo $_SESSION['userID']?>"/>
                             <input type="hidden" name="getPostingUser" value="<?php echo $p->getPostingUser()?>"/>
                             <input type="hidden" name="getID" value="<?php echo $p->getID()?>"/>
