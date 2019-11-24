@@ -53,7 +53,7 @@ class PostDataSet extends BaseDataSet
     }
 
     public function getPostById($postID) {
-        $sqlQuery = "select p.title, p.message, p.messageDate, p.postingUser, p.topicSubject, p.image, u.firstName, u.lastName
+        $sqlQuery = "select p.ID, p.title, p.message, p.messageDate, p.postingUser, p.topicSubject, p.image, u.firstName, u.lastName
                     from laf873.posts p
                     inner join laf873.users u on u.userID = p.postingUser
                     where p.ID = '{$postID}'";

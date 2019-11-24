@@ -10,23 +10,48 @@
                 <h5 class="fas fa-user col-md-12"><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></h5>
             <?php }?>
         </div>
+
+        <?php if(empty($replies)) {?>
+            <div class="row">
+                <a href="newReply.php">Reply</a>
+            </div>
+        <?php }?>
+
             <div id="reply-layout" class="col-md-5 mb-4">
                 <?php foreach ($replies as $reply){?>
                     <h4><?php echo $reply->getReplyMessage(); ?></h4>
                     <h5 class="fas fa-user col-md-12"><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></h5>
-                    <h5 class="far fa-calendar-alt col-md-12 "><?php echo $reply->getReplyDate(); ?></h5>
+                    <h5 class="far fa-calendar-alt col-md-12"><?php echo $reply->getReplyDate(); ?></h5>
                     <div class="bottom-message">
                         <a href="newReply.php?replyFrom=<?php echo $reply->getReplyFrom();?>&replyTo=<?php echo $reply->getReplyTo();?>&postID=<?php echo $postID;?>">Reply</a>
                     </div>
                 <?php }?>
             </div>
-            <div class="col-md-2 pull-right">
-                <h4>
+<!--            <div class="col-md-2 pull-right">-->
+<!--                <h4>-->
 <!--                    <a href="newReply.php?replyFrom=--><?php //echo $reply->getReplyFrom();?><!--&replyTo=--><?php //echo $reply->getReplyTo();?><!--&postID=--><?php //echo $postID;?><!--">Reply</a>-->
-                </h4>
-            </div>
+<!--                </h4>-->
+<!--            </div>-->
+
     </div>
 </div>
+
+<!---->
+<!--<form name="reply-form" method="post" action="postReplies.php">-->
+<!--    <div class="container">-->
+<!---->
+<!--        <div class="row">-->
+<!--            <div class="reply-text col-md-8 mb-4 pull-right">-->
+<!--                <h4>Reply to this post</h4>-->
+<!--                <textarea name="reply" rows="5"></textarea>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="row col-md-8 mb-4 pull-right">-->
+<!--            <button type="submit"  class="btn btn-primary">Reply</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</form>-->
 
 <div>
     <h3>Back to all the <a href="forum.php">posts</a>.</h3><br>

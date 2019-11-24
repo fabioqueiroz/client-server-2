@@ -38,4 +38,24 @@ class ReplyDataSet extends BaseDataSet
         return $replies;
     }
 
+    public function getAllRepliesById($postingUser, $ID) {
+        $sqlQuery = "select r.replyID, r.replyMessage, r.replyDate, r.replyFrom, r.replyTo, r.replyImage, r.postID,
+                            p.title, p.message, u.firstName, u.lastName
+                    from laf873.replies r
+                    inner join laf873.posts p on r.postID = p.ID
+                    inner join laf873.users u on u.userID = r.replyFrom
+                    where r.replyTo = '{$postingUser}'
+                    and p.ID = '{$ID}'
+                    order by r.replyDate asc";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $replies = [];
+        while ($row = $statement->fetch()) {
+            $replies[] = new ReplyDisplay($row);
+        }
+        return $replies;
+    }
+
 }
