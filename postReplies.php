@@ -11,6 +11,7 @@ $postDataSet = new PostDataSet();
 $postID = $_GET['postID'];
 $postingUser = $_GET['postingUser'];
 echo $postID . ' '.$postingUser;
+//var_dump($_SESSION);
 
 $post = $postDataSet->getPostById($_GET['postID']);
 var_dump($post);

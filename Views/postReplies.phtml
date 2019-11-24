@@ -8,15 +8,17 @@
                 <h3><?php echo $p->getTitle(); ?></h3>
                 <h4><?php echo $p->getMessage(); ?></h4>
                 <h5 class="fas fa-user col-md-12"><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></h5>
+
+                <?php if(empty($replies)) {?>
+                    <div class="row pull-right">
+                        <a href="newReply.php?replyFrom=<?php echo $_SESSION['userID'];?>&replyTo=<?php echo $p->getPostingUser();?>&postID=<?php echo $p->getID();?>">Reply</a>
+                    </div>
+                <?php }?>
+
             <?php }?>
         </div>
 
-        <?php if(empty($replies)) {?>
-            <div class="row">
-                <a href="newReply.php">Reply</a>
-            </div>
-        <?php }?>
-
+        <?php if(!empty($replies)) {?>
             <div id="reply-layout" class="col-md-5 mb-4">
                 <?php foreach ($replies as $reply){?>
                     <h4><?php echo $reply->getReplyMessage(); ?></h4>
@@ -27,6 +29,7 @@
                     </div>
                 <?php }?>
             </div>
+        <?php }?>
 <!--            <div class="col-md-2 pull-right">-->
 <!--                <h4>-->
 <!--                    <a href="newReply.php?replyFrom=--><?php //echo $reply->getReplyFrom();?><!--&replyTo=--><?php //echo $reply->getReplyTo();?><!--&postID=--><?php //echo $postID;?><!--">Reply</a>-->
