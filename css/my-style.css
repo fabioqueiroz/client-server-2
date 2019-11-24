@@ -178,7 +178,7 @@ th, td {
 }
 
 .reply-text textarea{
-    width: 90%;
+    width: 98%;
     margin-bottom: 10px;
 }
 
@@ -193,7 +193,7 @@ th, td {
         padding: 0 0;
     }
 
-    £stats-position {
+    #stats-position {
         padding-top: 18px;
     }
 }

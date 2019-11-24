@@ -14,17 +14,19 @@ echo $postID . ' '.$postingUser;
 //var_dump($_SESSION);
 
 $post = $postDataSet->getPostById($_GET['postID']);
-var_dump($post);
+//var_dump($post);
 
 //$replies = $replyDataSet->getAllReplies($_GET['postingUser']);
 //var_dump($replies);
 
 $replies = $replyDataSet->getAllRepliesById($_GET['postingUser'], $postID);
-var_dump($replies);
+//var_dump($replies);
 
-//if(isset($_POST['reply'])) {
-//    $replyDataSet->createReply($_POST['reply'], $postingUser, 41, $postID);
-//}
+echo $_POST['getUserID'] . ' '. $_POST['getPostingUser'] . ' '. $_POST['getID'];
 
+if(isset($_POST['reply']) && !empty($_POST['reply']) && isset($_POST['getUserID']) && isset($_POST['getPostingUser']) && isset($_POST['getID'])) {
+    $replyDataSet->createReply($_POST['reply'], $_POST['getUserID'], $_POST['getPostingUser'], $_POST['getID']);
+    $replies = $replyDataSet->getAllRepliesById($_GET['postingUser'], $postID);
+}
 
 require_once('Views/postReplies.phtml');
