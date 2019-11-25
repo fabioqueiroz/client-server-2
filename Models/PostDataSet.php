@@ -21,7 +21,7 @@ class PostDataSet extends BaseDataSet
     }
 
     public function getAllPosts() {
-        $sqlQuery = "SELECT ID, title, message, messageDate , topicSubject, postingUser ,firstName, lastName 
+        $sqlQuery = "SELECT ID, title, message, messageDate , topicSubject, postingUser ,firstName, lastName, photo
                      FROM laf873.users, laf873.posts 
                      WHERE postingUser = userID ORDER BY messageDate DESC";
 

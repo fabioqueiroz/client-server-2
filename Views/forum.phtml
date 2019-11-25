@@ -138,7 +138,15 @@
                         <?php $_GET['replyTo'] = $post->getPostingUser();?>
                     </div>
                     <div id="stats-position" class="col-md-3 col-sm-12 pull-left col-md-pull-1">
-                        <div class="fas fa-user col-md-pull-8">Image here</div>
+                        <?php if(isset($_SESSION['userID'])) {?>
+                            <div class="col-md-pull-8">
+                                <?php
+                                $replyImage = $post->getImage();
+                                $newImageData = base64_encode(file_get_contents($replyImage));
+                                echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
+                                ?>
+                            </div>
+                        <?php }?>
                         <div class="fas fa-user col-md-pull-8"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></div>
 <!--                        <div class="far fa-address-card col-md-push-12">78 replies</div>-->
 
@@ -189,7 +197,7 @@
 
                                 <?php } else {?>
                                     <div class="col-xs-12 col-md-12">
-                                        <?php echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
+<!--                                        --><?php //echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
                                     </div>
                                 <?php }?>
                             </form>
