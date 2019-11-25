@@ -12,7 +12,7 @@ class Reply
         $this->_replyDate = $dbRow['replyDate'];
         $this->_replyFrom = $dbRow['replyFrom'];
         $this->_replyTo = $dbRow['replyTo'];
-        $this->_replyImage = $dbRow['replyImage'];
+        $this->_replyImage = $dbRow['photo'];
         $this->_postID = $dbRow['postID'];
     }
 

@@ -17,7 +17,7 @@ $post = $postDataSet->getPostById($_GET['postID']);
 //var_dump($post);
 
 $replies = $replyDataSet->getAllRepliesById($_GET['postingUser'], $postID);
-//var_dump($replies);
+var_dump($replies);
 
 //echo $_POST['getUserID'] . ' '. $_POST['getPostingUser'] . ' '. $_POST['getID'];
 

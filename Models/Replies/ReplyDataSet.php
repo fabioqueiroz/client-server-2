@@ -40,7 +40,7 @@ class ReplyDataSet extends BaseDataSet
 
     public function getAllRepliesById($postingUser, $ID) {
         $sqlQuery = "select r.replyID, r.replyMessage, r.replyDate, r.replyFrom, r.replyTo, r.replyImage, r.postID,
-                            p.title, p.message, u.firstName, u.lastName
+                            p.title, p.message, u.firstName, u.lastName, u.photo
                     from laf873.replies r
                     inner join laf873.posts p on r.postID = p.ID
                     inner join laf873.users u on u.userID = r.replyFrom

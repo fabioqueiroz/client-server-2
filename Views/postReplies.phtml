@@ -44,7 +44,15 @@
                 <?php foreach ($post as $p){?>
                     <h3><?php echo $p->getTitle(); ?></h3>
                     <h4><?php echo $p->getMessage(); ?></h4>
-                    <h5 class="fas fa-user col-md-12"><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></h5>
+                    <div class="col-md-1 col-xs-2">
+                        <?php
+                        $replyImage = $p->getImage();
+                        $newImageData = base64_encode(file_get_contents($replyImage));
+                        echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
+                        ?>
+                    </div>
+                    <h5 id="user-name-position" class="fas fa-user col-md-11 pull-left"><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></h5>
+
                     <?php
                     $rand = rand();
                     $_SESSION['rand'] = $rand;
@@ -54,7 +62,14 @@
                         <div id="reply-layout" class="col-md-12 mb-4">
                             <?php foreach ($replies as $reply){?>
                                 <h4><?php echo $reply->getReplyMessage(); ?></h4>
-                                <h5 class="fas fa-user col-md-12"><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></h5>
+                                <div class="col-md-1 col-xs-2 pull-right">
+                                    <?php
+                                    $replyImage = $reply->getReplyImage();
+                                    $newImageData = base64_encode(file_get_contents($replyImage));
+                                    echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
+                                    ?>
+                                </div>
+                                <h5 class="fas fa-user col-md-11"><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></h5>
                                 <h5 class="far fa-calendar-alt col-md-12 bottom-message"><?php echo $reply->getReplyDate(); ?></h5>
                             <?php }?>
                         </div>

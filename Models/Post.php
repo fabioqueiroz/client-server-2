@@ -13,7 +13,7 @@ class Post
         $this->_messageDate = $dbRow['messageDate'];
         $this->_topicSubject = $dbRow['topicSubject'];
         $this->_postingUser = $dbRow['postingUser'];
-        $this->_image = $dbRow['image'];
+        $this->_image = $dbRow['photo'];
 //        $this->_postID = $dbRow['postID'];
 //        $this->_title = $dbRow['title'];
 //        $this->_postMessage = $dbRow['postMessage'];

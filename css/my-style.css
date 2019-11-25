@@ -38,6 +38,7 @@
     text-align: center;
     background-color: #000;
     color: #fff;
+    border-radius: 6px;
 }
 
 #sign-in-button {
@@ -167,10 +168,14 @@ th, td {
 }
 
 #reply-layout {
-    margin-top: 125px;
     text-align: right;
     background-color: aliceblue;
     border-right-style: groove;
+    border-radius: 10px;
+}
+
+#user-name-position {
+    margin-top: 30px;
 }
 .bottom-message {
     border-bottom-style: groove;
@@ -180,6 +185,9 @@ th, td {
 .reply-text textarea{
     width: 98%;
     margin-bottom: 10px;
+    width: 98%;
+    margin-bottom: 10px;
+
 }
 
 <!-- Mobile Medias -->

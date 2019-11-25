@@ -37,6 +37,20 @@ class UserDataSet extends BaseDataSet
         return $dataSet;
     }
 
+    public function getUserById($userID) {
+        $sqlQuery = "SELECT * FROM laf873.users where userID = '{$userID}'";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new User($row);
+        }
+        return $dataSet;
+
+    }
+
     public function authenticateUser($email, $password) {
         $hashedPassword = sha1($password);
         $sqlQuery = 'SELECT * FROM laf873.users WHERE email = ? AND password = ? ';
