@@ -68,6 +68,32 @@ class PostDataSet extends BaseDataSet
         return $post;
     }
 
+    public function getTotalNoOfPosts() {
+        $sqlQuery = "select count(*) from laf873.posts";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $total = $statement->fetchColumn();
+
+        return $total;
+    }
+
+    public function makePageQuery($limit, $offset) {
+        $sqlQuery = "SELECT ID, title, message, messageDate , topicSubject, postingUser ,firstName, lastName, photo
+                     FROM laf873.users, laf873.posts 
+                     WHERE postingUser = userID ORDER BY messageDate DESC LIMIT ".$limit. " OFFSET "."$offset";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $posts = [];
+        while ($row = $statement->fetch()) {
+            $posts[] = new PostDisplay($row);
+        }
+        return $posts;
+    }
+
     ///////// ************* SQLite **************
 
 //    public function getAllPostsSQLite() {
