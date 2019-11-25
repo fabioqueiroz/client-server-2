@@ -62,15 +62,21 @@
                         <div id="reply-layout" class="col-md-12 mb-4">
                             <?php foreach ($replies as $reply){?>
                                 <h4><?php echo $reply->getReplyMessage(); ?></h4>
-                                <div class="col-md-1 col-xs-2 pull-right">
-                                    <?php
-                                    $replyImage = $reply->getReplyImage();
-                                    $newImageData = base64_encode(file_get_contents($replyImage));
-                                    echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
-                                    ?>
+                                <div class="row">
+                                    <div class="col-md-1 col-xs-2 pull-right">
+                                        <?php
+                                        $replyImage = $reply->getReplyImage();
+                                        $newImageData = base64_encode(file_get_contents($replyImage));
+                                        echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
+                                        ?>
+                                    </div>
+                                    <div class="replier-username">
+                                        <h5 class="fas fa-user col-md-11"><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></h5>
+                                    </div>
+                                    <div class="reply-date">
+                                        <h5 class="far fa-calendar-alt col-md-12 bottom-message"><?php echo $reply->getReplyDate(); ?></h5>
+                                    </div>
                                 </div>
-                                <h5 class="fas fa-user col-md-11"><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></h5>
-                                <h5 class="far fa-calendar-alt col-md-12 bottom-message"><?php echo $reply->getReplyDate(); ?></h5>
                             <?php }?>
                         </div>
                     <?php }?>
@@ -79,8 +85,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="reply-text col-md-12 mb-4 col-xs-12 pull-left">
-                                <h4>Reply to this post</h4>
-                                <textarea name="reply" rows="5"></textarea>
+                                <textarea name="reply" placeholder="Reply to this post" rows="5"></textarea>
                             </div>
                         </div>
 

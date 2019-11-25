@@ -186,8 +186,16 @@ th, td {
     width: 98%;
     margin-bottom: 10px;
     width: 98%;
-    margin-bottom: 10px;
+    border-radius: 10px;
 
+}
+
+.replier-username {
+    margin-top: 18px;
+}
+
+.reply-date {
+    margin-right: 45px;
 }
 
 <!-- Mobile Medias -->
