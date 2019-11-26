@@ -56,7 +56,7 @@ class UserDataSet extends BaseDataSet
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$email]);
 
-        $hashedResult = $statement->fetch();
+        $hashedResult = $statement->fetchColumn();
 
         return $hashedResult;
     }
