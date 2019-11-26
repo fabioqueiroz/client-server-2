@@ -23,7 +23,6 @@ $replies = $replyDataSet->getAllRepliesById($_GET['postingUser'], $postID);
 
 // check if the post is already in the watchlist
 $count = $watchlistDataSet->checkPostInWatchlist($_GET['postID']);
-var_dump($count);
 $count == 1 ? $view->isInWatchlist = true : $view->isInWatchlist = false;
 
 if(isset($_POST['reply']) && !empty($_POST['reply']) && isset($_POST['getUserID']) && isset($_POST['getPostingUser']) && isset($_POST['getID'])) {
