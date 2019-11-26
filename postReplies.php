@@ -38,4 +38,9 @@ if(isset($_POST['add-to-watchlist']) && $_POST['watchlist-rand-check'] == $_SESS
     $view->isInWatchlist = true;
 }
 
+if(isset($_POST['remove-from-watchlist']) && $_POST['watchlist-rand-check'] == $_SESSION['watchlist-rand']) {
+    $watchlistDataSet->removeFromWatchlist($_GET['postID']);
+    $view->isInWatchlist = false;
+}
+
 require_once('Views/postReplies.phtml');

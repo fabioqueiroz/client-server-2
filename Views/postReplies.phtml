@@ -63,6 +63,9 @@
                             <?php if(!$view->isInWatchlist) {?>
                             <button id="add-to-watchlist-button" type="submit" value="Submit" class="btn btn-primary" name="add-to-watchlist">Add to watchlist</button>
                                 <input type="hidden" value="<?php echo $watchlistRand; ?>" name="watchlist-rand-check" />
+                            <?php } else {?>
+                            <button id="add-to-watchlist-button" type="submit" value="Submit" class="btn btn-primary" name="remove-from-watchlist">Remove from watchlist</button>
+                            <input type="hidden" value="<?php echo $watchlistRand; ?>" name="watchlist-rand-check" />
                             <?php }?>
                         </div>
                     </div>

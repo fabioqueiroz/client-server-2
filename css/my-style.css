@@ -182,6 +182,10 @@ th, td {
     margin-top: 15px;
 }
 
+#watchlist-layout {
+    padding-bottom: 20px;
+}
+
 .bottom-message {
     border-bottom-style: groove;
     padding-bottom: 20px;

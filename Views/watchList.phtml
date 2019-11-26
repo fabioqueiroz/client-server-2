@@ -1,5 +1,42 @@
 <?php require('template/header.phtml') ?>
+    <script src="https://kit.fontawesome.com/015b65f61b.js" crossorigin="anonymous"></script>
 
-<h3>Watchlist</h3>
+<h2>Watchlist</h2>
 
+<form name="reply-form" method="post" action="">
+    <div class="container">
+        <div class="row">
+            <div id="post-layout" class="col-md-12 col-xs-12 pull-left">
+                <?php foreach ($subscribedPosts as $sp){?>
+                <h3><?php echo $sp->getTitle(); ?></h3>
+                <h4><?php echo $sp->getMessage(); ?></h4>
+                <div class="col-md-1 col-xs-2">
+                    <?php if (isset($_SESSION['userID'])) {
+                        $replyImage = $sp->getImage();
+                        $newImageData = base64_encode(file_get_contents($replyImage));
+                        echo '<img src="data:image/jpeg;base64,' . $newImageData . '">';
+                    }?>
+                </div>
+                <?php
+                $removeRand = rand();
+                $_SESSION['unsubscribe-rand'] = $removeRand;
+                ?>
+                <div id="watchlist-layout" class="col-md-11 col-xs-12">
+                    <div class="col-md-9 col-xs-4 pull-left">
+                        <h5 id="user-name-position" class="fas fa-user"><?php echo $sp->getFirstName() . ' '. $sp->getLastName(); ?></h5>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <?php if(!$view->isInWatchlist) {?>
+                            <button id="add-to-watchlist-button" type="submit" value="Submit" class="btn btn-primary" name="remove-from-watchlist">Remove from watchlist</button>
+                            <input type="hidden" value="<?php echo $removeRand; ?>" name="remove-rand-check" />
+                            <input type="hidden" name="getWatchlistID" value="<?php echo $sp->getWatchlistID()?>"/>
+                        <?php }?>
+                    </div>
+                </div>
+                <?php }?>
+            </div>
+        </div>
+    </div>
+</form>
+    <br>
 <?php require('template/footer.phtml') ?>

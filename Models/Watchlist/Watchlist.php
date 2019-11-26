@@ -12,6 +12,11 @@ class Watchlist
         $this->_sub_postID = $dbRow['sub_postID'];
     }
 
+    public function getWatchlistID()
+    {
+        return $this->_watchlistID;
+    }
+
     public function getSubUserID()
     {
         return $this->_sub_userID;
