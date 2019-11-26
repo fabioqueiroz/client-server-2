@@ -8,12 +8,14 @@
         <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><h3>Posts</h3></div>
         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3">
             <div class="dropdown dropdown-position pull-right">
+                <?php if(isset($_SESSION['userID'])) {?>
                 <a class="link-text" data-toggle="dropdown" href="#">My Profile</a> <b class="caret"></b>
                 <ul class="dropdown-menu" role="menu">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Details</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-3" href="watchList.php">Watchlist</a></li>
                 </ul>
+                <?php }?>
             </div>
         </div>
 
