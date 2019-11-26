@@ -51,7 +51,21 @@
                             echo '<img src="data:image/jpeg;base64,' . $newImageData . '">';
                         }?>
                     </div>
-                    <h5 id="user-name-position" class="fas fa-user col-md-11 pull-left"><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></h5>
+                    <?php
+                    $watchlistRand = rand();
+                    $_SESSION['watchlist-rand'] = $watchlistRand;
+                    ?>
+                    <div class="col-md-11">
+                        <div class="col-md-9 col-xs-4 pull-left">
+                            <h5 id="user-name-position" class="fas fa-user"><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></h5>
+                        </div>
+                        <div class="col-md-2 col-xs-2">
+                            <?php if(!$view->isInWatchlist) {?>
+                            <button id="add-to-watchlist-button" type="submit" value="Submit" class="btn btn-primary" name="add-to-watchlist">Add to watchlist</button>
+                                <input type="hidden" value="<?php echo $watchlistRand; ?>" name="watchlist-rand-check" />
+                            <?php }?>
+                        </div>
+                    </div>
 
                     <?php
                     $rand = rand();

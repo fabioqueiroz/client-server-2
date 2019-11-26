@@ -3,10 +3,11 @@
 
 class Watchlist
 {
-    private $_sub_userID, $_sub_postID;
+    private $_watchlistID, $_sub_userID, $_sub_postID;
 
     public function __construct($dbRow)
     {
+        $this->_watchlistID = $dbRow['watchlistID'];
         $this->_sub_userID = $dbRow['sub_userID'];
         $this->_sub_postID = $dbRow['sub_postID'];
     }

@@ -21,7 +21,7 @@ class WatchlistDataSet extends BaseDataSet
 
 
     public function getSubscriptions($sub_userID) {
-        $sqlQuery = "select distinct p.title, p.messageDate, ru.firstName, ru.lastName, w.sub_userID, w.sub_postID
+        $sqlQuery = "select distinct p.title, p.messageDate, ru.firstName, ru.lastName, w.watchlistID, w.sub_userID, w.sub_postID
                     from laf873.watchlist w
                     inner join laf873.users u on w.sub_userID = u.userID
                     inner join laf873.posts p on w.sub_postID = p.ID
@@ -40,4 +40,13 @@ class WatchlistDataSet extends BaseDataSet
         return $subscriptions;
     }
 
+    public function checkPostInWatchlist($postID) {
+        $sqlQuery = "select count(*) from laf873.watchlist where sub_postID = ?";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$postID]);
+
+        $count = $statement->fetchColumn();
+
+        return $count;
+    }
 }
