@@ -15,6 +15,7 @@
             ?>
             <div class="col-md-3 col-xs-2">
                 <button id="add-to-watchlist-button" type="submit" value="Submit" class="btn btn-primary" name="remove-from-watchlist">Remove from watchlist</button>
+                <input type="hidden" value="<?php echo $removeRand; ?>" name="remove-rand-check" />
             </div>
 
         </div>
@@ -22,8 +23,9 @@
         <div class="row">
             <div id="post-layout" class="col-md-12 col-xs-12 pull-left">
                 <?php foreach ($subscribedPosts as $sp){?>
-                    <div class="col-md-7">
-                        <input id="checkbox-position" type="checkbox" name="id[]" value="$userid" class="pull-left"/>
+                    <div class="col-md-7 col-xs-7">
+                        <input id="checkbox-position" type="checkbox" name="id[]" value="<?php echo $sp->getSubPostID()?>" class="pull-left"/>
+                        <input type="hidden" name="getSubPostID" value="<?php echo $sp->getSubPostID()?>"/>
                         <h3><?php echo $sp->getTitle(); ?></h3>
                         <h4><?php echo $sp->getMessage(); ?></h4>
                     </div>
@@ -38,18 +40,6 @@
                         <h5 id="user-name-position" class="fas fa-user"><?php echo $sp->getFirstName() . ' '. $sp->getLastName(); ?></h5>
                     </div>
 
-<!--                    <div id="watchlist-layout" class="col-md-11 col-xs-12">-->
-<!--                        <div class="col-md-9 col-xs-4 pull-left">-->
-<!--                            <h5 id="user-name-position" class="fas fa-user">--><?php //echo $sp->getFirstName() . ' '. $sp->getLastName(); ?><!--</h5>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-2 col-xs-2">-->
-<!--                            --><?php //if(!$view->isInWatchlist) {?>
-<!--                                <button id="add-to-watchlist-button" type="submit" value="Submit" class="btn btn-primary" name="remove-from-watchlist">Remove from watchlist</button>-->
-<!--                                <input type="hidden" value="--><?php //echo $removeRand; ?><!--" name="remove-rand-check" />-->
-<!--                                <input type="hidden" name="getWatchlistID" value="--><?php //echo $sp->getWatchlistID()?><!--"/>-->
-<!--                            --><?php //}?>
-<!--                        </div>-->
-<!--                    </div>-->
                 <?php }?>
             </div>
         </div>
