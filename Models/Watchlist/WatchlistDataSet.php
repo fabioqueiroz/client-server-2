@@ -27,7 +27,8 @@ class WatchlistDataSet extends BaseDataSet
                     inner join laf873.posts p on w.sub_postID = p.ID
                     inner join laf873.replies r on p.postingUser = r.replyTo
                     inner join laf873.users ru on ru.userID = r.replyTo
-                    where w.sub_userID  = ?";
+                    where w.sub_userID  = ? 
+                    order by p.messageDate desc";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$sub_userID]);
