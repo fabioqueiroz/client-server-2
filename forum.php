@@ -3,11 +3,15 @@ session_start();
 require_once('Models/Topics/TopicDataSet.php');
 require_once ('Models/PostDataSet.php');
 require_once('Models/Replies/ReplyDataSet.php');
+require_once ('Models/Watchlist/WatchlistDataSet.php');
 
 $view = new stdClass();
 $topicDataSet = new TopicDataSet();
 $postDataSet = new PostDataSet();
 $replyDataSet = new ReplyDataSet();
+$watchlistDataSet = new WatchlistDataSet();
+
+//var_dump($watchlistDataSet->getSubscriptions($_SESSION['userID']));
 
 $topics = $topicDataSet->getAllTopics();
 //$posts = $postDataSet->getAllPosts();

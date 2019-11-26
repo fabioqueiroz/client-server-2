@@ -9,6 +9,13 @@ $userDataSet = new UserDataSet();
 
 if(isset($_POST['email']) && isset($_POST['password'])) {
 
+//    $hashedPwdInDb = $userDataSet->passwordChecker($_POST['email']);
+//    //not working
+//    if($hashedPwdInDb == sha1($_POST['password'])) {
+//
+//
+//    }
+
     $result = $userDataSet->authenticateUser($_POST['email'], $_POST['password']);
     $firstName = $lastName = $email = $password = '';
     $userID = $photo = $registrationDate = '';
@@ -35,10 +42,12 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
         $_SESSION['signed_in'] = true;
         $view->isLogged = true;
     }
+
     else {
         $view->loginError = true;
         session_destroy();
     }
+
 }
 else {
     session_destroy();

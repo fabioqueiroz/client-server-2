@@ -51,6 +51,16 @@ class UserDataSet extends BaseDataSet
 
     }
 
+    public function passwordChecker($email) {
+        $sqlQuery = "SELECT password FROM laf873.users WHERE email = ? ";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$email]);
+
+        $hashedResult = $statement->fetch();
+
+        return $hashedResult;
+    }
+
     public function authenticateUser($email, $password) {
         $hashedPassword = sha1($password);
         $sqlQuery = 'SELECT * FROM laf873.users WHERE email = ? AND password = ? ';
@@ -69,7 +79,7 @@ class UserDataSet extends BaseDataSet
     // ******* to complete ********
     public function updateUser($email, $password) {
        $user = $this->authenticateUser($email, $password);
-       $sqlQuery = 'UPDATE laf873.users SET () WHERE email = ? AND password = ? ';
+       $sqlQuery = 'UPDATE laf873.users SET laf873.users.password = ?  WHERE email = ? AND password = ? ';
 
     }
 
