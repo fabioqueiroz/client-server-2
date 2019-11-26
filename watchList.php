@@ -6,7 +6,7 @@ $view = new stdClass();
 $watchlistDataSet = new WatchlistDataSet();
 
 $subscribedPosts = $watchlistDataSet->getSubscriptions($_SESSION['userID']);
-var_dump($subscribedPosts);
+//var_dump($subscribedPosts);
 
 echo $_POST['getWatchlistID'];
 

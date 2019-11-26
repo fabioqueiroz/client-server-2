@@ -186,6 +186,11 @@ th, td {
     padding-bottom: 20px;
 }
 
+#checkbox-position {
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
 .bottom-message {
     border-bottom-style: groove;
     padding-bottom: 20px;
