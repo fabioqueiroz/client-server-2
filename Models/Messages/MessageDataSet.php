@@ -11,6 +11,10 @@ class MessageDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    public function getLastNumber() {
+        $sqlQuery = "select count(*) from laf873.messages";
+    }
+
     public function createMessage($message, $sentBy, $sentTo) {
         $sqlQuery = "INSERT INTO laf873.messages(message, sentBy, sentTo, messageDate) VALUES (?,?,?,NOW())";
 

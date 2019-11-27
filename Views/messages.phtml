@@ -1,5 +1,26 @@
 <?php require('template/header.phtml') ?>
 
-<h3>Message</h3>
+<h3>Message this user</h3>
+
+<form name="reply-form" method="post" action="">
+    <?php
+    $rand = rand();
+    $_SESSION['rand'] = $rand;
+    ?>
+
+    <div class="container">
+        <div class="row">
+            <div class="reply-text col-md-12 mb-4 col-xs-12 pull-left">
+                <textarea name="contact" placeholder="Type your message here..." rows="5" required></textarea>
+            </div>
+        </div>
+
+        <div class="row col-md-12 mb-4 col-xs-12 pull-left">
+            <button type="submit" value="Submit" class="btn btn-primary">Reply</button>
+            <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
+        </div>
+    </div>
+    <br>
+</form>
 
 <?php require('template/footer.phtml') ?>

@@ -11,18 +11,28 @@ class MailboxDataSet extends BaseDataSet
         parent::__construct();
     }
 
-    public function createMailOut($mboxUser, $messageID) {
-        $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) VALUES (?,'Out',?)";
+    public function createMailOut($mboxUser, $message, $sentTo) {
+//        $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) VALUES (?,'Out',?)";
+        $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) 
+                    VALUES (?,'Out',
+                            (select messageID from laf873.messages m 
+                            where m.message = ? 
+                            and m.sentTo = ?))";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$mboxUser, $messageID]);
+        $statement->execute([$mboxUser, $message, $sentTo]);
     }
 
-    public function createMailIn($mboxUser, $messageID) {
-        $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) VALUES (?,'In',?)";
+    public function createMailIn($mboxUser, $message, $sentBy) {
+//        $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) VALUES (?,'In',?)";
+        $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) 
+                    VALUES (?,'In',
+                            (select messageID from laf873.messages m 
+                            where m.message = ? 
+                            and m.sentBy = ?))";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$mboxUser, $messageID]);
+        $statement->execute([$mboxUser, $message, $sentBy]);
     }
 
 }
