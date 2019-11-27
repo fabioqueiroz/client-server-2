@@ -17,9 +17,6 @@ if(isset($_POST['contact']) && !empty($_POST['contact']) && $_POST['rand-check']
     // insert the message in the messages table
     $messageDataSet->createMessage($_POST['contact'], $_SESSION['userID'], $sentTo);
 
-    // get the messageID that was created
-
-
     // sent an "out" message for the mailbox ("send from" user)
     $mailboxDataSet->createMailOut($_SESSION['userID'], $_POST['contact'], $sentTo);
 

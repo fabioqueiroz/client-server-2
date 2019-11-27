@@ -191,6 +191,11 @@ th, td {
     margin-right: 10px;
 }
 
+#msg-confirmation h4 {
+    color: #c12e2a;
+    margin-top: 18px;
+}
+
 .bottom-message {
     border-bottom-style: groove;
     padding-bottom: 20px;

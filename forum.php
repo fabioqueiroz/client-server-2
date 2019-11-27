@@ -42,7 +42,7 @@ $end = min(($offset + $limit), $total);
 
 // Prepare the paged query
 $posts = $postDataSet->makePageQuery($limit, $offset);
-var_dump($posts);
+//var_dump($posts);
 
 
 if(isset($_POST['filter']) && !empty($_POST['filter']) && $_SESSION['userID'] != null) {

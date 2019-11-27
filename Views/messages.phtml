@@ -1,6 +1,6 @@
 <?php require('template/header.phtml') ?>
 
-<h3>Message this user</h3>
+<!--<h3>Message this user</h3>-->
 
 <form name="reply-form" method="post" action="">
     <?php
@@ -9,15 +9,28 @@
     ?>
 
     <div class="container">
+
+        <div id="msg-confirmation" class="row">
+            <div class="reply-text col-md-8 mb-4 col-xs-12 pull-left">
+                <h3>Message this user</h3>
+            </div>
+            <?php if($view->isMessageSent){?>
+            <div class="reply-text col-md-4 mb-4 col-xs-12">
+                <h4>Your message has been sent!</h4>
+            </div>
+            <?php }?>
+        </div>
         <div class="row">
             <div class="reply-text col-md-12 mb-4 col-xs-12 pull-left">
                 <textarea name="contact" placeholder="Type your message here..." rows="5" required></textarea>
             </div>
         </div>
 
-        <div class="row col-md-12 mb-4 col-xs-12 pull-left">
-            <button type="submit" value="Submit" class="btn btn-primary">Reply</button>
-            <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
+        <div class="row">
+            <div class="col-md-12 mb-4 col-xs-12 pull-left">
+                <button type="submit" value="Submit" class="btn btn-primary">Reply</button>
+                <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
+            </div>
         </div>
     </div>
     <br>
