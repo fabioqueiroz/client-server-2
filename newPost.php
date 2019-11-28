@@ -12,8 +12,6 @@ $topicID ='';
 $topics = $topicDataSet->getAllTopics();
 $posts = $postDataSet->getAllPosts();
 
-//var_dump($posts);
-
 if(isset($_POST['title']) && isset($_POST['topicSubject']) && isset($_POST['postMessage']) && $_SESSION['userID'] != null) {
     // get the id from the topic selection
     foreach ($topics as $topic) {
@@ -22,12 +20,13 @@ if(isset($_POST['title']) && isset($_POST['topicSubject']) && isset($_POST['post
         }
     }
 
-    $postDataSet->createPost($_POST['title'], $_POST['postMessage'], $topicID, $_SESSION['userID']);
-    $view->isPostCreated = true;
+    if(strlen($_POST['postMessage']) > 0 && strlen($_POST['postMessage']) <= 300){
+        $postDataSet->createPost(strip_tags(trim(($_POST['title']))), htmlentities(trim(($_POST['postMessage']))), $topicID, $_SESSION['userID']);
+        $view->isPostCreated = true;
+    }
 
 } else {
     $view->errorMessage = true;
 }
 
 require_once('Views/newPost.phtml');
-//require_once('forum.php');

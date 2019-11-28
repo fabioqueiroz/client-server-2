@@ -31,9 +31,20 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-8 mb-3 spacing">
+            <div class="col-md-8 mb-3 col-xs-12 spacing">
                 <button class="btn btn-primary" type="submit">Create Post</button>
             </div>
+
+            <div class="col-md-4 mb-3 col-xs-12 spacing">
+                <h5>Max 300 characters</h5>
+            </div>
+
+            <?php if($view->errorMessage ){?>
+                <div class="reply-text col-md-8 mb-3 col-xs-12 spacing">
+                    <h4>Message not posted! Please fill all fields.</h4>
+                </div>
+            <?php }?>
+
         </div>
     </form>
 </div>
