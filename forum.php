@@ -46,7 +46,7 @@ $posts = $postDataSet->makePageQuery($limit, $offset);
 
 
 if(isset($_POST['filter']) && !empty($_POST['filter']) && $_SESSION['userID'] != null) {
-   $posts = $postDataSet->filterPostsByTitle($_POST['filter']);
+   $posts = $postDataSet->filterPostsByTitle(strip_tags(trim(($_POST['filter']))));
    unset($_POST);
    $view->isFiltered = true;
 

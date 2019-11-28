@@ -37,10 +37,11 @@ class PostDataSet extends BaseDataSet
 
     public function filterPostsByTitle($title) {
 //        $title = $this->_dbHandle->quote($title);
-        $sqlQuery = "SELECT * 
-                     FROM laf873.posts 
-                     WHERE title LIKE '%{$title}%'
-                     ORDER BY messageDate DESC";
+        $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate, p.topicSubject, p.postingUser, u.photo
+                    FROM laf873.posts p
+                    INNER JOIN laf873.users u ON u.userID = p.postingUser
+                    WHERE title LIKE '%{$title}%'
+                    ORDER BY messageDate DESC;";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
