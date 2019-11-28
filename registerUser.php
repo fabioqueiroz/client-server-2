@@ -34,22 +34,29 @@ if (isset($_POST['password'])) {
     }
 }
 
-$emailInDB = $userDataSet->emailChecker($_POST['email']);
+// Sanitize the email input
+$email = strip_tags(trim(($_POST['email'])));
 
-$emailInDB == $_POST['email'] ? $errors = 'This email is already registered' : '';
+// Check if the email already exists in the db
+$emailInDB = $userDataSet->emailChecker($email);
+$emailInDB == $email ? $errors = 'This email is already registered' : '';
 
 if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) {
 
-    $userDataSet->createUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password']);
+    $firstName = strip_tags(trim(($_POST['firstName'])));
+    $lastName = strip_tags(trim(($_POST['lastName'])));
+    $password = strip_tags(trim(($_POST['password'])));
 
-    $_SESSION['firstName'] = $_POST['firstName'];
-    $_SESSION['lastName'] = $_POST['lastName'];
-    $_SESSION['email'] = $_POST['email'];
+    $userDataSet->createUser($firstName, $lastName, $email, $password);
+
+    $_SESSION['firstName'] = $firstName;
+    $_SESSION['lastName'] = $lastName;
+    $_SESSION['email'] = $email;
     $_SESSION['signed_in'] = true;
 
     $view->isRegistered = true;
 
-    $userDataSet->authenticateUser($_POST['email'], $_POST['password']);
+    $userDataSet->authenticateUser($email, $password);
 }
 
 require_once('Views/registerUser.phtml');
