@@ -9,12 +9,12 @@
 <form name="signIn-form" method="post" action="signIn.php">
     <div class="spacing">
         <label>Email:</label>
-        <input type="text" name="email">
+        <input type="text" name="email" required>
     </div>
 
     <div class="spacing">
         <label>Password:</label>
-        <input type="password" name="password">
+        <input type="password" name="password" required>
     </div>
     <div class="error-message">
         <?php if($view->loginError) {echo "Email and password do not match";}?>
