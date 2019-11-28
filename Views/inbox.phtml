@@ -1,0 +1,51 @@
+<?php require('template/header.phtml') ?>
+
+<h3>Inbox</h3>
+
+<!--<form name="reply-form" method="post" action="">-->
+<!--    <div class="container">-->
+<!---->
+<!--        <div class="row">-->
+<!--            <div class="col-md-9 col-xs-6">-->
+<!--                <h2>Watchlist</h2>-->
+<!--            </div>-->
+<!---->
+<!--            --><?php
+//            $removeRand = rand();
+//            $_SESSION['unsubscribe-rand'] = $removeRand;
+//            ?>
+<!--            <div class="col-md-3 col-xs-2">-->
+<!--                <button id="add-to-watchlist-button" type="submit" value="Submit" class="btn btn-primary" name="remove-from-watchlist">Remove from watchlist</button>-->
+<!--                <input type="hidden" value="--><?php //echo $removeRand; ?><!--" name="remove-rand-check" />-->
+<!--            </div>-->
+<!---->
+<!--        </div>-->
+<!---->
+<!--        <div class="row">-->
+<!--            <div id="post-layout" class="col-md-12 col-xs-12 pull-left">-->
+<!--                --><?php //foreach ($subscribedPosts as $sp){?>
+<!--                    <div class="col-md-7 col-xs-7">-->
+<!--                        <input id="checkbox-position" type="checkbox" name="id[]" value="--><?php //echo $sp->getSubPostID()?><!--" class="pull-left"/>-->
+<!--                        <input type="hidden" name="getSubPostID" value="--><?php //echo $sp->getSubPostID()?><!--"/>-->
+<!--                        <h3>--><?php //echo $sp->getTitle(); ?><!--</h3>-->
+<!--                        <h4>--><?php //echo $sp->getMessage(); ?><!--</h4>-->
+<!--                    </div>-->
+<!---->
+<!--                    <div class="col-md-5 col-xs-2">-->
+<!--                        --><?php //if (isset($_SESSION['userID'])) {
+//                            $replyImage = $sp->getImage();
+//                            $newImageData = base64_encode(file_get_contents($replyImage));
+//                            echo '<img src="data:image/jpeg;base64,' . $newImageData . '">';
+//                        }?>
+<!---->
+<!--                        <h5 id="user-name-position" class="fas fa-user">--><?php //echo $sp->getFirstName() . ' '. $sp->getLastName(); ?><!--</h5>-->
+<!--                    </div>-->
+<!---->
+<!--                --><?php //}?>
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</form>-->
+<!--<br>-->
+
+<?php require('template/footer.phtml') ?>
