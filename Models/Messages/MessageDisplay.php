@@ -1,7 +1,7 @@
 <?php
 
 
-class MessageInDisplay extends Message
+class MessageDisplay extends Message
 {
     private $_mboxID, $_mailbox, $_firstName, $_lastName;
 

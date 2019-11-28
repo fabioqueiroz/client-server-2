@@ -10,4 +10,7 @@ $messageDataSet = new MessageDataSet();
 $inbox = $messageDataSet->getInboxMail($_SESSION['userID']);
 var_dump($inbox);
 
+//$outbox = $messageDataSet->getOutboxMail($_SESSION['userID']);
+//var_dump($outbox);
+
 require_once('Views/inbox.phtml');

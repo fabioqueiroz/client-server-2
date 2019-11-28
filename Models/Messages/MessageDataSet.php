@@ -3,7 +3,7 @@
 require_once ('Models/Database.php');
 require_once ('Models/BaseDataSet.php');
 require_once ('Models/Messages/Message.php');
-require_once ('Models/Messages/MessageInDisplay.php');
+require_once('Models/Messages/MessageDisplay.php');
 
 class MessageDataSet extends BaseDataSet
 {
@@ -33,21 +33,27 @@ class MessageDataSet extends BaseDataSet
 
         $inbox = [];
         while ($row = $statement->fetch()) {
-            $inbox[] = new MessageInDisplay($row);
+            $inbox[] = new MessageDisplay($row);
         }
         return $inbox;
     }
 
     public function getOutboxMail($userID) {
 
-        $sqlQuery = "select * from laf873.messages where sentBy = ?";
+        $sqlQuery = "select msg.messageID, msg.message, msg.sentBy, msg.sentTo, msg.messageDate,
+                           mbox.mboxID, mbox.mailbox, u.firstName, u.lastName
+                    from laf873.messages msg
+                    inner join laf873.mailboxes mbox on msg.messageID = mbox.messageID
+                    inner join laf873.users u on msg.sentTo = u.userID
+                    where mbox.mboxUser = 81 and mbox.mailbox = 'Out'
+                    order by msg.messageDate desc;";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$userID]);
 
         $outbox = [];
         while ($row = $statement->fetch()) {
-            $outbox[] = new Message($row);
+            $outbox[] = new MessageDisplay($row);
         }
         return $outbox;
     }

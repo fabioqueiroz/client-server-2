@@ -12,8 +12,7 @@
                 <a class="link-text" data-toggle="dropdown" href="#">My Profile</a> <b class="caret"></b>
                 <ul class="dropdown-menu" role="menu">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Details</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-2" href="inbox.php">Inbox</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-3" href="watchList.php">Watchlist</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-2" href="watchList.php">Watchlist</a></li>
                 </ul>
                 <?php }?>
             </div>
@@ -108,11 +107,12 @@
 <!--                    --><?php //}?>
                 </form>
             </div>
-            <form action="#" method="post" class="form">
-<!--                <div class="envelope pull-right"><button type="submit"><i class="fa fa-envelope fa-3x"></i></button></div>-->
-                <div class="envelope pull-right"><button type="submit"><img class="mail-icon" src="images/mail.png"></button></div>
 
+            <?php if(isset($_SESSION['userID'])) {?>
+            <form action="inbox.php" method="post" class="form">
+                <div class="envelope pull-right"><button type="submit"><img class="mail-icon" src="images/mail.png"></button></div>
             </form>
+            <?php }?>
 
             <div class="clearfix"></div>
         </div>
@@ -139,10 +139,11 @@
                                 echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
                                 ?>
                             </div>
-                        <?php }?>
-                        <div class="fas fa-user col-md-pull-8"><a href="messages.php?postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></a></div>
+                            <div class="fas fa-user col-md-pull-8"><a href="messages.php?postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></a></div>
+                        <?php } else {?>
+                        <div class="fas fa-user col-md-pull-8"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></div>
 <!--                        <div class="far fa-address-card col-md-push-12">78 replies</div>-->
-
+                        <?php }?>
                         <div class="row">
                         <div class="col-md-push-12">
 <!--                            <div class="far fa-address-card col-md-push-12">78-->
