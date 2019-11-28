@@ -7,10 +7,9 @@ $view->isLogged = false;
 
 $userDataSet = new UserDataSet();
 
-
 if(isset($_POST['email']) && isset($_POST['password'])) {
 
-    $hashedPwdInDb = $userDataSet->passwordChecker($_POST['email']);
+    $hashedPwdInDb = $userDataSet->passwordChecker(strip_tags(trim(($_POST['email']))));
 
     if($hashedPwdInDb == sha1($_POST['password'])) {
 
@@ -30,7 +29,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
         }
         else {
             // Code to handle a successful verification
-            $result = $userDataSet->authenticateUser($_POST['email'], $_POST['password']);
+            $result = $userDataSet->authenticateUser(strip_tags(trim(($_POST['email']))), strip_tags(trim(($_POST['password']))));
             $firstName = $lastName = $email = $password = '';
             $userID = $photo = $registrationDate = '';
 
@@ -57,34 +56,6 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
                 $view->isLogged = true;
             }
         }
-
-//        $result = $userDataSet->authenticateUser($_POST['email'], $_POST['password']);
-//        $firstName = $lastName = $email = $password = '';
-//        $userID = $photo = $registrationDate = '';
-//
-//        foreach ($result as $value) {
-//            $userID = $value->getUserID();
-//            $firstName = $value->getFirstName();
-//            $lastName = $value->getLastName();
-//            $email = $value->getEmail();
-//            $password = $value->getPassword();
-//            $photo = $value->getPhoto();
-//            $registrationDate = $value->getRegistrationDate();
-//        }
-//
-//        if($firstName != null && $lastName != null) {
-//            $_SESSION['userID'] = $userID;
-//            $_SESSION['firstName'] = $firstName;
-//            $_SESSION['lastName'] = $lastName;
-//            $_SESSION['email'] = $email;
-//            $_SESSION['password'] = $password;
-//            $_SESSION['photo'] = $photo;
-//            $_SESSION['registrationDate'] = $registrationDate;
-//
-//            $_SESSION['signed_in'] = true;
-//            $view->isLogged = true;
-//        }
-
     }
 
     else {
