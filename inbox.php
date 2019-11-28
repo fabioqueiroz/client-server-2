@@ -17,8 +17,9 @@ if (isset($_POST['id'])) {
     foreach($ids as $id)
     {
         if(isset($_POST['delete-from-inbox']) && $_POST['delete-rand-check'] == $_SESSION['delete-rand']) {
-//            $watchlistDataSet->removeFromWatchlist($id);
-//            $subscribedPosts = $watchlistDataSet->getSubscriptions($_SESSION['userID']);
+
+            $mailboxDataSet->deleteFromMailboxById($id);
+            $inbox = $messageDataSet->getInboxMail($_SESSION['userID']);
         }
     }
 }

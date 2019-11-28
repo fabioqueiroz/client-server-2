@@ -39,8 +39,8 @@
             <div id="post-layout" class="col-md-12 col-xs-12 pull-left">
                 <?php foreach ($inbox as $i){?>
                     <div class="col-md-6 col-xs-7">
-                        <input id="del-checkbox-position" type="checkbox" name="id[]" value="<?php echo $i->getMessageID()?>" class="pull-left"/>
-                        <input type="hidden" name="getMessageID" value="<?php echo $i->getMessageID()?>"/>
+                        <input id="del-checkbox-position" type="checkbox" name="id[]" value="<?php echo $i->getMboxID()?>" class="pull-left"/>
+                        <input type="hidden" name="getMboxID" value="<?php echo $i->getMboxID()?>"/>
                         <h5><?php echo $i->getMessage(); ?></h5>
                     </div>
 

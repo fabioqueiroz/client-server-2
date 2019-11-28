@@ -12,7 +12,7 @@ class MailboxDataSet extends BaseDataSet
     }
 
     public function createMailOut($mboxUser, $message, $sentTo) {
-//        $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) VALUES (?,'Out',?)";
+
         $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) 
                     VALUES (?,'Out',
                             (select messageID from laf873.messages m 
@@ -24,7 +24,7 @@ class MailboxDataSet extends BaseDataSet
     }
 
     public function createMailIn($mboxUser, $message, $sentBy) {
-//        $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) VALUES (?,'In',?)";
+
         $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) 
                     VALUES (?,'In',
                             (select messageID from laf873.messages m 
@@ -33,6 +33,13 @@ class MailboxDataSet extends BaseDataSet
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$mboxUser, $message, $sentBy]);
+    }
+
+    public function deleteFromMailboxById($mboxID) {
+        $sqlQuery = "delete from laf873.mailboxes where mboxID = ?";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$mboxID]);
     }
 
 }
