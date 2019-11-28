@@ -34,6 +34,10 @@ if (isset($_POST['password'])) {
     }
 }
 
+$emailInDB = $userDataSet->emailChecker($_POST['email']);
+
+$emailInDB == $_POST['email'] ? $errors = 'This email is already registered' : '';
+
 if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) {
 
     $userDataSet->createUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password']);

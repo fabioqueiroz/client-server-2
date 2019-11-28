@@ -51,6 +51,16 @@ class UserDataSet extends BaseDataSet
 
     }
 
+    public function emailChecker($email) {
+        $sqlQuery = "SELECT email FROM laf873.users WHERE email = ? ";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$email]);
+
+        $emailInDB = $statement->fetchColumn();
+
+        return $emailInDB;
+    }
+
     public function passwordChecker($email) {
         $sqlQuery = "SELECT password FROM laf873.users WHERE email = ? ";
         $statement = $this->_dbHandle->prepare($sqlQuery);

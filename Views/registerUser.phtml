@@ -28,14 +28,11 @@
     <div class="error-message">
         <?php
         if (!empty($errors) && isset($_POST['password'])){
-            echo '<p>' . $errors . '</p>';
+            echo '<h4>' . $errors . '</h4>';
         }
         ?>
     </div>
-<!--    <div class="spacing">-->
-<!--        <label>Select image (optional):</label>-->
-<!--        <input type="file" name="photo" value="Choose file" class="btn btn-primary btn-sm">-->
-<!--    </div>-->
+
     <div class="spacing">
         <input type="submit" name="register" value="Register" class="btn btn-success">
     </div>
