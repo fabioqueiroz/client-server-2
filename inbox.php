@@ -8,9 +8,19 @@ $mailboxDataSet = new MailboxDataSet();
 $messageDataSet = new MessageDataSet();
 
 $inbox = $messageDataSet->getInboxMail($_SESSION['userID']);
-var_dump($inbox);
+//var_dump($inbox);
 
-//$outbox = $messageDataSet->getOutboxMail($_SESSION['userID']);
-//var_dump($outbox);
+$ids = $_POST['id'];
+//var_dump($ids);
+
+if (isset($_POST['id'])) {
+    foreach($ids as $id)
+    {
+        if(isset($_POST['delete-from-inbox']) && $_POST['delete-rand-check'] == $_SESSION['delete-rand']) {
+//            $watchlistDataSet->removeFromWatchlist($id);
+//            $subscribedPosts = $watchlistDataSet->getSubscriptions($_SESSION['userID']);
+        }
+    }
+}
 
 require_once('Views/inbox.phtml');
