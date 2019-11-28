@@ -41,22 +41,42 @@ $email = strip_tags(trim(($_POST['email'])));
 $emailInDB = $userDataSet->emailChecker($email);
 $emailInDB == $email ? $errors = 'This email is already registered' : '';
 
+
 if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) {
 
     $firstName = strip_tags(trim(($_POST['firstName'])));
     $lastName = strip_tags(trim(($_POST['lastName'])));
     $password = strip_tags(trim(($_POST['password'])));
 
-    $userDataSet->createUser($firstName, $lastName, $email, $password);
+    // Verify if the captcha has been checked
+    if(isset($_POST['g-recaptcha-response'])) {
+        $captcha = $_POST['g-recaptcha-response'];
+    }
+    if(!$captcha){
+        //Captcha hasn't been checked
+        echo "Captcha hasn't been checked";
+    }
+    $response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LfrJcUUAAAAACcl0TPtIJZj1iyoN0raZ6BK1Hz5&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
 
-    $_SESSION['firstName'] = $firstName;
-    $_SESSION['lastName'] = $lastName;
-    $_SESSION['email'] = $email;
-    $_SESSION['signed_in'] = true;
+    if($response['success'] == false){
+        //Captcha incorrect
+        echo "Captcha incorrect";
+    }
+    else {
 
-    $view->isRegistered = true;
+        $userDataSet->createUser($firstName, $lastName, $email, $password);
 
-    $userDataSet->authenticateUser($email, $password);
+        $_SESSION['firstName'] = $firstName;
+        $_SESSION['lastName'] = $lastName;
+        $_SESSION['email'] = $email;
+        $_SESSION['signed_in'] = true;
+
+        $view->isRegistered = true;
+
+        $userDataSet->authenticateUser($email, $password);
+
+    }
+
 }
 
 require_once('Views/registerUser.phtml');

@@ -1,4 +1,5 @@
 <?php require('template/header.phtml') ?>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <?php if(!$view->isRegistered){?>
 <h3>Register here to post</h3>
@@ -6,24 +7,24 @@
 <form name="register-form" method="post" action="registerUser.php">
     <div class="spacing">
         <label>First name:</label>
-        <input type="text" name="firstName">
+        <input type="text" name="firstName" required>
     </div>
     <div class="spacing">
         <label>Last name:</label>
-        <input type="text" name="lastName">
+        <input type="text" name="lastName" required>
     </div>
     <div class="spacing">
         <label>Email:</label>
-        <input type="text" name="email">
+        <input type="text" name="email" required>
     </div>
 
     <div class="spacing">
         <label>Password:</label>
-        <input type="password" name="password">
+        <input type="password" name="password" required>
     </div>
     <div class="spacing">
         <label>Re-enter password:</label>
-        <input type="password" name="re-typed-password">
+        <input type="password" name="re-typed-password" required>
     </div>
     <div class="error-message">
         <?php
@@ -34,6 +35,9 @@
     </div>
 
     <div class="spacing">
+        <!-- Captcha input -->
+        <div class="g-recaptcha" data-sitekey="6LfrJcUUAAAAACPjTF0S_S2259YM646wWN1JjZbC"></div>
+        <br/>
         <input type="submit" name="register" value="Register" class="btn btn-success">
     </div>
 
