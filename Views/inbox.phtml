@@ -24,13 +24,13 @@
         </div>
 
         <div id="inbox-header" class="row">
-            <div class="reply-text col-md-6 mb-4 col-xs-4 pull-left">
+            <div class="header-text col-md-7 mb-4 col-xs-6 pull-left">
                 <h4>Message</h4>
             </div>
-            <div class="reply-text col-md-3 mb-4 col-xs-4">
+            <div class="header-text col-md-2 mb-4 col-xs-3">
                 <h4>From</h4>
             </div>
-            <div class="reply-text col-md-3 mb-4 col-xs-4">
+            <div class="header-text col-md-3 mb-4 col-xs-2">
                 <h4>Date</h4>
             </div>
         </div>
@@ -38,20 +38,24 @@
         <div class="row">
             <div id="post-layout" class="col-md-12 col-xs-12 pull-left">
                 <?php foreach ($inbox as $i){?>
-                    <div class="col-md-6 col-xs-7">
-                        <input id="del-checkbox-position" type="checkbox" name="id[]" value="<?php echo $i->getMboxID()?>" class="pull-left"/>
-                        <input type="hidden" name="getMboxID" value="<?php echo $i->getMboxID()?>"/>
-                        <h5><?php echo $i->getMessage(); ?></h5>
+                    <div class="col-md-7 col-xs-7">
+                        <div class="">
+                            <input id="del-checkbox-position" type="checkbox" name="id[]" value="<?php echo $i->getMboxID()?>" class="pull-left"/>
+                            <input type="hidden" name="getMboxID" value="<?php echo $i->getMboxID()?>"/>
+                        </div>
+                        <div class="text-message">
+                            <h5><?php echo $i->getMessage(); ?></h5>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <h5 class=""><?php echo $i->getFirstName() . ' '. $i->getLastName(); ?></h5>
                     </div>
 
                     <div class="col-md-3 col-xs-2">
-                        <h5 id="user-name-position" class=""><?php echo $i->getFirstName() . ' '. $i->getLastName(); ?></h5>
+                        <h5 class=""><?php echo $i->getMessageDate(); ?></h5>
                     </div>
-
-                    <div class="col-md-3 col-xs-2">
-                        <h5 id="user-name-position" class=""><?php echo $i->getMessageDate(); ?></h5>
-                    </div>
-
+                    <div class="text-message-bottom col-md-12 col-xs-12"></div>
                 <?php }?>
             </div>
         </div>

@@ -201,12 +201,17 @@ th, td {
 }
 #inbox-header {
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 6px;
+    border-bottom-style: inset;
 }
 
-/*.delete-msg-button {*/
-/*    margin-left: 75px;*/
-/*}*/
+.header-text {
+    border-left-style: outset;
+}
+
+.text-message-bottom {
+    border-bottom-style: inset;
+}
 
 .bottom-message {
     border-bottom-style: groove;
@@ -235,6 +240,11 @@ th, td {
 
 .new-search {
     width: 20px;
+}
+
+.text-message {
+    max-width: 80%;
+    text-align: justify;
 }
 
 <!-- Mobile Medias -->
