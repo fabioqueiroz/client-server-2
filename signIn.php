@@ -69,3 +69,4 @@ else {
 }
 
 require_once('Views/signIn.phtml');
+
