@@ -118,7 +118,7 @@
         </div>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-12 col-lg-12">
     <!-- Post area-->
     <div class="col-lg-8 col-md-8 col-sm-12">
         <!-- DYNAMIC POST -->
@@ -127,7 +127,7 @@
                 <div class="col-md-8 col-sm-12 pull-left">
                     <div id="post-layout">
                     <?php foreach ($posts as $post){?>
-                        <div class="col-md-7 col-sm-12 pull-left">
+                        <div class="post-message col-md-7 col-sm-12 pull-left">
                             <h2><a href="postReplies.php?postID=<?php echo $post->getID();?>&postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getTitle()?></a></h2>
                             <p><?php echo $post->getMessage()?></p>
                         </div>
@@ -225,9 +225,9 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-4">
         <!-- Categories -->
-        <div id="categories" class="col-lg-4 col-md-12  forum-layout">
+        <div id="categories" class="col-lg-8 col-md-12  forum-layout">
             <div class="sidebarblock">
                 <h3>Categories</h3>
                 <div class="divline"></div>
@@ -251,7 +251,7 @@
         </div>
 
         <!-- Topics -->
-        <div id="topics" class="col-lg-4 col-md-12 forum-layout">
+        <div id="topics" class="col-lg-8 col-md-12 forum-layout">
             <div class="sidebarblock">
                 <h3>Topics</h3>
                 <div class="divline"></div>

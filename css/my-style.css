@@ -136,6 +136,11 @@ th, td {
     background-color: darkgrey;
 }
 
+.post-message p {
+    max-width: 80%;
+    text-align: justify;
+}
+
 .sign-in-message{
     font-weight: bolder;
     color: floralwhite;
