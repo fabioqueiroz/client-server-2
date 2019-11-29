@@ -41,7 +41,8 @@ class PostDataSet extends BaseDataSet
                     u.photo, u.firstName, u.lastName
                     FROM laf873.posts p
                     INNER JOIN laf873.users u ON u.userID = p.postingUser
-                    WHERE title LIKE '%{$title}%'
+                    WHERE (p.title LIKE '%{$title}%') OR (p.message LIKE '%{$title}%') 
+                    OR (u.firstName LIKE '%{$title}%') OR (u.lastName LIKE '%{$title}%') 
                     ORDER BY messageDate DESC;";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
