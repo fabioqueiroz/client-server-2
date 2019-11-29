@@ -32,6 +32,15 @@
     color: #ddd;
 }
 
+#navbar-search {
+    width: 300px;
+}
+
+.nav-envelope {
+    font-size: 35px;
+    margin-top: -9px;
+}
+
 #content {
     background-color: #fff;
     /*border-top: solid 6px #A19595;*/

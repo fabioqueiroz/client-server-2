@@ -49,6 +49,17 @@
                                     </ul>
                                 </li>
                             <?php }?>
+
+                            <form id="navbar-search" class="navbar-form navbar-left" method="post" action="forum.php">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search Posts" name="filter">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </ul>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
@@ -56,6 +67,7 @@
                             <li><a href="signIn.php"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
                             <li><a href="registerUser.php"><span class="glyphicon glyphicon-user"></span> Register</a></li>
                         <?php } else if(isset($_SESSION['signed_in'])) {?>
+                            <li><a href="inbox.php"><span class="nav-envelope glyphicon glyphicon-envelope"></a></li>
                             <li><p class="navbar-brand pull-right hidden-xs"><?php if (isset($_SESSION['signed_in'] )) { echo 'Hello '.$_SESSION['firstName'].'!';}?></p></li>
                             <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                         <?php }?>
