@@ -37,6 +37,9 @@ class PostDataSet extends BaseDataSet
 
     public function filterPostsByTitle($title) {
 //        $title = $this->_dbHandle->quote($title);
+        $title = strip_tags(trim(($title)));
+        $title =
+
         $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate, p.topicSubject, p.postingUser, 
                     u.photo, u.firstName, u.lastName
                     FROM laf873.posts p
@@ -45,6 +48,7 @@ class PostDataSet extends BaseDataSet
                     OR (u.firstName LIKE '%{$title}%') OR (u.lastName LIKE '%{$title}%') 
                     ORDER BY messageDate DESC;";
 
+        $this->_dbHandle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
 
