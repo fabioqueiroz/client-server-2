@@ -38,7 +38,6 @@ class PostDataSet extends BaseDataSet
     public function filterPostsByTitle($title) {
 //        $title = $this->_dbHandle->quote($title);
         $title = strip_tags(trim(($title)));
-        $title =
 
         $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate, p.topicSubject, p.postingUser, 
                     u.photo, u.firstName, u.lastName
