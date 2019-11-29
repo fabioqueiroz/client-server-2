@@ -21,7 +21,7 @@
                     ?>
                     <div class="col-md-11">
                         <div class="col-md-9 col-xs-4 pull-left">
-                            <h5 id="user-name-position"><span class="glyphicon glyphicon-user"><strong> <?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></strong></h5>
+                            <h5 id="user-name-position"><span class="glyphicon glyphicon-user"><strong><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></strong></h5>
                         </div>
                         <div class="col-md-2 col-xs-2">
                             <?php if(!$view->isInWatchlist) {?>
@@ -52,10 +52,10 @@
                                         }?>
                                     </div>
                                     <div class="replier-username">
-                                        <h5 class="fas fa-user col-md-11"><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></h5>
+                                        <h5 class="col-md-11"><span class="glyphicon glyphicon-user"><strong><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></strong></h5>
                                     </div>
                                     <div class="reply-date">
-                                        <h5 class="far fa-calendar-alt col-md-12 bottom-message"><?php echo $reply->getReplyDate(); ?></h5>
+                                        <h5 class="col-md-12 bottom-message"><span class="glyphicon glyphicon-calendar"><strong> <?php echo $reply->getReplyDate(); ?></strong></h5>
                                     </div>
                                 </div>
                             <?php }?>
