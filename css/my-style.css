@@ -186,6 +186,11 @@ th, td {
     border-left-style: inset;
 }
 
+#post-layout h4 {
+    max-width: 90%;
+    text-align: justify;
+}
+
 #reply-layout {
     text-align: right;
     background-color: aliceblue;

@@ -1,5 +1,5 @@
 <?php require('template/header.phtml') ?>
-    <script src="https://kit.fontawesome.com/015b65f61b.js" crossorigin="anonymous"></script>
+<!--    <script src="https://kit.fontawesome.com/015b65f61b.js" crossorigin="anonymous"></script>-->
 
 <form name="reply-form" method="post" action="">
     <div class="container">
@@ -37,7 +37,7 @@
                             echo '<img src="data:image/jpeg;base64,' . $newImageData . '">';
                         }?>
 
-                        <h5 id="user-name-position" class="fas fa-user"><?php echo $sp->getFirstName() . ' '. $sp->getLastName(); ?></h5>
+                        <h5 id="user-name-position"><span class="glyphicon glyphicon-user"><strong><?php echo $sp->getFirstName() . ' '. $sp->getLastName(); ?></strong></h5>
                     </div>
 
                 <?php }?>
