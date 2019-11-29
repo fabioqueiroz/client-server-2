@@ -5,9 +5,9 @@
 <div>
 <!-- Search bar -->
 <div class="row forum-top-bar">
-        <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><h3>Posts</h3></div>
-        <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3">
-            <div class="dropdown dropdown-position pull-right">
+        <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 hidden-xs"><h3>Posts</h3></div>
+        <div class="col-lg-3 col-xs-5 col-sm-5 col-md-3">
+            <div class="dropdown dropdown-position pull-left">
                 <?php if(isset($_SESSION['userID'])) {?>
                 <a class="link-text" data-toggle="dropdown" href="#">My Profile</a> <b class="caret"></b>
                 <ul class="dropdown-menu" role="menu">
@@ -19,7 +19,7 @@
         </div>
 
         <!-- Search box -->
-        <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
+        <div class="col-lg-4 search hidden-sm col-md-3 col-xs-7">
             <div class="wrap search-box">
                 <form action="forum.php" method="post" class="form">
                     <div class="pull-left txt">
