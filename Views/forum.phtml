@@ -223,23 +223,11 @@
     <!--        </nav>-->
     <!--    </div>-->
 
-<!--        <div class="pagination justify-content-end pull-right">-->
-<!--            --><?php
-//            // The "back" link
-//            $prevlink = ($page > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
-//
-//            // The "forward" link
-//            $nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
-//
-//            // Display the paging information
-//            echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
-//            ?>
-<!--        </div>-->
     </div>
 
     <div class="col-md-4">
         <!-- Categories -->
-        <div id="categories" class="col-lg-4 col-md-12 forum-layout">
+        <div id="categories" class="col-lg-4 col-md-12  forum-layout">
             <div class="sidebarblock">
                 <h3>Categories</h3>
                 <div class="divline"></div>
@@ -290,7 +278,10 @@
     </div>
 </div>
 
-    <div class="pagination justify-content-end">
+    <!-- Pagination -->
+<div class="row col-md-12 col-xs-12 col-sm-12">
+    <div class="col-md-4 col-xs-12"></div>
+    <div id="pagination" class="justify-content-end col-md-6 col-xs-12">
         <?php
         // The "back" link
         $prevlink = ($page > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
@@ -302,5 +293,7 @@
         echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
         ?>
     </div>
+    <div class="col-md-2 col-xs-12"></div>
+</div>
 
 <?php require('template/footer.phtml') ?>

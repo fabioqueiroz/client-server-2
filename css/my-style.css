@@ -144,6 +144,7 @@ th, td {
 #categories, #topics {
     padding-top: 5px;
     margin-top: 10px;
+    padding-bottom: 50px;
 }
 
 #stats-position {
@@ -247,6 +248,7 @@ th, td {
     text-align: justify;
 }
 
+
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {
     .col-xs-6 {
@@ -261,9 +263,5 @@ th, td {
     #stats-position {
         padding-top: 18px;
     }
-
-    /*.delete-msg-button {*/
-    /*    margin-left: 0px!important;*/
-    /*}*/
 
 }
