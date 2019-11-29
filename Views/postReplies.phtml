@@ -1,41 +1,5 @@
 <?php require('template/header.phtml') ?>
-<script src="https://kit.fontawesome.com/015b65f61b.js" crossorigin="anonymous"></script>
-
-<!-- VERSION 1 - re-directs to newReply.php -->
-
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div id="post-layout" class="col-md-6 col-xs-12 pull-left">-->
-<!--            --><?php //foreach ($post as $p){?>
-<!--                <h3>--><?php //echo $p->getTitle(); ?><!--</h3>-->
-<!--                <h4>--><?php //echo $p->getMessage(); ?><!--</h4>-->
-<!--                <h5 class="fas fa-user col-md-12">--><?php //echo $p->getFirstName() . ' '. $p->getLastName(); ?><!--</h5>-->
-<!---->
-<!--                --><?php //if(empty($replies)) {?>
-<!--                    <div class="row pull-right">-->
-<!--                        <a href="newReply.php?replyFrom=--><?php //echo $_SESSION['userID'];?><!--&replyTo=--><?php //echo $p->getPostingUser();?><!--&postID=--><?php //echo $p->getID();?><!--">Reply</a>-->
-<!--                    </div>-->
-<!--                --><?php //}?>
-<!--            --><?php //}?>
-<!--        </div>-->
-<!---->
-<!--        --><?php //if(!empty($replies)) {?>
-<!--            <div id="reply-layout" class="col-md-5 mb-4">-->
-<!--                --><?php //foreach ($replies as $reply){?>
-<!--                    <h4>--><?php //echo $reply->getReplyMessage(); ?><!--</h4>-->
-<!--                    <h5 class="fas fa-user col-md-12">--><?php //echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?><!--</h5>-->
-<!--                    <h5 class="far fa-calendar-alt col-md-12">--><?php //echo $reply->getReplyDate(); ?><!--</h5>-->
-<!--                    <div class="bottom-message">-->
-<!--                        <a href="newReply.php?replyFrom=--><?php //echo $reply->getReplyFrom();?><!--&replyTo=--><?php //echo $reply->getReplyTo();?><!--&postID=--><?php //echo $postID;?><!--">Reply</a>-->
-<!--                    </div>-->
-<!--                --><?php //}?>
-<!--            </div>-->
-<!--        --><?php //}?>
-<!--    </div>-->
-<!--</div>-->
-
-
-<!-- VERSION 2 - reply inside this page using form -->
+<!--<script src="https://kit.fontawesome.com/015b65f61b.js" crossorigin="anonymous"></script>-->
 
 <form name="reply-form" method="post" action="">
     <div class="container">
@@ -57,7 +21,7 @@
                     ?>
                     <div class="col-md-11">
                         <div class="col-md-9 col-xs-4 pull-left">
-                            <h5 id="user-name-position" class="fas fa-user"><?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></h5>
+                            <h5 id="user-name-position"><span class="glyphicon glyphicon-user"><strong> <?php echo $p->getFirstName() . ' '. $p->getLastName(); ?></strong></h5>
                         </div>
                         <div class="col-md-2 col-xs-2">
                             <?php if(!$view->isInWatchlist) {?>
@@ -127,12 +91,6 @@
         </div>
     </div>
 </form>
-
-
-<div>
-    <h3>Back to all the <a href="forum.php">posts</a>.</h3><br>
-</div>
-
-
+<br>
 <?php require('template/footer.phtml') ?>
 

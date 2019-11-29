@@ -1,6 +1,6 @@
 <?php require('template/header.phtml') ?>
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<script src="https://kit.fontawesome.com/015b65f61b.js" crossorigin="anonymous"></script>
+
+<!--<script src="https://kit.fontawesome.com/015b65f61b.js" crossorigin="anonymous"></script>-->
 
 <div>
 <!-- Search bar -->
@@ -126,54 +126,52 @@
                                     echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
                                     ?>
                                 </div>
-                                <div class="fas fa-user col-md-pull-8"><a href="messages.php?postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></a></div>
+                                <div class="col-md-pull-8"><span class="glyphicon glyphicon-user"></span> <a href="messages.php?postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></a></div>
                             <?php } else {?>
-                            <div class="fas fa-user col-md-pull-8"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></div>
-    <!--                        <div class="far fa-address-card col-md-push-12">78 replies</div>-->
+                            <div class="col-md-pull-8"><span class="glyphicon glyphicon-user"></span> <?php echo $post->getFirstName(). ' '.$post->getLastName()?></div>
                             <?php }?>
                             <div class="row">
                             <div class="col-md-push-12">
-    <!--                            <div class="far fa-address-card col-md-push-12">78-->
+
                                 <form action="forum.php" method="post" class="form">
 
                                     <!-- ***** MODAL DEACTIVATED ***** Button trigger modal -->
                                     <?php if(isset($_SESSION['userID'])) {?>
-    <!--                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">replies</button>-->
 
                                         <!-- Reply Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+<!--                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                                            <div class="modal-dialog" role="document">-->
+<!--                                                <div class="modal-content">-->
+<!--                                                    <div class="modal-header">-->
+<!--                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                                            <span aria-hidden="true">&times;</span>-->
+<!--                                                        </button>-->
 
                                                         <!-- Display the post again -->
-                                                        <h3 class="modal-title" id="exampleModalLabel"><?php echo $post->getTitle()?></h3>
-                                                        <h4><?php echo $post->getMessage()?></h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="container">
-
-                                                            <div class="form-row">
-                                                                <div class="form-group col-md-7 mb-4">
-                                                                    <?php foreach ($replies as $reply){?>
-                                                                        <h4><?php echo $reply->getReplyMessage(); ?></h4>
-                                                                        <h5><?php echo $reply->getReplyFrom(); ?></h5>
-                                                                        <h5><?php echo $reply->getReplyDate(); ?></h5>
-                                                                    <?php }?>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <a href="newReply.php?postingUser=<?php echo $post->getPostingUser();?>">Reply</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+<!--                                                        <h3 class="modal-title" id="exampleModalLabel">--><?php //echo $post->getTitle()?><!--</h3>-->
+<!--                                                        <h4>--><?php //echo $post->getMessage()?><!--</h4>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="modal-body">-->
+<!--                                                        <div class="container">-->
+<!---->
+<!--                                                            <div class="form-row">-->
+<!--                                                                <div class="form-group col-md-7 mb-4">-->
+<!--                                                                    --><?php //foreach ($replies as $reply){?>
+<!--                                                                        <h4>--><?php //echo $reply->getReplyMessage(); ?><!--</h4>-->
+<!--                                                                        <h5>--><?php //echo $reply->getReplyFrom(); ?><!--</h5>-->
+<!--                                                                        <h5>--><?php //echo $reply->getReplyDate(); ?><!--</h5>-->
+<!--                                                                    --><?php //}?>
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="modal-footer">-->
+<!--                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                                                        <a href="newReply.php?postingUser=--><?php //echo $post->getPostingUser();?><!--">Reply</a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <!-- Reply Modal Ends -->
 
                                     <?php } else {?>
@@ -184,7 +182,7 @@
                                 </form>
                             </div>
                             </div>
-                            <div class="time col-md-pull-12"><i class="far fa-calendar-alt"></i><?php echo $post->getMessageDate()?></div>
+                            <div class="time col-md-pull-12"><span class="glyphicon glyphicon-calendar"></span> <?php echo $post->getMessageDate()?></div>
                         </div>
                     <?php }?>
                     </div>
