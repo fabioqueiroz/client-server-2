@@ -5,27 +5,13 @@
 <div>
 <!-- Search bar -->
 <div class="row forum-top-bar">
-        <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 hidden-xs"><h3>Posts</h3></div>
-        <div class="col-lg-3 col-xs-5 col-sm-5 col-md-3">
-<!--            <div class="dropdown dropdown-position pull-left">-->
-<!--                --><?php //if(isset($_SESSION['userID'])) {?>
-<!--                <a class="link-text" data-toggle="dropdown" href="#">My Profile</a> <b class="caret"></b>-->
-<!--                <ul class="dropdown-menu" role="menu">-->
-<!--                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Details</a></li>-->
-<!--                    <li role="presentation"><a role="menuitem" tabindex="-2" href="watchList.php">Watchlist</a></li>-->
-<!--                </ul>-->
-<!--                --><?php //}?>
-<!--            </div>-->
-        </div>
+        <div class="col-lg-5 col-xs-3 col-sm-2 col-md-2"><h3>Posts</h3></div>
 
         <!-- Search box -->
-        <div class="col-lg-4 search hidden-sm col-md-3 col-xs-7">
+        <div class="col-lg-4 search hidden-sm col-md-3 col-xs-4">
             <div class="wrap search-box">
                 <form action="forum.php" method="post" class="form">
                     <div class="pull-left txt">
-                        <input type="text" class="form-control" placeholder="Search Posts" name="filter">
-<!--                        <div class="pull-right search-icon"><button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button></div>-->
-                        <div class="pull-right search-icon"><button class="btn btn-success" type="submit"><img class="new-search" src="images/search-icon.png"></button></div>
                         <?php if($view->isFiltered) {?>
                         <button class="btn btn-group-justified" type="submit">Clear Search</button>
                         <?php }?>
@@ -35,7 +21,7 @@
         </div>
 
         <!-- New post area -->
-        <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
+        <div class="col-lg-3 col-xs-2 col-sm-5 col-md-4">
             <div class="start-topic pull-left">
                 <form action="newPost.php" method="post" class="form">
                     <?php if(isset($_SESSION['userID'])) {?>
@@ -108,11 +94,11 @@
                 </form>
             </div>
 
-            <?php if(isset($_SESSION['userID'])) {?>
-            <form action="inbox.php" method="post" class="form">
-                <div class="envelope pull-right"><button type="submit"><img class="mail-icon" src="images/mail.png"></button></div>
-            </form>
-            <?php }?>
+<!--            --><?php //if(isset($_SESSION['userID'])) {?>
+<!--            <form action="inbox.php" method="post" class="form">-->
+<!--                <div class="envelope pull-right"><button type="submit"><img class="mail-icon" src="images/mail.png"></button></div>-->
+<!--            </form>-->
+<!--            --><?php //}?>
 
             <div class="clearfix"></div>
         </div>
