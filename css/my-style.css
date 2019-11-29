@@ -27,6 +27,11 @@
     display: block;
 }
 
+#hover-link a:hover {
+    background-color: #2a6496;
+    color: #ddd;
+}
+
 #content {
     background-color: #fff;
     /*border-top: solid 6px #A19595;*/
@@ -53,29 +58,29 @@
     color: #c12e2a;
 }
 
-.navbar .navbar-header {
-    float: none;
-}
-.navbar .navbar-toggle {
-    display: block;
-}
-.navbar .navbar-collapse.collapse {
-    display: none!important;
-}
-.navbar .navbar-nav {
-    float: none!important;
-}
-.navbar .navbar-nav > li {
-    float: none;
-    display: table-cell!important;
-}
-.navbar .navbar-collapse.collapse.in {
-    display: block !important;
-}
+/*.navbar .navbar-header {*/
+/*    float: none;*/
+/*}*/
+/*.navbar .navbar-toggle {*/
+/*    display: block;*/
+/*}*/
+/*.navbar .navbar-collapse.collapse {*/
+/*    display: none!important;*/
+/*}*/
+/*.navbar .navbar-nav {*/
+/*    float: none!important;*/
+/*}*/
+/*.navbar .navbar-nav > li {*/
+/*    float: none;*/
+/*    display: table-cell!important;*/
+/*}*/
+/*.navbar .navbar-collapse.collapse.in {*/
+/*    display: block !important;*/
+/*}*/
 
-.navbar-brand a:hover {
-    text-decoration:none;
-}
+/*.navbar-brand a:hover {*/
+/*    text-decoration:none;*/
+/*}*/
 
 .nav-stacked > li {
     display: table-cell;

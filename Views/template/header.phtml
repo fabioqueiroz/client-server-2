@@ -20,14 +20,6 @@
 <body role="document">
 
 <div class="container">
-<!--        <div  class="row">-->
-<!--            <div id="title" class="col-xs-12">-->
-<!--                <img src="images/new_uos_logo.jpg" alt="Salford Wine Forum" />-->
-<!--                    <div class="pull-right"> <h1>--><?php //echo $view->pageTitle ?><!-- </h1></div>-->
-<!---->
-<!--            </div>-->
-<!--        </div>-->
-
 
     <div class="row">
 
@@ -41,13 +33,15 @@
                     <span class="icon-bar"></span>
                 </button>
 
+                <div class="navbar-right">
                 <?php if (!isset($_SESSION['signed_in'])) {?>
                     <button type="button" id ="sign-in-button" class="pull-right"><a href="signIn.php" class="navbar-brand">Sign In</a></button>
                 <?php } else if(isset($_SESSION['signed_in'])) {?>
                     <button type="button" id ="sign-in-button" class="pull-right"><a href="logout.php" class="navbar-brand">Sign Out</a></button>
                 <?php }?>
+                </div>
 
-                <p class="navbar-brand pull-left col-xs-5">Salford Wine Forum</p>
+                <p class="navbar-brand pull-left col-xs-5 col-md-5">Salford Wine Forum</p>
                 <p class="navbar-brand pull-right hidden-xs"><?php if (isset($_SESSION['signed_in'] )) { echo 'Hello '.$_SESSION['firstName'].'!';}?></p>
             </div>
 
@@ -58,22 +52,46 @@
                             <li><a href="index.php">Home</a></li>
                             <li><a href="about.php">About</a></li>
                             <li><a href="forum.php">Forum</a></li>
-<!--                            <li><a href="converter.php">Converter</a></li>-->
-<!--                            <li><a href="calculator.php">Calculator</a></li>-->
-<!--                            <li><a href="persistence.php">Persistence</a></li>-->
-<!--                            <li><a href="querystring.php">Query</a></li>-->
-<!--                            <li><a href="studentISv1.php">Students</a></li>-->
-<!--                            <li><a href="shop.php">Shop</a></li>-->
-<!--                            <li><a href="logout.php">Logout</a></li>-->
                         </ul>
                     </div>
                 </div>
             </div>
-
         </nav>
 
+        <!-- V2-->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Salford Meds Forum</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <div id="hover-link">
+                        <ul class="nav navbar-nav">
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="about.php">About</a></li>
+                            <li><a href="forum.php">Forum</a></li>
+                            <li><a href="#">Page 3</a></li>
+                        </ul>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <?php if (!isset($_SESSION['signed_in'])) {?>
+                            <li><a href="signIn.php"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+                            <li><a href="registerUser.php"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                        <?php } else if(isset($_SESSION['signed_in'])) {?>
+                            <li><p class="navbar-brand pull-right hidden-xs"><?php if (isset($_SESSION['signed_in'] )) { echo 'Hello '.$_SESSION['firstName'].'!';}?></p></li>
+                            <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                        <?php }?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-        <div id="content" class="col-xs-12 col-sm-9 col-md-12">
+        <div id="content" class="col-xs-12 col-sm-9 col-md-12 col-lg-12">
 
 
 
