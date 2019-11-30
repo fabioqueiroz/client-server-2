@@ -32,6 +32,9 @@ if (isset($_POST['password'])) {
     if ($_POST['password'] != $_POST['re-typed-password']) {
         $errors = 'The passwords do not match';
     }
+    if (!(strlen($_POST['password']) >= 3 && strlen($_POST['password']) <= 20)) {
+        $errors = 'The password must be between 3 and 20 characters';
+    }
 }
 
 // Sanitize the email input
@@ -54,17 +57,18 @@ if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) 
     }
     if(!$captcha){
         //Captcha hasn't been checked
-        echo "Captcha hasn't been checked";
+        $errors = "Captcha hasn't been checked";
     }
     $response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LfrJcUUAAAAACcl0TPtIJZj1iyoN0raZ6BK1Hz5&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
 
     if($response['success'] == false){
         //Captcha incorrect
-        echo "Captcha incorrect";
+        $errors = "Captcha incorrect";
     }
     else {
 
         $userDataSet->createUser($firstName, $lastName, $email, $password);
+        $hashedPwdInDb = $userDataSet->passwordChecker(strip_tags(trim(($_POST['email']))));
 
         $_SESSION['firstName'] = $firstName;
         $_SESSION['lastName'] = $lastName;
@@ -73,10 +77,10 @@ if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) 
 
         $view->isRegistered = true;
 
-        $userDataSet->authenticateUser($email, $password);
+        $userDataSet->authenticateUser(strip_tags(trim(($_POST['email']))), $hashedPwdInDb);
+//        require_once('forum.php');
 
     }
-
 }
 
 require_once('Views/registerUser.phtml');

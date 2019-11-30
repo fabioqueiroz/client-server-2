@@ -3,7 +3,6 @@ session_start();
 require_once('Models/Users/UserDataSet.php');
 
 $view = new stdClass();
-$view->isLogged = false;
 
 $userDataSet = new UserDataSet();
 
@@ -11,7 +10,9 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 
     $hashedPwdInDb = $userDataSet->passwordChecker(strip_tags(trim(($_POST['email']))));
 
-    if($hashedPwdInDb == sha1($_POST['password'])) {
+    // if($hashedPwdInDb == sha1($_POST['password']))
+
+    if(password_verify($_POST['password'], $hashedPwdInDb)) {
 
         // Verify if the captcha has been checked
         if(isset($_POST['g-recaptcha-response'])) {
@@ -29,9 +30,10 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
         }
         else {
             // Code to handle a successful verification
-            $result = $userDataSet->authenticateUser(strip_tags(trim(($_POST['email']))), strip_tags(trim(($_POST['password']))));
+//            $result = $userDataSet->authenticateUser(strip_tags(trim(($_POST['email']))), strip_tags(trim(($_POST['password']))));
+            $result = $userDataSet->authenticateUser(strip_tags(trim(($_POST['email']))), $hashedPwdInDb);
             $firstName = $lastName = $email = $password = '';
-            $userID = $photo = $registrationDate = '';
+            $userID = $photo = $registrationDate = $isAdmin = '';
 
             foreach ($result as $value) {
                 $userID = $value->getUserID();
@@ -41,6 +43,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
                 $password = $value->getPassword();
                 $photo = $value->getPhoto();
                 $registrationDate = $value->getRegistrationDate();
+                $isAdmin = $value->getIsAdmin();
             }
 
             if($firstName != null && $lastName != null) {
@@ -51,6 +54,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
                 $_SESSION['password'] = $password;
                 $_SESSION['photo'] = $photo;
                 $_SESSION['registrationDate'] = $registrationDate;
+                $_SESSION['isAdmin'] = $isAdmin;
 
                 $_SESSION['signed_in'] = true;
                 $view->isLogged = true;

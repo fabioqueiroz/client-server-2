@@ -6,18 +6,17 @@ require_once('Models/BaseDataSet.php');
 
 class UserDataSet extends BaseDataSet
 {
-//    protected $_dbHandle, $_dbInstance;
 
     public function __construct() {
-//        $this->_dbInstance = Database::getInstance();
-//        $this->_dbHandle = $this->_dbInstance->getdbConnection();
+
         parent::__construct();
     }
 
     public function createUser($firstName, $lastName, $email, $password) {
-        $hashedPassword = sha1($password);
+//        $hashedPassword = sha1($password);
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password, registrationDate) VALUES (?,?,?,?, NOW())";
+        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password, registrationDate, isAdmin) VALUES (?,?,?,?, NOW(),0)";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$firstName, $lastName, $email, $hashedPassword]);
@@ -72,11 +71,11 @@ class UserDataSet extends BaseDataSet
     }
 
     public function authenticateUser($email, $password) {
-        $hashedPassword = sha1($password);
+//        $hashedPassword = sha1($password);
         $sqlQuery = 'SELECT * FROM laf873.users WHERE email = ? AND password = ? ';
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$email, $hashedPassword]);
+        $statement->execute([$email, $password]);
 
         $row = $statement->fetch();
 

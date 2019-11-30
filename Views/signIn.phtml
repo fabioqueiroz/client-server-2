@@ -2,7 +2,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
-<?php if(!$view->isLogged){?>
+<?php if(!$view->isLogged && $_SESSION['signed_in'] == false){?>
 <h3><strong>Sign in to post</strong></h3>
 <h5> ( Do not have an account? Register <a href="registerUser.php">here</a>. )</h5>
 
@@ -28,7 +28,7 @@
     </div>
 
 </form>
-<?php } else if($view->isLogged) {
+<?php } else if($view->isLogged || $_SESSION['signed_in']) {
     echo '<h3> Welcome '.$_SESSION['firstName']. ' '.$_SESSION['lastName']. '! Click <a href="forum.php">here</a> to post.</h3>';
 }?>
 

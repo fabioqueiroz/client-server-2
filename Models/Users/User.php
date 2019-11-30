@@ -3,7 +3,7 @@
 
 class User
 {
-    private $_userID, $_firstName, $_lastName, $_email, $_password, $_photo, $_registrationDate;
+    private $_userID, $_firstName, $_lastName, $_email, $_password, $_photo, $_registrationDate, $_isAdmin;
 
     public function __construct($dbRow)
     {
@@ -14,6 +14,7 @@ class User
         $this->_password = $dbRow['password'];
         $this->_photo = $dbRow['photo'];
         $this->_registrationDate = $dbRow['registrationDate'];
+        $this->_isAdmin = $dbRow['isAdmin'];
     }
 
     public function getUserID()
@@ -69,5 +70,10 @@ class User
     public function getRegistrationDate()
     {
         return $this->_registrationDate;
+    }
+
+    public function getIsAdmin()
+    {
+        return $this->_isAdmin;
     }
 }

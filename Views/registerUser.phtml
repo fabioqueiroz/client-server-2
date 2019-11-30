@@ -43,7 +43,7 @@
 
 </form>
 <?php } else if($view->isRegistered) {
-
+    $_SESSION['signed_in'] = true;
     echo '<h3> Welcome '.$_SESSION['firstName']. ' '.$_SESSION['lastName']. '! Click <a href="forum.php">here</a> to post.</h3>';
 
 }?>
