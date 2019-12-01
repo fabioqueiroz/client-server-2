@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once('Models/Users/UserDataSet.php');
 
 $view = new stdClass();
@@ -77,9 +77,10 @@ if(empty($errors) && isset($_POST['password']) && !empty(($_POST['password']))) 
 
         $view->isRegistered = true;
 
-        $userDataSet->authenticateUser(strip_tags(trim(($_POST['email']))), $hashedPwdInDb);
-//        require_once('forum.php');
-
+        $result = $userDataSet->authenticateUser(strip_tags(trim(($_POST['email']))), $hashedPwdInDb);
+        foreach ($result as $value) {
+            $_SESSION['userID'] = $value->getUserID();
+        }
     }
 }
 

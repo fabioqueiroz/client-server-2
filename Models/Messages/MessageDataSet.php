@@ -45,7 +45,7 @@ class MessageDataSet extends BaseDataSet
                     from laf873.messages msg
                     inner join laf873.mailboxes mbox on msg.messageID = mbox.messageID
                     inner join laf873.users u on msg.sentTo = u.userID
-                    where mbox.mboxUser = 81 and mbox.mailbox = 'Out'
+                    where mbox.mboxUser = ? and mbox.mailbox = 'Out'
                     order by msg.messageDate desc;";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
