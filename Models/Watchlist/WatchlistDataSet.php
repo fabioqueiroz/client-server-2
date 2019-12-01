@@ -40,10 +40,10 @@ class WatchlistDataSet extends BaseDataSet
         return $subscriptions;
     }
 
-    public function checkPostInWatchlist($postID) {
-        $sqlQuery = "select count(*) from laf873.watchlist where sub_postID = ?";
+    public function checkPostInWatchlist($postID, $userID) {
+        $sqlQuery = "select count(*) from laf873.watchlist where sub_postID = ? and sub_userID = ?";
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$postID]);
+        $statement->execute([$postID, $userID]);
 
         $count = $statement->fetchColumn();
 

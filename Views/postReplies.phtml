@@ -71,7 +71,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="reply-text col-md-12 mb-4 col-xs-12 pull-left">
-                                <textarea name="reply" placeholder="Reply to this post" rows="5" required></textarea>
+                                <textarea name="reply" placeholder="Reply to this post (max of 300 characters)" rows="5"></textarea>
                             </div>
                         </div>
                         <div class="row col-md-12 mb-4 col-xs-12 pull-left">
@@ -85,7 +85,7 @@
                         <div class="row col-md-12 mb-4 col-xs-12 pull-left">
                             <?php if($view->isWrongLimit){?>
                                 <div class="error-message">
-                                    <h4>Max 300 characters!</h4>
+                                    <h5>Max 300 characters!</h5>
                                 </div>
                             <?php }?>
                         </div>
