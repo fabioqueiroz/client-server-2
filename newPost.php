@@ -25,8 +25,9 @@ if(isset($_POST['title']) && isset($_POST['topicSubject']) && isset($_POST['post
         $view->isPostCreated = true;
     }
 
-} else {
-    $view->errorMessage = true;
+    else {
+        $view->errorMessage = true;
+    }
 }
 
 require_once('Views/newPost.phtml');
