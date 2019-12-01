@@ -1,11 +1,75 @@
 <?php require('template/header.phtml') ?>
 
-<h3>Welcome to the web-site </h3>
+<div class="container ">
+    <div class="home-text">
+        <div class="row col-lg-12 col-md-12 col-xs-12">
+            <h3>Welcome to the Salford Medication Forum!</h3>
+        </div>
+        <div class="row col-lg-12 col-md-12 col-xs-12">
+            <h5>This is a place dedicated for discussion on available drug treatments on several diseases.</h5>
+            <h5>Here you can make questions, find support and guidance about the alternatives of any condition. Feel free to sign up and start posting!</h5>
+        </div>
+    </div>
 
-<h3>A template for web-site development using the <i>Model-View-Controller</i> design pattern and <a href="http://www.getbootstrap.com/css"><i>Bootstrap</i></a>.</h3>
-<p>The <i>Views/template</i> directory contains a <i>header.phtl</i> and a <i>footer.phtml</i> which should be included on every new page generated.
-    To add additional pages just edit the file <i>header.phtml</i> to add the extra link and then add a new <i>Controller (pageN.php)</i> and a new <i>View (pageN.phtml)</i>, for each page required.<p/>
-<p>The <i>Model</i> code files are placed in the <i>Models</i> directory.</p>
-<p>Do not change any of the css files in the <i>css</> directory!<p>
+    <div class="row col-lg-12 col-md-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-xs-3"></div>
+        <!-- Categories -->
+        <div id="categories" class="col-lg-6 col-md-6 forum-layout">
+            <div class="sidebarblock">
+                <h3>Categories</h3>
+                <div class="divline"></div>
+                <div class="blocktxt">
+                    <ul class="cats">
+                        <li><a href="#">Countries<span class="badge pull-right">20</span></a></li>
+                        <li><a href="#">Regions<span class="badge pull-right">10</span></a></li>
+                        <li><a href="#">Red Wine<span class="badge pull-right">50</span></a></li>
+                        <li><a href="#">White Wine<span class="badge pull-right">36</span></a></li>
+                        <li><a href="#">Food Pairing<span class="badge pull-right">41</span></a></li>
+                    </ul>
+                </div>
+                <div class="start-topic pull-left">
+                    <form action="newCategory.php" method="post" class="form">
+                        <?php if($_SESSION['isAdmin'] == 1){?>
+                            <button class="btn btn-primary">Start New Category</button>
+                        <?php }?>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-3"></div>
+    </div>
+
+        <div class="row col-lg-12 col-md-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-xs-3"></div>
+            <!-- Topics -->
+            <div id="topics" class="col-lg-6 col-md-6 forum-layout">
+                <div class="sidebarblock">
+                    <h3>Topics</h3>
+                    <div class="divline"></div>
+                    <div class="blocktxt">
+                        <ul class="cats">
+                            <li><a href="#">Red Wines <span class="badge pull-right">20</span></a></li>
+                            <li><a href="#">White Wines<span class="badge pull-right">10</span></a></li>
+                            <li><a href="#">Rose Wines <span class="badge pull-right">50</span></a></li>
+                            <li><a href="#">Wines By Country <span class="badge pull-right">36</span></a></li>
+                            <li><a href="#">French Wines<span class="badge pull-right">41</span></a></li>
+                            <li><a href="#">Italian Wines <span class="badge pull-right">11</span></a></li>
+                            <li><a href="#">New World Wines<span class="badge pull-right">5</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="start-topic pull-left">
+                        <form action="newTopic.php" method="post" class="form">
+                            <?php if($_SESSION['isAdmin'] == 1){?>
+                                <button class="btn btn-primary">Start New Topic</button>
+                            <?php }?>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-3"></div>
+        </div>
+    </div>
+    <br>
+</div>
 
 <?php require('template/footer.phtml') ?>
