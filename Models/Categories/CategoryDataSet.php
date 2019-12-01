@@ -21,9 +21,6 @@ class CategoryDataSet extends BaseDataSet
         }
         return $categories;
     }
-    public function getCategoryID($category)  {
-
-    }
 
     public function createCategory($categoryName, $description) {
         $sqlQuery = "INSERT INTO laf873.categories (categoryName, description) VALUES (?,?)";
