@@ -7,6 +7,9 @@ $view = new stdClass();
 $categoryDataSet = new CategoryDataSet();
 $topicDataSet = new TopicDataSet();
 
+$categories = $categoryDataSet->getAllCategories();
+$topics = $topicDataSet->getAllTopics();
+
 require_once('Views/index.phtml');
 
 

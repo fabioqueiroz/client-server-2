@@ -32,4 +32,16 @@ class TopicDataSet extends BaseDataSet
         return $topics;
     }
 
+    public function getPostCountByTopicId($topicID) {
+        $sqlQuery = "select count(*) from laf873.topics t
+                    inner join laf873.posts p on t.topicID = p.topicSubject
+                    where t.topicID = ?";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$topicID]);
+
+        $count = $statement->fetchColumn();
+
+        return $count;
+    }
+
 }

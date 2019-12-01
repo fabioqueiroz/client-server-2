@@ -6,8 +6,3 @@ $_SESSION['login_error'] = false;
 $_SESSION['firstName'] = '';
 
 require_once ('signIn.php');
-
-//header('Location: signIn.php');
-//setcookie('first', '');
-//setcookie('second', '');
-
