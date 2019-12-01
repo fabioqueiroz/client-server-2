@@ -27,7 +27,10 @@ $count == 1 ? $view->isInWatchlist = true : $view->isInWatchlist = false;
 
 if(isset($_POST['reply']) && !empty($_POST['reply']) && isset($_POST['getUserID']) && isset($_POST['getPostingUser']) && isset($_POST['getID'])) {
 
-    if(isset($_POST['reply']) && $_POST['rand-check'] == $_SESSION['rand']) {
+    if(strlen($_POST['reply']) == 0 || strlen($_POST['reply']) > 300) {
+        $view->isWrongLimit = true;
+    }
+    else if(isset($_POST['reply']) && $_POST['rand-check'] == $_SESSION['rand']) {
         $replyDataSet->createReply(strip_tags(trim(($_POST['reply']))), $_POST['getUserID'], $_POST['getPostingUser'], $_POST['getID']);
         $replies = $replyDataSet->getAllRepliesById($_GET['postingUser'], $postID);
     }

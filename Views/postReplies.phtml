@@ -58,7 +58,7 @@
                                             <h5 class=""><span class="glyphicon glyphicon-user"><strong><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></strong></h5>
                                         </div>
                                         <div class="reply-date">
-                                            <h5 class="bottom-message"><span class="glyphicon glyphicon-calendar"><strong> <?php echo $reply->getReplyDate(); ?></strong></h5>
+                                            <h5 class="bottom-message"><span class="glyphicon glyphicon-calendar"><strong><?php echo $reply->getReplyDate(); ?></strong></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -71,16 +71,23 @@
                     <div class="container">
                         <div class="row">
                             <div class="reply-text col-md-12 mb-4 col-xs-12 pull-left">
-                                <textarea name="reply" placeholder="Reply to this post" rows="5"></textarea>
+                                <textarea name="reply" placeholder="Reply to this post" rows="5" required></textarea>
                             </div>
+                        </div>
+                        <div class="row col-md-12 mb-4 col-xs-12 pull-left">
+                                <button type="submit" value="Submit" class="btn btn-primary">Reply</button>
+                                <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
+                                <input type="hidden" name="getUserID" value="<?php echo $_SESSION['userID']?>"/>
+                                <input type="hidden" name="getPostingUser" value="<?php echo $p->getPostingUser()?>"/>
+                                <input type="hidden" name="getID" value="<?php echo $p->getID()?>"/>
                         </div>
 
                         <div class="row col-md-12 mb-4 col-xs-12 pull-left">
-                            <button type="submit" value="Submit" class="btn btn-primary">Reply</button>
-                            <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
-                            <input type="hidden" name="getUserID" value="<?php echo $_SESSION['userID']?>"/>
-                            <input type="hidden" name="getPostingUser" value="<?php echo $p->getPostingUser()?>"/>
-                            <input type="hidden" name="getID" value="<?php echo $p->getID()?>"/>
+                            <?php if($view->isWrongLimit){?>
+                                <div class="error-message">
+                                    <h4>Max 300 characters!</h4>
+                                </div>
+                            <?php }?>
                         </div>
                     </div>
                     <?php } else {?>
