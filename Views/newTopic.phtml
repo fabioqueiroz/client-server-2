@@ -34,6 +34,13 @@
                     <button class="btn btn-primary" type="submit">Create Topic</button>
                 </div>
             </div>
+            <div class="row col-md-12 mb-4 col-xs-12 pull-left">
+                <?php if($view->isWrongLimit){?>
+                    <div class="error-message">
+                        <h5>Max 100 characters!</h5>
+                    </div>
+                <?php }?>
+            </div>
         </form>
 </div>
 <?php if($view->isTopicCreated) {

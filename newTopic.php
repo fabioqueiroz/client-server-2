@@ -19,9 +19,16 @@ if(isset($_POST['subject']) && isset($_POST['category']) && isset($_POST['descri
             $categoryID = $category->getCategoryID();
         }
     }
-    $result = $topicDataSet->createTopic(strip_tags(trim(($_POST['subject']))), $categoryID, $postingUser, strip_tags(trim(($_POST['description']))));
+    if(strlen($_POST['description']) > 0 && strlen($_POST['description']) <= 100) {
+        $result = $topicDataSet->createTopic(strip_tags(trim(($_POST['subject']))), $categoryID, $postingUser, strip_tags(trim(($_POST['description']))));
 
-    $view->isTopicCreated = true;
+        $view->isTopicCreated = true;
+    }
+    else {
+        $view->isWrongLimit = true;
+    }
+
 }
+
 
 require_once('Views/newTopic.phtml');
