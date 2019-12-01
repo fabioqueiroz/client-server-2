@@ -6,36 +6,10 @@ require_once('Models/BaseDataSet.php');
 
 class TopicDataSet extends BaseDataSet
 {
-//    protected $_dbHandle, $_dbInstance;
 
     public function __construct() {
-//        $this->_dbInstance = Database::getInstance();
-//        $this->_dbHandle = $this->_dbInstance->getdbConnection();
-        parent::__construct();
-    }
-    public function getCategoryID($category) {
-        $value = $category;
-        global $id;
 
-        switch ($value) {
-            case "Countries":
-                return $id = 1;
-                break;
-            case "Regions":
-                return $id = 2;
-                break;
-            case "Red Wine":
-                return $id = 3;
-                break;
-            case "White Wine":
-                return $id = 4;
-                break;
-            case "Food Pairing":
-                return $id = 5;
-                break;
-            default:
-                return -1;
-        }
+        parent::__construct();
     }
 
     public function createTopic($topicSubject, $topicCategory, $postingUser, $topicDescription) {

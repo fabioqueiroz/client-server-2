@@ -9,15 +9,27 @@
                     <input type="text" class="form-control" id="validationDefault01" name="subject" required>
                 </div>
 
+<!--                <div class="form-group col-md-6 mb-4">-->
+<!--                    <label for="inputState">Category</label>-->
+<!--                    <select id="inputState" class="form-control" name="category">-->
+<!--                        <option>General Diseases</option>-->
+<!--                        <option>Allergies</option>-->
+<!--                        <option>Cancer</option>-->
+<!--                        <option>Blood & Immune System</option>-->
+<!--                        <option>Heart Conditions</option>-->
+<!--                    </select>-->
+<!--                </div>-->
                 <div class="form-group col-md-6 mb-4">
-                    <label for="inputState">Category</label>
-                    <select id="inputState" class="form-control" name="category">
-                        <option>Countries</option>
-                        <option>Regions</option>
-                        <option>Red Wine</option>
-                        <option>White Wine</option>
-                        <option>Food Pairing</option>
-                    </select>
+                        <label for="inputState">Category</label>
+                        <select id="inputState" class="form-control" name="category">
+                            <?php foreach ($categories as $category){?>
+                            <option>
+                                <?php
+                                 echo $category->getCategoryName();
+                                ?>
+                            </option>
+                            <?php }?>
+                        </select>
                 </div>
             </div>
 
