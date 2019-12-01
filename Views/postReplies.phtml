@@ -44,18 +44,22 @@
                             <?php foreach ($replies as $reply){?>
                                 <h4><?php echo $reply->getReplyMessage(); ?></h4>
                                 <div class="row">
-                                    <div class="col-md-1 col-xs-2 pull-right">
+                                    <div class="col-md-12 col-xs-12 pull-right">
                                         <?php if (isset($_SESSION['userID'])) {
                                             $replyImage = $reply->getReplyImage();
                                             $newImageData = base64_encode(file_get_contents($replyImage));
                                             echo '<img src="data:image/jpeg;base64,' . $newImageData . '">';
                                         }?>
                                     </div>
-                                    <div class="replier-username">
-                                        <h5 class="col-md-11"><span class="glyphicon glyphicon-user"><strong><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></strong></h5>
-                                    </div>
-                                    <div class="reply-date">
-                                        <h5 class="col-md-12 bottom-message"><span class="glyphicon glyphicon-calendar"><strong> <?php echo $reply->getReplyDate(); ?></strong></h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 pull-right">
+                                        <div class="replier-username">
+                                            <h5 class=""><span class="glyphicon glyphicon-user"><strong><?php echo $reply->getReplierFirstName() . ' '. $reply->getReplierLastName(); ?></strong></h5>
+                                        </div>
+                                        <div class="reply-date">
+                                            <h5 class="bottom-message"><span class="glyphicon glyphicon-calendar"><strong> <?php echo $reply->getReplyDate(); ?></strong></h5>
+                                        </div>
                                     </div>
                                 </div>
                             <?php }?>
