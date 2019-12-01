@@ -30,9 +30,14 @@
                 <textarea type="text" class="form-control" rows="3" name="postMessage" required></textarea>
             </div>
         </div>
+        <?php
+            $rand = rand();
+            $_SESSION['rand'] = $rand;
+        ?>
         <div class="form-row">
             <div class="col-md-8 mb-3 col-xs-12 spacing">
                 <button class="btn btn-primary" type="submit">Create Post</button>
+                <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
             </div>
 
             <div class="col-md-4 mb-3 col-xs-12 spacing">

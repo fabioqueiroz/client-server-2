@@ -21,8 +21,11 @@ if(isset($_POST['title']) && isset($_POST['topicSubject']) && isset($_POST['post
     }
 
     if(strlen($_POST['postMessage']) > 0 && strlen($_POST['postMessage']) <= 300){
-        $postDataSet->createPost(strip_tags(trim(($_POST['title']))), htmlentities(trim(($_POST['postMessage']))), $topicID, $_SESSION['userID']);
-        $view->isPostCreated = true;
+        // Prevent the submission of the same values if the page is reloaded
+        if(isset($_POST['postMessage']) && $_POST['rand-check'] == $_SESSION['rand']) {
+            $postDataSet->createPost(strip_tags(trim(($_POST['title']))), htmlentities(trim(($_POST['postMessage']))), $topicID, $_SESSION['userID']);
+            $view->isPostCreated = true;
+        }
     }
 
     else {

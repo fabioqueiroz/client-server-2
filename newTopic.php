@@ -20,9 +20,12 @@ if(isset($_POST['subject']) && isset($_POST['category']) && isset($_POST['descri
         }
     }
     if(strlen($_POST['description']) > 0 && strlen($_POST['description']) <= 100) {
-        $result = $topicDataSet->createTopic(strip_tags(trim(($_POST['subject']))), $categoryID, $postingUser, strip_tags(trim(($_POST['description']))));
+        // Prevent the submission of the same values if the page is reloaded
+        if(isset($_POST['description']) && $_POST['rand-check'] == $_SESSION['rand']) {
+            $result = $topicDataSet->createTopic(strip_tags(trim(($_POST['subject']))), $categoryID, $postingUser, strip_tags(trim(($_POST['description']))));
 
-        $view->isTopicCreated = true;
+            $view->isTopicCreated = true;
+        }
     }
     else {
         $view->isWrongLimit = true;
