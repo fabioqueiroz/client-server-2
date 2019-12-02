@@ -57,5 +57,4 @@ class MessageDataSet extends BaseDataSet
         }
         return $outbox;
     }
-
 }
