@@ -55,7 +55,7 @@ body {
     text-align: center;
     background-color: dimgray;
     color: #fff;
-    border-radius: 6px;
+    /*border-radius: 6px;*/
     height: 40px;
 }
 
@@ -200,6 +200,10 @@ th, td {
 
 #watchlist-layout {
     padding-bottom: 20px;
+}
+
+.watchlist-text {
+    text-align: justify;
 }
 
 #checkbox-position, #del-checkbox-position {

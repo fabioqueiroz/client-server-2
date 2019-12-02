@@ -21,23 +21,26 @@
         </div>
 
         <div class="row">
-            <div id="post-layout" class="col-md-12 col-xs-12 pull-left">
+            <div id="post-layout" class="watchlist-text col-md-12 col-xs-12 pull-left">
                 <?php foreach ($subscribedPosts as $sp){?>
-                    <div class="col-md-7 col-xs-7">
+                    <div class="col-md-7 col-xs-9">
                         <input id="checkbox-position" type="checkbox" name="id[]" value="<?php echo $sp->getSubPostID()?>" class="pull-left"/>
                         <input type="hidden" name="getSubPostID" value="<?php echo $sp->getSubPostID()?>"/>
                         <h3><?php echo $sp->getTitle(); ?></h3>
-                        <h4><?php echo $sp->getMessage(); ?></h4>
+                        <p><?php echo $sp->getMessage(); ?></p>
                     </div>
 
-                    <div class="col-md-5 col-xs-2">
-                        <?php if (isset($_SESSION['userID'])) {
-                            $replyImage = $sp->getImage();
-                            $newImageData = base64_encode(file_get_contents($replyImage));
-                            echo '<img src="data:image/jpeg;base64,' . $newImageData . '">';
-                        }?>
-
-                        <h5 id="user-name-position"><span class="glyphicon glyphicon-user"><strong><?php echo $sp->getFirstName() . ' '. $sp->getLastName(); ?></strong></h5>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="row col-md-12">
+                            <?php if (isset($_SESSION['userID'])) {
+                                $replyImage = $sp->getImage();
+                                $newImageData = base64_encode(file_get_contents($replyImage));
+                                echo '<img src="data:image/jpeg;base64,' . $newImageData . '">';
+                            }?>
+                        </div>
+                        <div class="row col-md-12">
+                            <h5 id="user-name-position"><span class="glyphicon glyphicon-user"><strong><?php echo $sp->getFirstName() . ' '. $sp->getLastName(); ?></strong></h5>
+                        </div>
                     </div>
 
                 <?php }?>
