@@ -1,3 +1,6 @@
+body {
+    background-color: currentColor;
+}
 #title {
     margin-top: 12px;
     background-color: #fff;
@@ -50,9 +53,14 @@
 #footer {
     margin_top: 20px;
     text-align: center;
-    background-color: #000;
+    background-color: dimgray;
     color: #fff;
     border-radius: 6px;
+    height: 40px;
+}
+
+#footer p {
+    margin-top: 10px;
 }
 
 #sign-in-button {
