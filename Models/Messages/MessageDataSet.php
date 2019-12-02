@@ -26,7 +26,7 @@ class MessageDataSet extends BaseDataSet
                     inner join laf873.mailboxes mbox on msg.messageID = mbox.messageID
                     inner join laf873.users u on msg.sentBy = u.userID
                     where mbox.mboxUser = ? and mbox.mailbox = 'In'
-                    order by msg.messageDate desc;";
+                    order by msg.messageDate desc";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$userID]);
@@ -46,7 +46,7 @@ class MessageDataSet extends BaseDataSet
                     inner join laf873.mailboxes mbox on msg.messageID = mbox.messageID
                     inner join laf873.users u on msg.sentTo = u.userID
                     where mbox.mboxUser = ? and mbox.mailbox = 'Out'
-                    order by msg.messageDate desc;";
+                    order by msg.messageDate desc";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$userID]);
