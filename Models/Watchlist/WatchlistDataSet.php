@@ -56,4 +56,28 @@ class WatchlistDataSet extends BaseDataSet
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$postID]);
     }
+
+//    public function getTotalSubscribedUsers($sub_postID) {
+//        $sqlQuery = "select count(*) from laf873.watchlist w
+//                    inner join laf873.notifications n on w.sub_postID = ?";
+//        $statement = $this->_dbHandle->prepare($sqlQuery);
+//        $statement->execute([$sub_postID]);
+//
+//        $count = $statement->fetchColumn();
+//
+//        return $count;
+//    }
+
+    public function getSubscribedUsers($sub_postID) {
+        $sqlQuery = "select distinct w.watchlistID, w.sub_userID, w.sub_postID from laf873.watchlist w
+                    inner join laf873.notifications n on w.sub_postID = ?";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$sub_postID]);
+
+        $subscribers = [];
+        while ($row = $statement->fetch()) {
+            $subscribers[] = new Watchlist($row);
+        }
+        return $subscribers;
+    }
 }

@@ -19,10 +19,10 @@ if(isset($_POST['contact']) && !empty($_POST['contact']) && $_POST['rand-check']
         // insert the message in the messages table
         $messageDataSet->createMessage(htmlentities(trim(($_POST['contact']))), $_SESSION['userID'], $sentTo);
 
-        // sent an "out" message for the mailbox ("send from" user)
+        // sent an "out" message to the mailbox ("send from" user)
         $mailboxDataSet->createMailOut($_SESSION['userID'], htmlentities(trim(($_POST['contact']))), $sentTo);
 
-        // sent an "out" message for the mailbox ("send to" user)
+        // sent an "in" message to the mailbox ("send to" user)
         $mailboxDataSet->createMailIn($sentTo, htmlentities(trim(($_POST['contact']))), $_SESSION['userID']);
 
         $view->isMessageSent = true;
