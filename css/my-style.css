@@ -222,7 +222,7 @@ th, td {
 #inbox-header {
     padding-top: 20px;
     padding-bottom: 6px;
-    border-bottom-style: inset;
+    /*border-bottom-style: inset;*/
 }
 
 .header-text {
