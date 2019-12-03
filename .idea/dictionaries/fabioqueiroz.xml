@@ -2,6 +2,7 @@
   <dictionary name="fabioqueiroz">
     <words>
       <w>mbox</w>
+      <w>remoteip</w>
     </words>
   </dictionary>
 </component>

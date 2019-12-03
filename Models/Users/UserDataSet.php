@@ -85,13 +85,19 @@ class UserDataSet extends BaseDataSet
 
     }
 
-    // ******* to complete ********
-    public function updateUser($email, $password) {
-       $user = $this->authenticateUser($email, $password);
-       $sqlQuery = 'UPDATE laf873.users SET laf873.users.password = ?  WHERE email = ? AND password = ? ';
-
+    public function updateFirstName($firstName, $userID) {
+        $sqlQuery = 'UPDATE laf873.users SET firstName = ?  WHERE userID = ?';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$firstName, $userID]);
     }
 
+    public function updateLastName($lastName, $userID) {
+       $sqlQuery = 'UPDATE laf873.users SET lastName = ?  WHERE userID = ?';
+       $statement = $this->_dbHandle->prepare($sqlQuery);
+       $statement->execute([$lastName, $userID]);
+    }
+
+    // ******* to complete ********
     public function deleteUser($email, $password) {
         $hashedPassword = sha1($password);
         $sqlQuery = 'DELETE FROM laf873.users WHERE email = ? AND password = ? ';

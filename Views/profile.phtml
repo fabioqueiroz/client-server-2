@@ -14,13 +14,24 @@
                 </div>
                 <div class="user-layout col-md-6 col-xs-6">
                     <form name="user-form" method="post" action="">
+                        <?php
+                        $rand = rand();
+                        $_SESSION['rand'] = $rand;
+                        ?>
                         <div class="spacing">
                             <label>First Name:</label>
-                            <input type="text" name="first-name" value="<?php echo $u->getFirstName()?>" >
+                            <input type="text" name="firstName" value="<?php echo $u->getFirstName()?>" >
                         </div>
                         <div class="spacing">
                             <label>Last Name:</label>
-                            <input type="text" name="last-name" value="<?php echo $u->getLastName()?>">
+                            <input type="text" name="lastName" value="<?php echo $u->getLastName()?>">
+                        </div>
+                        <div class="error-message">
+                            <?php
+                            if (!empty($errors) && isset($_POST['password'])){
+                                echo '<h5>' . $errors . '</h5>';
+                            }
+                            ?>
                         </div>
                         <div class="spacing">
                             <h5><strong>Username: </strong><?php echo $u->getEmail()?></h5>
@@ -30,10 +41,11 @@
                             <input type="password" name="password" required>
                         </div>
                         <div class="error-message">
-                            <?php if($view->loginError) {echo "Email and password do not match";}?>
+                            <?php if($view->loginError) {echo "Password incorrect.";}?>
                         </div>
                         <div class="spacing">
-                            <input type="submit" name="signIn" value="Update" class="btn btn-primary">
+                            <input type="submit" name="update" value="Update" class="btn btn-primary">
+                            <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
                         </div>
                     </form>
                 </div>

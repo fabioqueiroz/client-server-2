@@ -16,6 +16,10 @@ if (!isset($_POST['lastName']) || empty(($_POST['lastName']))) {
     $errors = 'You must insert your last name';
 }
 
+if (strlen($_POST['firstName']) < 0 || strlen($_POST['firstName']) > 45 || strlen($_POST['lastName']) < 0 || strlen($_POST['lastName']) > 45) {
+    $errors = 'Max 45 characters';
+}
+
 if (!isset($_POST['email']) || empty(($_POST['email']))) {
     $errors = 'You must insert a valid email';
 }
