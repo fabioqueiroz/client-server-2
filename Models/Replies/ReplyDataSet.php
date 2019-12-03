@@ -57,5 +57,4 @@ class ReplyDataSet extends BaseDataSet
         }
         return $replies;
     }
-
 }
