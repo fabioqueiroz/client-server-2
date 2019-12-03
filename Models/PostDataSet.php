@@ -21,9 +21,10 @@ class PostDataSet extends BaseDataSet
     }
 
     public function getAllPosts() {
-        $sqlQuery = "SELECT ID, title, message, messageDate , topicSubject, postingUser ,firstName, lastName, photo
-                     FROM laf873.users, laf873.posts 
-                     WHERE postingUser = userID ORDER BY messageDate DESC";
+        $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate , p.topicSubject, p.postingUser, 
+                            u.firstName, u.lastName, u.photo
+                     FROM laf873.users u, laf873.posts p
+                     WHERE p.postingUser = u.userID ORDER BY messageDate DESC";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
@@ -40,7 +41,7 @@ class PostDataSet extends BaseDataSet
         $title = strip_tags(trim(($title)));
 
         $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate, p.topicSubject, p.postingUser, 
-                    u.photo, u.firstName, u.lastName
+                            u.photo, u.firstName, u.lastName
                     FROM laf873.posts p
                     INNER JOIN laf873.users u ON u.userID = p.postingUser
                     WHERE (p.title LIKE '%{$title}%') OR (p.message LIKE '%{$title}%') 
@@ -59,7 +60,8 @@ class PostDataSet extends BaseDataSet
     }
 
     public function getPostById($postID) {
-        $sqlQuery = "select p.ID, p.title, p.message, p.messageDate, p.postingUser, p.topicSubject, p.image, u.firstName, u.lastName, u.photo
+        $sqlQuery = "select p.ID, p.title, p.message, p.messageDate, p.postingUser, p.topicSubject, 
+                            u.firstName, u.lastName, u.photo
                     from laf873.posts p
                     inner join laf873.users u on u.userID = p.postingUser
                     where p.ID = '{$postID}'";
@@ -86,9 +88,10 @@ class PostDataSet extends BaseDataSet
     }
 
     public function makePageQuery($limit, $offset) {
-        $sqlQuery = "SELECT ID, title, message, messageDate , topicSubject, postingUser ,firstName, lastName, photo
-                     FROM laf873.users, laf873.posts 
-                     WHERE postingUser = userID ORDER BY messageDate DESC LIMIT ".$limit. " OFFSET "."$offset";
+        $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate, p.topicSubject, p.postingUser, 
+                            u.firstName, u.lastName, u.photo
+                     FROM laf873.users u, laf873.posts p
+                     WHERE p.postingUser = u.userID ORDER BY messageDate DESC LIMIT ".$limit. " OFFSET "."$offset";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
@@ -99,23 +102,6 @@ class PostDataSet extends BaseDataSet
         }
         return $posts;
     }
-
-    ///////// ************* SQLite **************
-
-//    public function getAllPostsSQLite() {
-//        $sqlQuery = "SELECT ID, title, message, messageDate , topicSubject, postingUser ,firstName, lastName
-//                     FROM users, posts
-//                     WHERE postingUser = userID ORDER BY messageDate DESC";
-//
-//        $statement = $this->_dbHandle->prepare($sqlQuery);
-//        $statement->execute();
-//
-//        $posts = [];
-//        while ($row = $statement->fetch()) {
-//            $posts[] = new PostDisplay($row);
-//        }
-//        return $posts;
-//    }
 
 
 

@@ -3,7 +3,7 @@
 
 class Reply
 {
-    private $_replyID, $_replyMessage, $_replyDate, $_replyFrom, $_replyTo, $_replyImage, $_postID;
+    private $_replyID, $_replyMessage, $_replyDate, $_replyFrom, $_replyTo, $_postID;
 
     public function __construct($dbRow) {
 
@@ -12,7 +12,6 @@ class Reply
         $this->_replyDate = $dbRow['replyDate'];
         $this->_replyFrom = $dbRow['replyFrom'];
         $this->_replyTo = $dbRow['replyTo'];
-        $this->_replyImage = $dbRow['photo'];
         $this->_postID = $dbRow['postID'];
     }
 
@@ -39,11 +38,6 @@ class Reply
     public function getReplyTo()
     {
         return $this->_replyTo;
-    }
-
-    public function getReplyImage()
-    {
-        return $this->_replyImage;
     }
 
     public function getPostID()

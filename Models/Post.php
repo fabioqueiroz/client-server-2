@@ -3,7 +3,7 @@
 
 class Post
 {
-    private $_ID, $_title, $_message, $_messageDate, $_topicSubject, $_postingUser, $_image;
+    private $_ID, $_title, $_message, $_messageDate, $_topicSubject, $_postingUser;//, $_image;
 
     public function __construct($dbRow)
     {
@@ -13,7 +13,6 @@ class Post
         $this->_messageDate = $dbRow['messageDate'];
         $this->_topicSubject = $dbRow['topicSubject'];
         $this->_postingUser = $dbRow['postingUser'];
-        $this->_image = $dbRow['photo'];
     }
 
     public function getID()
@@ -46,8 +45,4 @@ class Post
         return $this->_messageDate;
     }
 
-    public function getImage()
-    {
-        return $this->_image;
-    }
 }
