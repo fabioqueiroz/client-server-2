@@ -267,6 +267,9 @@ th, td {
     text-align: justify;
 }
 
+.user-layout {
+    border-left-style: inset;
+}
 
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {

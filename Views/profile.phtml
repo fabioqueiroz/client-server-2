@@ -1,5 +1,45 @@
 <?php require('template/header.phtml'); ?>
 
-<h3>Profile</h3>
-
+<div class="container">
+    <h3>My Info</h3>
+    <div class="row">
+        <div class="col-md-3 col-xs-1"></div>
+        <?php foreach ($user as $u){?>
+                <div class="col-md-1 col-xs-3">
+                    <?php if (isset($_SESSION['userID'])) {
+                        $replyImage = $u->getPhoto();
+                        $newImageData = base64_encode(file_get_contents($replyImage));
+                        echo '<img src="data:image/jpeg;base64,' . $newImageData . '">';
+                    }?>
+                </div>
+                <div class="user-layout col-md-6 col-xs-6">
+                    <form name="user-form" method="post" action="">
+                        <div class="spacing">
+                            <label>First Name:</label>
+                            <input type="text" name="first-name" value="<?php echo $u->getFirstName()?>" >
+                        </div>
+                        <div class="spacing">
+                            <label>Last Name:</label>
+                            <input type="text" name="last-name" value="<?php echo $u->getLastName()?>">
+                        </div>
+                        <div class="spacing">
+                            <h5><strong>Username: </strong><?php echo $u->getEmail()?></h5>
+                        </div>
+                        <div class="spacing">
+                            <label>Password:</label>
+                            <input type="password" name="password" required>
+                        </div>
+                        <div class="error-message">
+                            <?php if($view->loginError) {echo "Email and password do not match";}?>
+                        </div>
+                        <div class="spacing">
+                            <input type="submit" name="signIn" value="Update" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            <div class="col-md-2 col-xs-2"></div>
+        <?php }?>
+    </div>
+</div>
+<br>
 <?php require('template/footer.phtml') ?>
