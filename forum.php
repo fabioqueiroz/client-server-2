@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('Models/Topics/TopicDataSet.php');
-require_once ('Models/PostDataSet.php');
+require_once('Models/Posts/PostDataSet.php');
 require_once('Models/Replies/ReplyDataSet.php');
 require_once ('Models/Watchlist/WatchlistDataSet.php');
 
@@ -15,7 +15,7 @@ $watchlistDataSet = new WatchlistDataSet();
 
 $topics = $topicDataSet->getAllTopics();
 
-// pagination - adapted from https://stackoverflow.com/questions/3705318/simple-php-pagination-script
+// pagination - adapted and modified from https://stackoverflow.com/questions/3705318/simple-php-pagination-script
 // get the total number of posts
 $total = $postDataSet->getTotalNoOfPosts();
 

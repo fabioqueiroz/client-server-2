@@ -1,8 +1,7 @@
 <?php
 session_start();
 require_once('Models/Replies/ReplyDataSet.php');
-require_once ('Models/PostDataSet.php');
-require_once ('Models/PostDisplay.php');
+require_once('Models/Posts/PostDataSet.php');
 require_once ('Models/Watchlist/WatchlistDataSet.php');
 require_once ('Models/Messages/MessageDataSet.php');
 require_once ('Models/Notifications/NotificationDataSet.php');

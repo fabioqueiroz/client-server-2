@@ -1,10 +1,10 @@
 <?php
 
-require_once ('Models/Database.php');
-require_once ('Models/Post.php');
-require_once ('Models/PostDisplay.php');
-require_once ('Models/PostReply.php');
-require_once ('Models/BaseDataSet.php');
+require_once('Models/Database.php');
+require_once('Models/Posts/Post.php');
+require_once('Models/Posts/PostDisplay.php');
+require_once('Models/Posts/PostReply.php');
+require_once('Models/BaseDataSet.php');
 
 class PostDataSet extends BaseDataSet
 {
