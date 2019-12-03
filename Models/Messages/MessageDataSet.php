@@ -57,4 +57,14 @@ class MessageDataSet extends BaseDataSet
         }
         return $outbox;
     }
+
+    public function getNoOfNotificationMessages() {
+        $sqlQuery = "select count(*) from laf873.messages where sentBy = 87;";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $count = $statement->fetchColumn();
+
+        return $count;
+    }
 }
