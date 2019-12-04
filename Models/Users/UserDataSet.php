@@ -85,16 +85,10 @@ class UserDataSet extends BaseDataSet
 
     }
 
-    public function updateFirstName($firstName, $userID) {
-        $sqlQuery = 'UPDATE laf873.users SET firstName = ?  WHERE userID = ?';
+    public function updateName($firstName, $lastName, $userID) {
+        $sqlQuery = 'UPDATE laf873.users SET firstName = ?, lastName = ?  WHERE userID = ?';
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$firstName, $userID]);
-    }
-
-    public function updateLastName($lastName, $userID) {
-       $sqlQuery = 'UPDATE laf873.users SET lastName = ?  WHERE userID = ?';
-       $statement = $this->_dbHandle->prepare($sqlQuery);
-       $statement->execute([$lastName, $userID]);
+        $statement->execute([$firstName, $lastName, $userID]);
     }
 
     // ******* to complete ********

@@ -11,8 +11,6 @@ $postDataSet = new PostDataSet();
 $replyDataSet = new ReplyDataSet();
 $watchlistDataSet = new WatchlistDataSet();
 
-//var_dump($watchlistDataSet->getSubscriptions($_SESSION['userID']));
-
 $topics = $topicDataSet->getAllTopics();
 
 // pagination - adapted and modified from https://stackoverflow.com/questions/3705318/simple-php-pagination-script
@@ -20,7 +18,7 @@ $topics = $topicDataSet->getAllTopics();
 $total = $postDataSet->getTotalNoOfPosts();
 
 // limit per page
-$limit = 5;
+$limit = 10;
 
 // How many pages will there be
 $pages = ceil($total / $limit);
@@ -42,7 +40,6 @@ $end = min(($offset + $limit), $total);
 
 // Prepare the paged query
 $posts = $postDataSet->makePageQuery($limit, $offset);
-//var_dump($posts);
 
 
 if(isset($_POST['filter']) && !empty($_POST['filter']) && $_SESSION['userID'] != null) {

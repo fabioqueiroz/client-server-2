@@ -13,21 +13,18 @@ if(strlen($_POST['firstName']) < 0 || strlen($_POST['firstName']) > 45 || strlen
 
 $hashedPwdInDb = $userDataSet->passwordChecker($_SESSION['email']);
 
+// allow the user to update the first and last name
 if(isset($_POST['password']) && !empty(isset($_POST['password']))) {
 
     if(password_verify($_POST['password'], $hashedPwdInDb)) {
 
-        if(isset($_POST['firstName']) && !empty($_POST['firstName'])) {
-            if(isset($_POST['firstName']) && $_POST['rand-check'] == $_SESSION['rand']) {
-                $firstName = strip_tags(trim(($_POST['firstName'])));
-                $userDataSet->updateFirstName($firstName, $_SESSION['userID']);
-            }
-        }
+        if(isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['lastName']) && !empty($_POST['lastName'])) {
 
-        if(isset($_POST['lastName']) && !empty($_POST['lastName'])) {
-            if(isset($_POST['lastName']) && $_POST['rand-check'] == $_SESSION['rand']) {
+            if($_POST['rand-check'] == $_SESSION['rand']) {
+                $firstName = strip_tags(trim(($_POST['firstName'])));
                 $lastName = strip_tags(trim(($_POST['lastName'])));
-                $userDataSet->updateLastName($lastName, $_SESSION['userID']);
+
+                $userDataSet->updateName($firstName, $lastName, $_SESSION['userID']);
             }
         }
     }
