@@ -120,11 +120,11 @@
                         <div id="stats-position" class="col-md-3 col-sm-12 pull-left col-md-pull-1">
                             <?php if(isset($_SESSION['userID'])) {?>
                                 <div class="col-md-pull-8">
-                                    <?php
-                                    $replyImage = $post->getImage();
-                                    $newImageData = base64_encode(file_get_contents($replyImage));
-                                    echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
-                                    ?>
+<!--                                    --><?php
+//                                    $replyImage = $post->getImage();
+//                                    $newImageData = base64_encode(file_get_contents($replyImage));
+//                                    echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
+//                                    ?>
                                 </div>
                                 <div class="col-md-pull-8"><span class="glyphicon glyphicon-user"></span> <a href="messages.php?postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></a></div>
                             <?php } else {?>

@@ -39,9 +39,4 @@ if(isset($_POST['password']) && !empty(isset($_POST['password']))) {
     $user = $userDataSet->getUserById($_SESSION['userID']);
 }
 
-
-
-
-
-
 require_once('Views/profile.phtml');
