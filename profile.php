@@ -13,7 +13,7 @@ if(strlen($_POST['firstName']) < 0 || strlen($_POST['firstName']) > 45 || strlen
 
 $hashedPwdInDb = $userDataSet->passwordChecker($_SESSION['email']);
 
-// allow the user to update the first and last name
+// allow the user to update the first and last names
 if(isset($_POST['password']) && !empty(isset($_POST['password']))) {
 
     if(password_verify($_POST['password'], $hashedPwdInDb)) {
@@ -25,6 +25,9 @@ if(isset($_POST['password']) && !empty(isset($_POST['password']))) {
                 $lastName = strip_tags(trim(($_POST['lastName'])));
 
                 $userDataSet->updateName($firstName, $lastName, $_SESSION['userID']);
+                $_SESSION['firstName'] = $_POST['firstName'];
+
+                $view->isInfoUpdated = true;
             }
         }
     }

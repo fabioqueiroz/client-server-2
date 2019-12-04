@@ -43,6 +43,9 @@
                         <div class="error-message">
                             <?php if($view->loginError) {echo "Password incorrect.";}?>
                         </div>
+                        <div class="text-success">
+                            <?php if($view->isInfoUpdated) {echo "Information successfully updated!";}?>
+                        </div>
                         <div class="spacing">
                             <input type="submit" name="update" value="Update" class="btn btn-primary">
                             <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
