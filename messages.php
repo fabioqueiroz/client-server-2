@@ -11,8 +11,6 @@ $view->isMessageSent = false;
 $view->wrongLenght = false;
 $sentTo = $_GET['postingUser'];
 
-//echo $sentTo;
-
 if(isset($_POST['contact']) && !empty($_POST['contact']) && $_POST['rand-check'] == $_SESSION['rand']) {
 
     if(strlen($_POST['contact']) > 0 && strlen($_POST['contact']) <= 300) {

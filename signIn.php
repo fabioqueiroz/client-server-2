@@ -3,8 +3,12 @@ session_start();
 require_once('Models/Users/UserDataSet.php');
 
 $view = new stdClass();
-
 $userDataSet = new UserDataSet();
+
+// match patterns such as user@aol.com, user@wrox.co.uk, user@domain.info
+if(isset($_POST['email']) && !preg_match( '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/', trim($_POST['email']))) {
+    $view->loginError = true;
+}
 
 if(isset($_POST['email']) && isset($_POST['password'])) {
 

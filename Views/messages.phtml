@@ -25,16 +25,20 @@
             <?php }?>
         </div>
         <div class="row">
-            <div class="reply-text col-md-12 mb-4 col-xs-12 pull-left">
+            <div class="col-md-1 hidden-xs hidden-sm"></div>
+            <div class="reply-text col-md-10 mb-4 col-xs-12 pull-left">
                 <textarea name="contact" placeholder="Type your message here..." rows="5" required></textarea>
             </div>
+            <div class="col-md-1 hidden-xs hidden-sm"></div>
         </div>
 
         <div class="row">
-            <div class="col-md-12 mb-4 col-xs-12 pull-left">
-                <button type="submit" value="Submit" class="btn btn-primary">Reply</button>
+            <div class="col-md-1 hidden-xs hidden-sm"></div>
+            <div class="col-md-10 mb-4 col-xs-12 pull-left">
+                <button type="submit" value="Submit" class="btn btn-primary">Send</button>
                 <input type="hidden" value="<?php echo $rand; ?>" name="rand-check" />
             </div>
+            <div class="col-md-1 hidden-xs hidden-sm"></div>
         </div>
     </div>
     <br>

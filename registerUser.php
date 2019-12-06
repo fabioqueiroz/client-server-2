@@ -24,6 +24,11 @@ if (!isset($_POST['email']) || empty(($_POST['email']))) {
     $errors = 'You must insert a valid email';
 }
 
+// match patterns such as user@aol.com, user@wrox.co.uk, user@domain.info
+if(isset($_POST['email']) && !preg_match( '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/', trim($_POST['email']))) {
+    $errors = 'Please ensure it is a valid email';
+}
+
 if (!isset($_POST['password']) || empty(($_POST['password']))) {
     $errors = 'You must insert a password';
 }
