@@ -5,16 +5,15 @@ require_once('Models/Users/UserDataSet.php');
 $view = new stdClass();
 $userDataSet = new UserDataSet();
 
-// match patterns such as user@aol.com, user@wrox.co.uk, user@domain.info
+// Verify it's a valid email that matches patterns such as user@aol.com, user@wrox.co.uk, user@domain.info
 if(isset($_POST['email']) && !preg_match( '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/', trim($_POST['email']))) {
     $view->loginError = true;
 }
 
+// Allow the user to sign in if the email and password are correct
 if(isset($_POST['email']) && isset($_POST['password'])) {
 
     $hashedPwdInDb = $userDataSet->passwordChecker(strip_tags(trim(($_POST['email']))));
-
-    // if($hashedPwdInDb == sha1($_POST['password']))
 
     if(password_verify($_POST['password'], $hashedPwdInDb)) {
 
@@ -33,8 +32,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
             echo "Captcha incorrect";
         }
         else {
-            // Code to handle a successful verification
-//            $result = $userDataSet->authenticateUser(strip_tags(trim(($_POST['email']))), strip_tags(trim(($_POST['password']))));
+            // Code to handle a successful authentication
             $result = $userDataSet->authenticateUser(strip_tags(trim(($_POST['email']))), $hashedPwdInDb);
             $firstName = $lastName = $email = $password = '';
             $userID = $photo = $registrationDate = $isAdmin = '';
