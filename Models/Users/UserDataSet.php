@@ -16,7 +16,8 @@ class UserDataSet extends BaseDataSet
 //        $hashedPassword = sha1($password);
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password, registrationDate, isAdmin) VALUES (?,?,?,?, NOW(),0)";
+        $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password, photo, registrationDate, isAdmin) 
+                    VALUES (?,?,?,?, 'https://robohash.org/hiceumquas.jpg?size=50x50&set=set1', NOW(),0)";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$firstName, $lastName, $email, $hashedPassword]);

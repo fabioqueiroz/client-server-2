@@ -25,8 +25,7 @@ class WatchlistDataSet extends BaseDataSet
                     from laf873.watchlist w
                     inner join laf873.users u on w.sub_userID = u.userID
                     inner join laf873.posts p on w.sub_postID = p.ID
-                    inner join laf873.replies r on p.postingUser = r.replyTo
-                    inner join laf873.users ru on ru.userID = r.replyTo
+                    inner join laf873.users ru on ru.userID = p.postingUser
                     where w.sub_userID  = ? 
                     order by p.messageDate desc";
 
