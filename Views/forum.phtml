@@ -1,7 +1,5 @@
 <?php require('template/header.phtml') ?>
 
-<!--<script src="https://kit.fontawesome.com/015b65f61b.js" crossorigin="anonymous"></script>-->
-
 <div>
 <!-- Search bar -->
 <div class="row forum-top-bar">
@@ -31,74 +29,9 @@
                           <?php echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
                                </div>
                           <?php }?>
-                    <!-- Button trigger modal -->
-<!--                    --><?php //if(isset($_SESSION['userID'])) {?>
-<!--                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
-<!--                        Start New Post-->
-<!--                    </button>-->
-<!---->
-<!--                    <!- New Post Modal -->
-<!--                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--                        <div class="modal-dialog" role="document">-->
-<!--                            <div class="modal-content">-->
-<!--                                <div class="modal-header">-->
-<!--                                    <h3 class="modal-title" id="exampleModalLabel">New Post</h3>-->
-<!--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                                        <span aria-hidden="true">&times;</span>-->
-<!--                                    </button>-->
-<!--                                </div>-->
-<!--                                <div class="modal-body">-->
-<!--                                    <div class="container">-->
-<!--                                            <div class="form-row">-->
-<!--                                                <div class="col-md-7 mb-4">-->
-<!--                                                    <label for="validationDefault01">Title</label>-->
-<!--                                                    <input type="text" class="form-control" id="validationDefault01" name="title" required>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="form-row">-->
-<!--                                                <div class="form-group col-md-7 mb-4">-->
-<!--                                                    <label for="inputState">Topic</label>-->
-<!--                                                    <select id="inputState" class="form-control" name="topicSubject">-->
-<!--                                                        --><?php //foreach ($topics as $topic){?>
-<!--                                                        <option>-->
-<!--                                                            --><?php
-//                                                            echo $topic->getTopicSubject();
-//                                                            $_POST['topicSubject'] = $topic;
-//                                                            ?>
-<!--                                                        </option>-->
-<!--                                                        --><?php //}?>
-<!--                                                    </select>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="form-row">-->
-<!--                                                <div class="col-md-7 mb-4">-->
-<!--                                                    <label for="validationDefault03">Message</label>-->
-<!--                                                    <textarea type="text" class="form-control" rows="3" name="postMessage" required></textarea>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="modal-footer">-->
-<!--                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                                    <button type="submit" class="btn btn-primary">Create Post</button>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                        <!- New Post Modal Ends -->
-<!--                    --><?php //} else {?>
-<!--                        <div class="col-xs-12 col-md-12">-->
-<!--                            --><?php //echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
-<!--                        </div>-->
-<!--                    --><?php //}?>
+
                 </form>
             </div>
-
-<!--            --><?php //if(isset($_SESSION['userID'])) {?>
-<!--            <form action="inbox.php" method="post" class="form">-->
-<!--                <div class="envelope pull-right"><button type="submit"><img class="mail-icon" src="images/mail.png"></button></div>-->
-<!--            </form>-->
-<!--            --><?php //}?>
 
             <div class="clearfix"></div>
         </div>
@@ -119,69 +52,11 @@
                         </div>
                         <div id="stats-position" class="col-md-3 col-sm-12 pull-left col-md-pull-1">
                             <?php if(isset($_SESSION['userID'])) {?>
-                                <div class="col-md-pull-8">
-<!--                                    --><?php
-//                                    $replyImage = $post->getImage();
-//                                    $newImageData = base64_encode(file_get_contents($replyImage));
-//                                    echo '<img src="data:image/jpeg;base64,'.$newImageData.'">';
-//                                    ?>
-                                </div>
+                                <div class="col-md-pull-8"></div>
                                 <div class="col-md-pull-8"><span class="glyphicon glyphicon-user"></span> <a href="messages.php?postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getFirstName(). ' '.$post->getLastName()?></a></div>
                             <?php } else {?>
                             <div class="col-md-pull-8"><span class="glyphicon glyphicon-user"></span> <?php echo $post->getFirstName(). ' '.$post->getLastName()?></div>
                             <?php }?>
-                            <div class="row">
-                            <div class="col-md-push-12">
-
-                                <form action="forum.php" method="post" class="form">
-
-                                    <!-- ***** MODAL DEACTIVATED ***** Button trigger modal -->
-                                    <?php if(isset($_SESSION['userID'])) {?>
-
-                                        <!-- Reply Modal -->
-<!--                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--                                            <div class="modal-dialog" role="document">-->
-<!--                                                <div class="modal-content">-->
-<!--                                                    <div class="modal-header">-->
-<!--                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                                                            <span aria-hidden="true">&times;</span>-->
-<!--                                                        </button>-->
-
-                                                        <!-- Display the post again -->
-<!--                                                        <h3 class="modal-title" id="exampleModalLabel">--><?php //echo $post->getTitle()?><!--</h3>-->
-<!--                                                        <h4>--><?php //echo $post->getMessage()?><!--</h4>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="modal-body">-->
-<!--                                                        <div class="container">-->
-<!---->
-<!--                                                            <div class="form-row">-->
-<!--                                                                <div class="form-group col-md-7 mb-4">-->
-<!--                                                                    --><?php //foreach ($replies as $reply){?>
-<!--                                                                        <h4>--><?php //echo $reply->getReplyMessage(); ?><!--</h4>-->
-<!--                                                                        <h5>--><?php //echo $reply->getReplyFrom(); ?><!--</h5>-->
-<!--                                                                        <h5>--><?php //echo $reply->getReplyDate(); ?><!--</h5>-->
-<!--                                                                    --><?php //}?>
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="modal-footer">-->
-<!--                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                                                        <a href="newReply.php?postingUser=--><?php //echo $post->getPostingUser();?><!--">Reply</a>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-                                        <!-- Reply Modal Ends -->
-
-                                    <?php } else {?>
-                                        <div class="col-xs-12 col-md-12">
-    <!--                                        --><?php //echo '<h5><a class="sign-in-message" href="signIn.php">Sign in</a> to post!</h5>';?>
-                                        </div>
-                                    <?php }?>
-                                </form>
-                            </div>
-                            </div>
                             <div class="time col-md-pull-12"><span class="glyphicon glyphicon-calendar"></span> <?php echo $post->getMessageDate()?></div>
                         </div>
                     <?php }?>
@@ -189,44 +64,25 @@
                 </div>
             </div>
         </div>
-
-        <!-- Bootstrap Pagination -->
-    <!--    <div>-->
-    <!--        <nav aria-label="Page navigation example">-->
-    <!--            <ul class="pagination justify-content-end pull-right">-->
-    <!--                <li class="page-item disabled">-->
-    <!--                    <a class="page-link" href="#" tabindex="-1">Previous</a>-->
-    <!--                </li>-->
-    <!--                <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-    <!--                <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-    <!--                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-    <!--                <li class="page-item">-->
-    <!--                    <a class="page-link" href="#">Next</a>-->
-    <!--                </li>-->
-    <!--            </ul>-->
-    <!--        </nav>-->
-    <!--    </div>-->
-
     </div>
 </div>
-
 
     <!-- Pagination -->
 <!--    <div class="pagination-wrapper">-->
         <div class="row col-md-12 col-xs-12 col-sm-12">
             <div class="col-md-4 col-xs-12"></div>
-            <div id="pagination" class="justify-content-end col-md-6 col-xs-12">
-                <?php
-                // The "back" link
-                $prevlink = ($page > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
+                <div id="pagination" class="justify-content-end col-md-6 col-xs-12">
+                    <?php
+                    // The "back" link
+                    $prevlink = ($page > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
 
-                // The "forward" link
-                $nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
+                    // The "forward" link
+                    $nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
 
-                // Display the paging information
-                echo '<div id="paging"><h4>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </h4></div>';
-                ?>
-            </div>
+                    // Display the paging information
+                    echo '<div id="paging"><h4>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </h4></div>';
+                    ?>
+                </div>
             <div class="col-md-2 col-xs-12"></div>
         </div>
 <!--    </div>-->
