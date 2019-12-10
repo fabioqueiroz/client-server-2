@@ -5,11 +5,11 @@
     <div class="container">
 
         <div id="msg-confirmation" class="row">
-            <div class="reply-text col-md-4 mb-4 col-xs-6 pull-left">
+            <div class="reply-text col-md-4 col-sm-4 col-xs-6 pull-left">
                 <h3>Outbox</h3>
             </div>
 
-            <div class="reply-text col-md-4 mb-4 col-xs-6">
+            <div class="reply-text col-md-5 col-sm-5 col-xs-6">
                 <h3><a href="inbox.php">Inbox</a></h3>
             </div>
 
@@ -17,7 +17,7 @@
             $deleteRand = rand();
             $_SESSION['delete-rand'] = $deleteRand;
             ?>
-            <div class="col-md-4 col-xs-12">
+            <div class="col-md-3 col-sm-3 col-xs-12">
                 <button id="add-to-watchlist-button" type="submit" value="Submit" class="btn btn-primary delete-msg-button" name="delete-from-inbox">Delete message</button>
                 <input type="hidden" value="<?php echo $deleteRand; ?>" name="delete-rand-check" />
             </div>
@@ -38,7 +38,7 @@
         <div class="row">
             <div id="post-layout" class="col-md-12 col-xs-12 pull-left">
                 <?php foreach ($outbox as $o){?>
-                    <div class="col-md-7 col-xs-7">
+                    <div class="col-md-7 col-sm-6 col-xs-7">
                         <div class="">
                             <input id="del-checkbox-position" type="checkbox" name="id[]" value="<?php echo $o->getMboxID()?>" class="pull-left"/>
                             <input type="hidden" name="getMboxID" value="<?php echo $o->getMboxID()?>"/>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2 col-xs-2">
+                    <div class="col-md-2 col-xs-3">
                         <h5 class=""><?php echo $o->getFirstName() . ' '. $o->getLastName(); ?></h5>
                     </div>
 
