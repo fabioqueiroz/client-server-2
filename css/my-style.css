@@ -9,15 +9,12 @@ body {
 }
 #menu {
     border-top: solid 6px #333;
-    /*background-color: #f00;*/
     background-color: #333;
     color: #fff;
-    /*height: 400px;*/
     height: auto;
 }
 
 #menu a {
-    /*background-color: #f00;*/
     background-color: #333;
     color: #fff;
     text-decoration: none;
@@ -46,8 +43,6 @@ body {
 
 #content {
     background-color: #fff;
-    /*border-top: solid 6px #A19595;*/
-
 }
 
 #footer {
@@ -55,7 +50,6 @@ body {
     text-align: center;
     background-color: dimgray;
     color: #fff;
-    /*border-radius: 6px;*/
     height: 40px;
 }
 
@@ -202,6 +196,9 @@ th, td {
     padding-bottom: 20px;
 }
 
+#watchlist-user {
+    border-left-style: outset;
+}
 .watchlist-text {
     text-align: justify;
 }
@@ -222,7 +219,6 @@ th, td {
 #inbox-header {
     padding-top: 20px;
     padding-bottom: 6px;
-    /*border-bottom-style: inset;*/
 }
 
 .header-text {
@@ -243,15 +239,10 @@ th, td {
     margin-bottom: 10px;
     width: 98%;
     border-radius: 10px;
-
 }
 
 .replier-username {
     margin-top: 18px;
-}
-
-.reply-date {
-    /*margin-right: 45px;*/
 }
 
 .mail-icon {
