@@ -1,50 +1,57 @@
 <?php require('template/header.phtml') ?>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-<?php if(!$view->isRegistered){?>
-<h3>Register here to post</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-lg-3 hidden-xs col-sm-3"></div>
+        <div class="col-md-8 col-lg-8 col-xs-12 col-sm-8">
+            <?php if(!$view->isRegistered){?>
+            <h3>Register here to post</h3>
 
-<form name="register-form" method="post" action="registerUser.php">
-    <div class="spacing">
-        <label>First name:</label>
-        <input type="text" name="firstName" required>
-    </div>
-    <div class="spacing">
-        <label>Last name:</label>
-        <input type="text" name="lastName" required>
-    </div>
-    <div class="spacing">
-        <label>Email:</label>
-        <input type="text" name="email" required>
-    </div>
+            <form class="user-layout" name="register-form" method="post" action="registerUser.php">
+                <div class="spacing">
+                    <label>First name:</label>
+                    <input type="text" name="firstName" required>
+                </div>
+                <div class="spacing">
+                    <label>Last name:</label>
+                    <input type="text" name="lastName" required>
+                </div>
+                <div class="spacing">
+                    <label>Email:</label>
+                    <input type="text" name="email" required>
+                </div>
 
-    <div class="spacing">
-        <label>Password:</label>
-        <input type="password" name="password" required>
-    </div>
-    <div class="spacing">
-        <label>Re-enter password:</label>
-        <input type="password" name="re-typed-password" required>
-    </div>
-    <div class="error-message">
-        <?php
-        if (!empty($errors) && isset($_POST['password'])){
-            echo '<h4>' . $errors . '</h4>';
-        }
-        ?>
-    </div>
+                <div class="spacing">
+                    <label>Password:</label>
+                    <input type="password" name="password" required>
+                </div>
+                <div class="spacing">
+                    <label>Re-enter password:</label>
+                    <input type="password" name="re-typed-password" required>
+                </div>
+                <div class="error-message">
+                    <?php
+                    if (!empty($errors) && isset($_POST['password'])){
+                        echo '<h4>' . $errors . '</h4>';
+                    }
+                    ?>
+                </div>
 
-    <div class="spacing">
-        <!-- Captcha input -->
-        <div class="g-recaptcha" data-sitekey="6LfrJcUUAAAAACPjTF0S_S2259YM646wWN1JjZbC"></div>
-        <br/>
-        <input type="submit" name="register" value="Register" class="btn btn-success">
+                <div class="spacing">
+                    <!-- Captcha input -->
+                    <div class="g-recaptcha" data-sitekey="6LfrJcUUAAAAACPjTF0S_S2259YM646wWN1JjZbC"></div>
+                    <br/>
+                    <input type="submit" name="register" value="Register" class="btn btn-success">
+                </div>
+
+            </form>
+            <?php } else if($view->isRegistered) {
+                echo '<h3> Welcome '.$_SESSION['firstName']. ' '.$_SESSION['lastName']. '! Click <a href="forum.php">here</a> to post.</h3>';
+
+            }?>
+        </div>
+        <div class="col-md-2 col-lg-2 hidden-xs hidden-sm"></div>
     </div>
-
-</form>
-<?php } else if($view->isRegistered) {
-    echo '<h3> Welcome '.$_SESSION['firstName']. ' '.$_SESSION['lastName']. '! Click <a href="forum.php">here</a> to post.</h3>';
-
-}?>
-
+</div>
 <?php require('template/footer.phtml') ?>
