@@ -47,8 +47,7 @@ if(isset($_POST['reply']) && !empty($_POST['reply']) && isset($_POST['getUserID'
             }
 
             foreach ($subscribers as $subscriber) {
-//                $notificationMessage = 'New Notification #'. $msgCounter++ . ' for post "'.$postTitle. '"';
-                $notificationMessage = 'New Notification #'. $msgCounter++ . ' for post "'.$postTitle. '". Read it here: <a href="postReplies.php?postID='.$_GET['postID'].'&postingUser='.$_GET['postingUser'].'">view reply</a>';
+                $notificationMessage = 'New Notification #'. $msgCounter++ . ' for post "'.$postTitle. '". Read it here: <a href="postReplies.php?postID='.$_GET['postID'].'&postingUser='.$_GET['postingUser'].'">view reply</a>.';
                 // message the subscriber
                 $messageDataSet->createMessage($notificationMessage, 87, $subscriber->getSubUserID());
                 $mailboxDataSet->createMailIn($subscriber->getSubUserID(), $notificationMessage, 87);
