@@ -17,10 +17,10 @@ $topics = $topicDataSet->getAllTopics();
 // get the total number of posts
 $total = $postDataSet->getTotalNoOfPosts();
 
-// limit per page
+// Define the limit per page
 $limit = 10;
 
-// How many pages will there be
+// Calculate the number of pages to be displayed
 $pages = ceil($total / $limit);
 
 // Determine the current page
@@ -34,7 +34,7 @@ $page = min($pages, filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, array(
 // Calculate the offset for the query
 $offset = ($page - 1)  * $limit;
 
-// Some information to display to the user
+// Add the information to be displayed to the user
 $start = $offset + 1;
 $end = min(($offset + $limit), $total);
 
@@ -42,10 +42,10 @@ $end = min(($offset + $limit), $total);
 $posts = $postDataSet->makePageQuery($limit, $offset);
 
 
-if(isset($_POST['filter']) && !empty($_POST['filter']) && $_SESSION['userID'] != null) {
-   $posts = $postDataSet->filterPostsByTitle(strip_tags(trim(($_POST['filter']))));
-   unset($_POST);
-   $view->isFiltered = true;
+if(isset($_POST['filter']) && !empty($_POST['filter'])) {
+    $posts = $postDataSet->filterPostsByTitle(strip_tags(trim(($_POST['filter']))));
+    unset($_POST);
+    $view->isFiltered = true;
 
 } else {
     $view->erroMessage = true;
