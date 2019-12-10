@@ -3,7 +3,6 @@
 require_once('Models/Database.php');
 require_once('Models/Posts/Post.php');
 require_once('Models/Posts/PostDisplay.php');
-require_once('Models/Posts/PostReply.php');
 require_once('Models/BaseDataSet.php');
 
 class PostDataSet extends BaseDataSet
@@ -37,7 +36,6 @@ class PostDataSet extends BaseDataSet
     }
 
     public function filterPostsByTitle($title) {
-//        $title = $this->_dbHandle->quote($title);
         $title = strip_tags(trim(($title)));
 
         $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate, p.topicSubject, p.postingUser, 
