@@ -13,7 +13,6 @@ class UserDataSet extends BaseDataSet
     }
 
     public function createUser($firstName, $lastName, $email, $password) {
-//        $hashedPassword = sha1($password);
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         $sqlQuery = "INSERT INTO laf873.users (firstName, lastName, email, password, photo, registrationDate, isAdmin) 
@@ -72,7 +71,6 @@ class UserDataSet extends BaseDataSet
     }
 
     public function authenticateUser($email, $password) {
-//        $hashedPassword = sha1($password);
         $sqlQuery = 'SELECT * FROM laf873.users WHERE email = ? AND password = ? ';
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -92,11 +90,11 @@ class UserDataSet extends BaseDataSet
         $statement->execute([$firstName, $lastName, $userID]);
     }
 
-    // ******* to complete ********
-    public function deleteUser($email, $password) {
-        $hashedPassword = sha1($password);
-        $sqlQuery = 'DELETE FROM laf873.users WHERE email = ? AND password = ? ';
+    public function updatePassword($password, $userID) {
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        $sqlQuery = 'UPDATE laf873.users SET password = ? WHERE userID = ?';
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$email, $hashedPassword]);
+        $statement->execute([$hashedPassword, $userID]);
     }
 }
