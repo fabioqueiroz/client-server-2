@@ -13,8 +13,10 @@ if(isset($_POST['email']) && !preg_match( '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/', 
 // Allow the user to sign in if the email and password are correct
 if(isset($_POST['email']) && isset($_POST['password'])) {
 
+    // Get the hashed password stored in the database
     $hashedPwdInDb = $userDataSet->passwordChecker(strip_tags(trim(($_POST['email']))));
 
+    // Check if the inserted password matches the stored one
     if(password_verify($_POST['password'], $hashedPwdInDb)) {
 
         // Verify if the captcha has been checked

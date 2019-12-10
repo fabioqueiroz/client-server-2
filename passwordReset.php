@@ -40,13 +40,13 @@ if (isset($_POST['new-password'])) {
 // Update the password
 if(empty($errors) && isset($_POST['new-password']) && !empty(($_POST['new-password']))) {
 
-    // check if the old password is correct
+    // Check if the old password is correct
     $hashedPwdInDb = $userDataSet->passwordChecker($_SESSION['email']);
 
     if(password_verify($_POST['old-password'], $hashedPwdInDb)) {
 
         if($_POST['rand-check'] == $_SESSION['rand']) {
-            // change the password in the db
+            // Change the password in the database
             $userDataSet->updatePassword(strip_tags(trim(($_POST['new-password']))), $_SESSION['userID']);
             $view->isInfoUpdated = true;
         }
@@ -56,7 +56,6 @@ if(empty($errors) && isset($_POST['new-password']) && !empty(($_POST['new-passwo
         $errors = 'Your password is incorrect';
         $view->loginError = true;
     }
-
 }
 
 require_once('Views/passwordReset.phtml');

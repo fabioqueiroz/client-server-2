@@ -5,12 +5,13 @@ require_once ('Models/Watchlist/WatchlistDataSet.php');
 $view = new stdClass();
 $watchlistDataSet = new WatchlistDataSet();
 
+// Get all the posts in the watchlist
 $subscribedPosts = $watchlistDataSet->getSubscriptions($_SESSION['userID']);
-//var_dump($subscribedPosts);
 
+// Get the id of the post selected in the checkbox
 $ids = $_POST['id'];
-//var_dump($ids);
 
+// Allow the user to remove a post from the watchlist
 if (isset($_POST['id'])) {
     foreach($ids as $id)
     {

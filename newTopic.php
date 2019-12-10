@@ -8,12 +8,13 @@ $topicDataSet = new TopicDataSet();
 $categoryDataSet = new CategoryDataSet();
 $postingUser = $_SESSION['userID'];
 
+// Get all the categories in the database
 $categories = $categoryDataSet->getAllCategories();
 
 $categoryID = '';
 
 if(isset($_POST['subject']) && isset($_POST['category']) && isset($_POST['description'])) {
-    // get the id from the category selection
+    // Get the id from the category selection
     foreach ($categories as $category) {
         if($_POST['category'] == $category->getCategoryName()) {
             $categoryID = $category->getCategoryID();
@@ -30,7 +31,6 @@ if(isset($_POST['subject']) && isset($_POST['category']) && isset($_POST['descri
     else {
         $view->isWrongLimit = true;
     }
-
 }
 
 

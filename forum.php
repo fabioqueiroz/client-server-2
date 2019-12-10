@@ -13,8 +13,8 @@ $watchlistDataSet = new WatchlistDataSet();
 
 $topics = $topicDataSet->getAllTopics();
 
-// pagination - adapted and modified from https://stackoverflow.com/questions/3705318/simple-php-pagination-script
-// get the total number of posts
+// Pagination - adapted and modified from https://stackoverflow.com/questions/3705318/simple-php-pagination-script
+// Get the total number of posts
 $total = $postDataSet->getTotalNoOfPosts();
 
 // Define the limit per page
@@ -41,7 +41,7 @@ $end = min(($offset + $limit), $total);
 // Prepare the paged query
 $posts = $postDataSet->makePageQuery($limit, $offset);
 
-
+// Allow the user to filter the posts
 if(isset($_POST['filter']) && !empty($_POST['filter'])) {
     $posts = $postDataSet->filterPostsByTitle(strip_tags(trim(($_POST['filter']))));
     unset($_POST);

@@ -5,15 +5,17 @@ require_once('Models/Users/UserDataSet.php');
 $view = new stdClass();
 $userDataSet = new UserDataSet();
 
+// Get the stored user information
 $user = $userDataSet->getUserById($_SESSION['userID']);
 
+// Ensure the input information is within the limits
 if(strlen($_POST['firstName']) < 0 || strlen($_POST['firstName']) > 45 || strlen($_POST['lastName']) < 0 || strlen($_POST['lastName']) > 45) {
     $errors = 'Max 45 characters';
 }
 
 $hashedPwdInDb = $userDataSet->passwordChecker($_SESSION['email']);
 
-// allow the user to update the first and last names
+// Allow the user to update the first and last names
 if(isset($_POST['password']) && !empty(isset($_POST['password']))) {
 
     if(password_verify($_POST['password'], $hashedPwdInDb)) {

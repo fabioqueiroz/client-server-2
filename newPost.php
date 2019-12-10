@@ -3,17 +3,20 @@ session_start();
 require_once('Models/Posts/PostDataSet.php');
 require_once('Models/Topics/TopicDataSet.php');
 
-
 $view = new stdClass();
 $postDataSet = new PostDataSet();
 $topicDataSet = new TopicDataSet();
 
 $topicID ='';
+
+// Get all topics
 $topics = $topicDataSet->getAllTopics();
+
+// Get all posts
 $posts = $postDataSet->getAllPosts();
 
 if(isset($_POST['title']) && isset($_POST['topicSubject']) && isset($_POST['postMessage']) && $_SESSION['userID'] != null) {
-    // get the id from the topic selection
+    // Get the id from the topic selection
     foreach ($topics as $topic) {
         if($_POST['topicSubject'] == $topic->getTopicSubject()) {
             $topicID = $topic->getTopicID();

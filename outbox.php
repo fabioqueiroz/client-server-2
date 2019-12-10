@@ -7,12 +7,13 @@ $view = new stdClass();
 $messageDataSet = new MessageDataSet();
 $mailboxDataSet = new MailboxDataSet();
 
+// Get all the mail in the outbox
 $outbox = $messageDataSet->getOutboxMail($_SESSION['userID']);
-//var_dump($outbox);
 
+// Get the id of the post selected in the checkbox
 $ids = $_POST['id'];
-//var_dump($ids);
 
+// Allow the user to remove a message from the outbox
 if (isset($_POST['id'])) {
     foreach($ids as $id)
     {
