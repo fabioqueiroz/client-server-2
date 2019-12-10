@@ -26,21 +26,27 @@ $replies = $replyDataSet->getAllRepliesById($_GET['postingUser'], $postID);
 $count = $watchlistDataSet->checkPostInWatchlist($_GET['postID'], $_SESSION['userID']);
 $count == 1 ? $view->isInWatchlist = true : $view->isInWatchlist = false;
 
-
 // check if the reply message is within the limit
 if(isset($_POST['reply']) && !empty($_POST['reply']) && isset($_POST['getUserID']) && isset($_POST['getPostingUser']) && isset($_POST['getID'])) {
 
     if(strlen($_POST['reply']) > 0 && strlen($_POST['reply']) <= 300) {
         if(isset($_POST['reply']) && $_POST['rand-check'] == $_SESSION['rand']) {
-            $replyDataSet->createReply(strip_tags(trim(($_POST['reply']))), $_POST['getUserID'], $_POST['getPostingUser'], $_POST['getID']);
+            // post a new reply
+            $replyDataSet->createReply(htmlentities(trim(($_POST['reply']))), $_POST['getUserID'], $_POST['getPostingUser'], $_POST['getID']);
             $replies = $replyDataSet->getAllRepliesById($_GET['postingUser'], $postID);
 
             // get all subscribers to the post
             $subscribers = $watchlistDataSet->getSubscribedUsers($_GET['postID']);
             $msgCounter = $messageDataSet->getNoOfNotificationMessages();
 
+            $postTitle = '';
+            foreach ($post as $p) {
+                $postTitle = $p->getTitle();
+            }
+
             foreach ($subscribers as $subscriber) {
-                $notificationMessage = 'New Notification #'. $msgCounter++ . ' for post '.$_GET['postID'];
+                $notificationMessage = 'New Notification #'. $msgCounter++ . ' for post "'.$postTitle. '"';
+                // message the subscriber
                 $messageDataSet->createMessage($notificationMessage, 87, $subscriber->getSubUserID());
 //                $mailboxDataSet->createMailIn($subscriber->getSubUserID(), $notificationMessage, 87); // fails here
             }
