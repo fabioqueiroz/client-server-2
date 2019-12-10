@@ -2,15 +2,17 @@
 session_start();
 require_once('Models/Replies/ReplyDataSet.php');
 require_once('Models/Posts/PostDataSet.php');
-require_once ('Models/Watchlist/WatchlistDataSet.php');
-require_once ('Models/Messages/MessageDataSet.php');
-require_once ('Models/Notifications/NotificationDataSet.php');
+require_once('Models/Watchlist/WatchlistDataSet.php');
+require_once('Models/Messages/MessageDataSet.php');
+require_once('Models/Mailbox/MailboxDataSet.php');
+require_once('Models/Notifications/NotificationDataSet.php');
 
 $view = new stdClass();
 $replyDataSet = new ReplyDataSet();
 $postDataSet = new PostDataSet();
 $watchlistDataSet = new WatchlistDataSet();
 $messageDataSet = new MessageDataSet();
+$mailboxDataSet = new MailboxDataSet();
 $notificationDataSet = new NotificationDataSet();
 
 $postID = $_GET['postID'];
@@ -48,7 +50,7 @@ if(isset($_POST['reply']) && !empty($_POST['reply']) && isset($_POST['getUserID'
                 $notificationMessage = 'New Notification #'. $msgCounter++ . ' for post "'.$postTitle. '"';
                 // message the subscriber
                 $messageDataSet->createMessage($notificationMessage, 87, $subscriber->getSubUserID());
-//                $mailboxDataSet->createMailIn($subscriber->getSubUserID(), $notificationMessage, 87); // fails here
+                $mailboxDataSet->createMailIn($subscriber->getSubUserID(), $notificationMessage, 87); // fails here
             }
         }
     }
