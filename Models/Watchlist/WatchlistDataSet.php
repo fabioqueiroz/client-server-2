@@ -49,23 +49,13 @@ class WatchlistDataSet extends BaseDataSet
         return $count;
     }
 
-    public function removeFromWatchlist($postID) {
-        $sqlQuery = "delete from laf873.watchlist where sub_postID = ? ";
+    public function removeFromWatchlist($postID, $userID) {
+        $sqlQuery = "delete from laf873.watchlist where sub_postID = ? and sub_userID = ?";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute([$postID]);
+        $statement->execute([$postID, $userID]);
     }
 
-//    public function getTotalSubscribedUsers($sub_postID) {
-//        $sqlQuery = "select count(*) from laf873.watchlist w
-//                    inner join laf873.notifications n on w.sub_postID = ?";
-//        $statement = $this->_dbHandle->prepare($sqlQuery);
-//        $statement->execute([$sub_postID]);
-//
-//        $count = $statement->fetchColumn();
-//
-//        return $count;
-//    }
 
     public function getSubscribedUsers($sub_postID) {
         $sqlQuery = "select distinct w.watchlistID, w.sub_userID, w.sub_postID from laf873.watchlist w

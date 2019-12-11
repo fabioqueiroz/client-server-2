@@ -16,7 +16,7 @@ if (isset($_POST['id'])) {
     foreach($ids as $id)
     {
         if(isset($_POST['remove-from-watchlist']) && $_POST['remove-rand-check'] == $_SESSION['unsubscribe-rand']) {
-            $watchlistDataSet->removeFromWatchlist($id);
+            $watchlistDataSet->removeFromWatchlist($id, $_SESSION['userID']);
             $subscribedPosts = $watchlistDataSet->getSubscriptions($_SESSION['userID']);
         }
     }
