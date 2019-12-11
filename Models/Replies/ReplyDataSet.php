@@ -12,6 +12,7 @@ class ReplyDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Create a new reply to a post
     public function createReply($replyMessage, $replyFrom, $replyTo, $postID) {
         $sqlQuery = "INSERT INTO laf873.replies(replyMessage, replyDate, replyFrom, replyTo, postID) VALUES (?,NOW(),?,?,?)";
 
@@ -19,6 +20,7 @@ class ReplyDataSet extends BaseDataSet
         $statement->execute([$replyMessage, $replyFrom, $replyTo, $postID]);
     }
 
+    // Retrieve all replies
     public function getAllReplies($postingUser) {
         $sqlQuery = "select r.replyID, r.replyMessage, r.replyDate, r.replyFrom, r.replyTo, r.postID,
                             p.title, p.message, u.firstName, u.lastName, u.photo
@@ -38,6 +40,7 @@ class ReplyDataSet extends BaseDataSet
         return $replies;
     }
 
+    // Retrieve all replies linked to a specific post
     public function getAllRepliesById($postingUser, $ID) {
         $sqlQuery = "select r.replyID, r.replyMessage, r.replyDate, r.replyFrom, r.replyTo, r.postID,
                             p.title, p.message, u.firstName, u.lastName, u.photo

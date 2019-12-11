@@ -11,6 +11,7 @@ class MailboxDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Create an outbox mail
     public function createMailOut($mboxUser, $message, $sentTo) {
 
         $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) 
@@ -23,6 +24,7 @@ class MailboxDataSet extends BaseDataSet
         $statement->execute([$mboxUser, $message, $sentTo]);
     }
 
+    // Create an inbox mail
     public function createMailIn($mboxUser, $message, $sentBy) {
 
         $sqlQuery = "INSERT INTO laf873.mailboxes(mboxUser, mailbox, messageID) 
@@ -35,6 +37,7 @@ class MailboxDataSet extends BaseDataSet
         $statement->execute([$mboxUser, $message, $sentBy]);
     }
 
+    // Remove the mail from the mailbox
     public function deleteFromMailboxById($mboxID) {
         $sqlQuery = "delete from laf873.mailboxes where mboxID = ?";
 

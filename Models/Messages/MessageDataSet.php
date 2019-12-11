@@ -12,6 +12,7 @@ class MessageDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Allow a user to message another user
     public function createMessage($message, $sentBy, $sentTo) {
         $sqlQuery = "INSERT INTO laf873.messages(message, sentBy, sentTo, messageDate) VALUES (?,?,?,NOW())";
 
@@ -19,6 +20,7 @@ class MessageDataSet extends BaseDataSet
         $statement->execute([$message, $sentBy, $sentTo]);
     }
 
+    // Retrieve all message information directed to a user
     public function getInboxMail($userID) {
         $sqlQuery = "select msg.messageID, msg.message, msg.sentBy, msg.sentTo, msg.messageDate,
                            mbox.mboxID, mbox.mailbox, u.firstName, u.lastName
@@ -38,6 +40,7 @@ class MessageDataSet extends BaseDataSet
         return $inbox;
     }
 
+    // Retrieve all message information created by a user
     public function getOutboxMail($userID) {
 
         $sqlQuery = "select msg.messageID, msg.message, msg.sentBy, msg.sentTo, msg.messageDate,
@@ -58,6 +61,7 @@ class MessageDataSet extends BaseDataSet
         return $outbox;
     }
 
+    // Get the amount of generated notifications
     public function getNoOfNotificationMessages() {
         $sqlQuery = "select count(*) from laf873.messages where sentBy = 87;";
         $statement = $this->_dbHandle->prepare($sqlQuery);

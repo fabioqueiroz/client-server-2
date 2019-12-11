@@ -10,6 +10,7 @@ class CategoryDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Retrieve all the categories in the database
     public function getAllCategories() {
         $sqlQuery = "SELECT * FROM laf873.categories";
         $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -22,6 +23,7 @@ class CategoryDataSet extends BaseDataSet
         return $categories;
     }
 
+    // Allow an authorised user to create a new category
     public function createCategory($categoryName, $description) {
         $sqlQuery = "INSERT INTO laf873.categories (categoryName, description) VALUES (?,?)";
 

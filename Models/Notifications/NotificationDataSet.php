@@ -11,6 +11,7 @@ class NotificationDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Track subscribed posts that have been notified
     public function addToNotificationList($postID) {
         $sqlQuery = "insert into laf873.notifications (ntf_postID) values(?)";
 
@@ -18,6 +19,7 @@ class NotificationDataSet extends BaseDataSet
         $statement->execute([$postID]);
     }
 
+    // Remove subscribed posts that were being notified
     public function deleteFromNotificationList($postID) {
         $sqlQuery = "delete from laf873.notifications where ntf_postID = ?";
 

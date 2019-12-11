@@ -12,6 +12,7 @@ class PostDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Allow the user to create a new post
     public function createPost($title, $postMessage, $topicSubject, $postingUser) {
         $sqlQuery = "INSERT INTO laf873.posts (title, message, messageDate, topicSubject, postingUser) VALUES (?,?,NOW(),?,?)";
 
@@ -19,6 +20,7 @@ class PostDataSet extends BaseDataSet
         $statement->execute([$title, $postMessage, $topicSubject, $postingUser]);
     }
 
+    // Retrieve all posts
     public function getAllPosts() {
         $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate , p.topicSubject, p.postingUser, 
                             u.firstName, u.lastName, u.photo
@@ -35,6 +37,7 @@ class PostDataSet extends BaseDataSet
         return $posts;
     }
 
+    // Allow the user to filter the posts
     public function filterPostsByTitle($title) {
         $title = strip_tags(trim(($title)));
 
@@ -57,6 +60,7 @@ class PostDataSet extends BaseDataSet
         return $filteredPosts;
     }
 
+    // Retrieve the post's information by its id
     public function getPostById($postID) {
         $sqlQuery = "select p.ID, p.title, p.message, p.messageDate, p.postingUser, p.topicSubject, 
                             u.firstName, u.lastName, u.photo
@@ -74,6 +78,7 @@ class PostDataSet extends BaseDataSet
         return $post;
     }
 
+    // Obtain the total number of posts
     public function getTotalNoOfPosts() {
         $sqlQuery = "select count(*) from laf873.posts";
 
@@ -85,6 +90,7 @@ class PostDataSet extends BaseDataSet
         return $total;
     }
 
+    // Create the pagination
     public function makePageQuery($limit, $offset) {
         $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate, p.topicSubject, p.postingUser, 
                             u.firstName, u.lastName, u.photo
