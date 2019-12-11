@@ -12,6 +12,7 @@ class TopicDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Generate a new topic
     public function createTopic($topicSubject, $topicCategory, $postingUser, $topicDescription) {
         $sqlQuery = "INSERT INTO laf873.topics (topicSubject, topicDate, topicCategory, postingUser, topicDescription) VALUES (?,NOW(),?,?,?)";
 
@@ -19,6 +20,7 @@ class TopicDataSet extends BaseDataSet
         $statement->execute([$topicSubject, $topicCategory, $postingUser, $topicDescription]);
     }
 
+    // Retrieve all topics in the database
     public function getAllTopics() {
         $sqlQuery = "SELECT * FROM laf873.topics";
 
@@ -32,6 +34,7 @@ class TopicDataSet extends BaseDataSet
         return $topics;
     }
 
+    // Get the number of posts linked to a topic id
     public function getPostCountByTopicId($topicID) {
         $sqlQuery = "select count(*) from laf873.topics t
                     inner join laf873.posts p on t.topicID = p.topicSubject
@@ -43,5 +46,4 @@ class TopicDataSet extends BaseDataSet
 
         return $count;
     }
-
 }

@@ -12,6 +12,7 @@ class WatchlistDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Allow the user to subscribe to a post
     public function createSubscription($sub_userID, $sub_postID) {
         $sqlQuery = "INSERT INTO laf873.watchlist(sub_userID, sub_postID) VALUES (?,?)";
 
@@ -19,7 +20,7 @@ class WatchlistDataSet extends BaseDataSet
         $statement->execute([$sub_userID, $sub_postID]);
     }
 
-
+    // Retrieve the list of subscribed posts by the user
     public function getSubscriptions($sub_userID) {
         $sqlQuery = "select distinct p.title, p.message, p.messageDate, ru.firstName, ru.lastName, ru.photo, w.watchlistID, w.sub_userID, w.sub_postID
                     from laf873.watchlist w
@@ -39,6 +40,7 @@ class WatchlistDataSet extends BaseDataSet
         return $subscriptions;
     }
 
+    // Verify if the post is already in the user's watchlist
     public function checkPostInWatchlist($postID, $userID) {
         $sqlQuery = "select count(*) from laf873.watchlist where sub_postID = ? and sub_userID = ?";
         $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -49,6 +51,7 @@ class WatchlistDataSet extends BaseDataSet
         return $count;
     }
 
+    // Allow the user to remove a post from the watchlist
     public function removeFromWatchlist($postID, $userID) {
         $sqlQuery = "delete from laf873.watchlist where sub_postID = ? and sub_userID = ?";
 
@@ -56,7 +59,7 @@ class WatchlistDataSet extends BaseDataSet
         $statement->execute([$postID, $userID]);
     }
 
-
+    // Retrieve a list of all users that subscribe to the post
     public function getSubscribedUsers($sub_postID) {
         $sqlQuery = "select distinct w.watchlistID, w.sub_userID, w.sub_postID from laf873.watchlist w
                     inner join laf873.notifications n on w.sub_postID = ?";

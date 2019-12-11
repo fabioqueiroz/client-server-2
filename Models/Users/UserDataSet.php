@@ -12,6 +12,7 @@ class UserDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Register a new user
     public function createUser($firstName, $lastName, $email, $password) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
@@ -20,9 +21,9 @@ class UserDataSet extends BaseDataSet
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$firstName, $lastName, $email, $hashedPassword]);
-
     }
 
+    // Retrieve a list of all users
     public function getAllUsers() {
         $sqlQuery = 'SELECT * FROM laf873.users';
 
@@ -36,6 +37,7 @@ class UserDataSet extends BaseDataSet
         return $dataSet;
     }
 
+    // Get the user's information by their id
     public function getUserById($userID) {
         $sqlQuery = "SELECT * FROM laf873.users where userID = '{$userID}'";
 
@@ -47,9 +49,9 @@ class UserDataSet extends BaseDataSet
             $dataSet[] = new User($row);
         }
         return $dataSet;
-
     }
 
+    // Verify if the email already exists in the database
     public function emailChecker($email) {
         $sqlQuery = "SELECT email FROM laf873.users WHERE email = ? ";
         $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -60,6 +62,7 @@ class UserDataSet extends BaseDataSet
         return $emailInDB;
     }
 
+    // Get the hashed value of the user's password from the database
     public function passwordChecker($email) {
         $sqlQuery = "SELECT password FROM laf873.users WHERE email = ? ";
         $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -70,6 +73,7 @@ class UserDataSet extends BaseDataSet
         return $hashedResult;
     }
 
+    // Validate if the user's login details are correct
     public function authenticateUser($email, $password) {
         $sqlQuery = 'SELECT * FROM laf873.users WHERE email = ? AND password = ? ';
 
@@ -81,15 +85,16 @@ class UserDataSet extends BaseDataSet
         $result[] = new User($row);
 
         return $result;
-
     }
 
+    // Allow the user to change the first and last names
     public function updateName($firstName, $lastName, $userID) {
         $sqlQuery = 'UPDATE laf873.users SET firstName = ?, lastName = ?  WHERE userID = ?';
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$firstName, $lastName, $userID]);
     }
 
+    // Allow the user to change their password
     public function updatePassword($password, $userID) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
