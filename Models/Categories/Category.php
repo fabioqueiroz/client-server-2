@@ -13,7 +13,7 @@ class Category
     }
 
     /**
-     * @return mixed
+     * @return the category id
      */
     public function getCategoryID()
     {
@@ -21,7 +21,7 @@ class Category
     }
 
     /**
-     * @return mixed
+     * @return the category name
      */
     public function getCategoryName()
     {
@@ -29,7 +29,7 @@ class Category
     }
 
     /**
-     * @return mixed
+     * @return the description
      */
     public function getDescription()
     {

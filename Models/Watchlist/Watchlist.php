@@ -12,16 +12,27 @@ class Watchlist
         $this->_sub_postID = $dbRow['sub_postID'];
     }
 
+    /**
+     * @return the watchlist id
+     */
     public function getWatchlistID()
     {
         return $this->_watchlistID;
     }
 
+    /**
+     * @return the id of the
+     * subscriber
+     */
     public function getSubUserID()
     {
         return $this->_sub_userID;
     }
 
+    /**
+     * @return the id of the
+     * subscribed post
+     */
     public function getSubPostID()
     {
         return $this->_sub_postID;

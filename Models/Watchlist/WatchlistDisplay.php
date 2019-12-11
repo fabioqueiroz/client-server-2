@@ -17,31 +17,55 @@ class WatchlistDisplay extends Watchlist
         $this->_image = $dbRow['photo'];
     }
 
+    /**
+     * @return the post title
+     * coming from the inner join
+     */
     public function getTitle()
     {
         return $this->_title;
     }
 
+    /**
+     * @return the post message
+     * coming from the inner join
+     */
     public function getMessage()
     {
         return $this->_message;
     }
 
+    /**
+     * @return the datetime
+     * coming from the inner join
+     */
     public function getMessageDate()
     {
         return $this->_messageDate;
     }
 
+    /**
+     * @return the user's first name
+     * coming from the inner join
+     */
     public function getFirstName()
     {
         return $this->_firstName;
     }
 
+    /**
+     * @return the user's last name
+     * coming from the inner join
+     */
     public function getLastName()
     {
         return $this->_lastName;
     }
 
+    /**
+     * @return the user's photo
+     * coming from the inner join
+     */
     public function getImage()
     {
         return $this->_image;

@@ -13,7 +13,7 @@ class Notification
     }
 
     /**
-     * @return mixed
+     * @return the notification id
      */
     public function getNotificationID()
     {
@@ -21,7 +21,7 @@ class Notification
     }
 
     /**
-     * @return mixed
+     * @return the notified post id
      */
     public function getNtfPostID()
     {
@@ -29,7 +29,7 @@ class Notification
     }
 
     /**
-     * @return mixed
+     * @return the notified watchlist id
      */
     public function getNtfWatchlistID()
     {

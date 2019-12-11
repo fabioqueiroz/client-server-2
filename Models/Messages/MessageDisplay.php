@@ -15,22 +15,37 @@ class MessageDisplay extends Message
         $this->_lastName = $dbRow['lastName'];
     }
 
+    /**
+     * @return the mailbox id
+     * coming from the inner join
+     */
     public function getMboxID()
     {
         return $this->_mboxID;
     }
 
+    /**
+     * @return the mailbox type
+     * coming from the inner join
+     */
     public function getMailbox()
     {
         return $this->_mailbox;
     }
 
+    /**
+     * @return the user's first name
+     * coming from the inner join
+     */
     public function getFirstName()
     {
         return $this->_firstName;
     }
 
-
+    /**
+     * @return the user's last name
+     * coming from the inner join
+     */
     public function getLastName()
     {
         return $this->_lastName;

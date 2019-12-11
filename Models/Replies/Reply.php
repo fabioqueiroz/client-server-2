@@ -15,31 +15,49 @@ class Reply
         $this->_postID = $dbRow['postID'];
     }
 
+    /**
+     * @return the reply id
+     */
     public function getReplyID()
     {
         return $this->_replyID;
     }
 
+    /**
+     * @return the message
+     */
     public function getReplyMessage()
     {
         return $this->_replyMessage;
     }
 
+    /**
+     * @return the datetime information
+     */
     public function getReplyDate()
     {
         return $this->_replyDate;
     }
 
+    /**
+     * @return the id of the sender
+     */
     public function getReplyFrom()
     {
         return $this->_replyFrom;
     }
 
+    /**
+     * @return the id of the receiver
+     */
     public function getReplyTo()
     {
         return $this->_replyTo;
     }
 
+    /**
+     * @return the foreign key
+     */
     public function getPostID()
     {
         return $this->_postID;

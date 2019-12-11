@@ -14,16 +14,28 @@ class ReplyDisplay extends Reply
         $this->_replyImage = $dbRow['photo'];
     }
 
+    /**
+     * @return the user's first name
+     * coming from the inner join
+     */
     public function getReplierFirstName()
     {
         return $this->_replierFirstName;
     }
 
+    /**
+     * @return the user's last name
+     * coming from the inner join
+     */
     public function getReplierLastName()
     {
         return $this->_replierLastName;
     }
 
+    /**
+     * @return the user's photo
+     * coming from the inner join
+     */
     public function getReplyImage()
     {
         return $this->_replyImage;
