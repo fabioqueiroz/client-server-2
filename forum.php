@@ -41,6 +41,35 @@ $end = min(($offset + $limit), $total);
 // Prepare the paged query
 $posts = $postDataSet->makePageQuery($limit, $offset);
 
+// get the q parameter, the text typed in, from URL
+$q = $_POST['filter'];
+$hint = "";
+
+// lookup all hints from array if $q is different from ""
+if ($q !== "") {
+    $q = strtolower($q);
+    $len = strlen($q);
+
+    foreach ($posts as $post) {
+
+        foreach($post as $name) {
+            var_dump($name);
+            if (stristr($q, substr($name, 0, $len))) {
+                if ($hint === "") {
+                    $hint = $name;
+                } else {
+                    $hint .= ", $name";
+                }
+            }
+        }
+    }
+
+}
+
+// Output "no suggestion" if no hint was found or output results
+echo $hint === "" ? "no suggestion" : $hint;
+//echo '{"test","message"}';
+
 // Allow the user to filter the posts
 if(isset($_POST['filter']) && !empty($_POST['filter'])) {
     $posts = $postDataSet->filterPostsByTitle(strip_tags(trim(($_POST['filter']))));

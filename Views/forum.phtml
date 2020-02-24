@@ -38,6 +38,17 @@
 </div>
 
 <div class="col-md-12 col-lg-12">
+
+    <div class="col-lg-8 col-md-8 col-sm-12">
+        <p><strong>Start typing a name in the input field below:</strong></p>
+        <form>
+            Name: <input type="text" onkeyup="showHint(this.value)">
+        </form>
+        <p>Suggestions: <span id="txtHint"></span></p>
+        <p id="resultsSelectionBox"></p>
+<!--        <select id="resultsSelectionBox"></select>-->
+    </div>
+
     <!-- Post area-->
     <div class="col-lg-8 col-md-8 col-sm-12">
         <!-- DYNAMIC POST -->
@@ -84,5 +95,7 @@
         </div>
         <div class="col-md-2 col-xs-12"></div>
     </div>
+
+    <div><script src="Scripts/forum.js" type="text/javascript" charset="utf-8"></script></div>
 
 <?php require('template/footer.phtml') ?>
