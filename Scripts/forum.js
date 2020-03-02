@@ -11,7 +11,7 @@ function showHint(str) {
             if (this.readyState === 4 && this.status === 200) {
 
                 let uic = document.getElementById("resultsSelectionBox");
-                let names = this.responseText.split("output-title"); // ","
+                let names = this.responseText.split(", "); // ","
                 console.log(names);
 
 
@@ -33,7 +33,8 @@ function showHint(str) {
             }
         };
 
-        xmlhttp.open("GET", "forum.php?q=" + str, true);
+
+        xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
         xmlhttp.send();
     }
 }
