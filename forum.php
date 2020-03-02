@@ -18,7 +18,7 @@ $topics = $topicDataSet->getAllTopics();
 $total = $postDataSet->getTotalNoOfPosts();
 
 // Define the limit per page
-$limit = 10;
+$limit = 20;
 
 // Calculate the number of pages to be displayed
 $pages = ceil($total / $limit);
@@ -40,34 +40,40 @@ $end = min(($offset + $limit), $total);
 
 // Prepare the paged query
 $posts = $postDataSet->makePageQuery($limit, $offset);
+//var_dump($posts);
 
+// ******** Live Search ********
 // get the q parameter, the text typed in, from URL
-$q = $_POST['filter'];
+//$q = $_POST['filter'];
+$query = $_REQUEST["q"];
 $hint = "";
 
 // lookup all hints from array if $q is different from ""
-if ($q !== "") {
-    $q = strtolower($q);
-    $len = strlen($q);
+if ($query !== "" && $hint !== "") {
+    $query = strtolower($query);
+    $length = strlen($query);
 
     foreach ($posts as $post) {
+        $titleName = $post->getTitle();
+        //var_dump($titleName);
 
-        foreach($post as $name) {
-            var_dump($name);
-            if (stristr($q, substr($name, 0, $len))) {
-                if ($hint === "") {
-                    $hint = $name;
-                } else {
-                    $hint .= ", $name";
-                }
+        if (!empty($titleName) && stristr($query, substr($titleName, 0, $length))) {
+
+            if ($hint === "") {
+                $hint = $titleName;
+
+            } else {
+                $hint .= ", $titleName";
             }
         }
+
     }
 
 }
 
 // Output "no suggestion" if no hint was found or output results
-echo $hint === "" ? "no suggestion" : $hint;
+echo $hint === "" ? "no suggestion" : json_encode($hint);
+//echo $hint === "" ? "no suggestion" : $hint;
 //echo '{"test","message"}';
 
 // Allow the user to filter the posts

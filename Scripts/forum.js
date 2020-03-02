@@ -1,7 +1,7 @@
 function showHint(str) {
     if (str.length === 0) {
         document.getElementById("txtHint").innerHTML = "";
-        //document.getElementById("resultsSelectionBox").innerHTML = "";
+        document.getElementById("txtHint").style.border = "0px";
         return;
 
     } else {
@@ -9,27 +9,24 @@ function showHint(str) {
 
         xmlhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                // var uic = document.getElementById("txtHint");
-                // let uic = document.getElementById("resultsSelectionBox");
-                // uic.innerHTML = this.responseText;
 
                 let uic = document.getElementById("resultsSelectionBox");
-                let names = this.responseText.split(',');
+                let names = this.responseText.split("output-title"); // ","
+                console.log(names);
 
-                var optionValues =[];
-                for (let i = 0; i < names.length; i++) {
-                    let opt = document.createElement('option');
-                    opt.value = names[i];
-                    opt.innerHTML = names[i];
-                    uic.appendChild(opt);
 
-                    // $('#resultsSelectionBox option').each(function(){
-                    //     if($.inArray(this.value, optionValues) > -1){
-                    //         $(this).remove()
-                    //     }else{
-                    //         optionValues.push(this.value);
-                    //         //uic.appendChild(opt);
-                    //     }
+                if (this.response != "no suggestions") {
+                    uic.innerHTML = "<br/>";
+                    uic.style.border = "1px solid #A5ACB2";
+                    uic.style.width = "305px";
+                    uic.style.marginTop = "-16px";
+
+                    // let postNames = JSON.parse(this.responseText);
+                    // console.log(postNames);
+                    //
+                    // names.forEach(function (obj) {
+                    //     uic.innerHTML = "<a href='#'>" + postNames + "</a><br/>";
+                    //     //console.log(obj.name);
                     // });
 
                 }
@@ -52,4 +49,36 @@ function onClickSearchHandler(event) {
     });
 }
 
- document.getElementById('txtHint').addEventListener('input', onClickSearchHandler, false);
+ //document.getElementById('txtHint').addEventListener('input', onClickSearchHandler, false);
+
+
+// // **** draft infinite scrolling ****
+// let listElm = document.querySelector('#infinite-list');
+//
+// // Add 20 items.
+// let nextItem = 1;
+// let loadMore = function() {
+//     for (let i = 0; i < 20; i++) {
+//         let item = document.createElement('li');
+//         item.innerText = 'Item ' + nextItem++;
+//
+//         // fetch('../forum.php').then(function (response) {
+//         //     return response.text(); }).then(function (data) {
+//         //     document.getElementById('infinite-list').innerText = data;
+//         //     console.log(data);
+//         // }).catch(function (error) {
+//         //     document.getElementById('infinite-list').innerText ='Error: ' + error;
+//         // });
+//         listElm.appendChild(item);
+//     }
+// }
+//
+// // Detect when scrolled to bottom.
+// listElm.addEventListener('scroll', function() {
+//     if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
+//         loadMore();
+//     }
+// });
+//
+// // Initially load some items.
+// loadMore();

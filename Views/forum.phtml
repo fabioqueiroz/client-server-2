@@ -3,7 +3,18 @@
 <div>
 <!-- Search bar -->
 <div class="row forum-top-bar">
-        <div class="col-lg-5 col-xs-3 col-sm-2 col-md-2"><h3>Posts</h3></div>
+        <div class="col-lg-5 col-xs-3 col-sm-2 col-md-2"><h3>Posts</h3>
+            <div class="pull-left">
+                <form>
+                    <div>
+                        <input type="text" placeholder="Search Post" onkeyup="showHint(this.value)">
+                        <p><span id="txtHint"></span></p>
+                        <div id="resultsSelectionBox" ></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 
         <!-- Search box -->
         <div class="col-lg-4 search hidden-sm col-md-3 col-xs-4">
@@ -39,26 +50,16 @@
 
 <div class="col-md-12 col-lg-12">
 
-    <div class="col-lg-8 col-md-8 col-sm-12">
-        <p><strong>Start typing a name in the input field below:</strong></p>
-        <form>
-            Name: <input type="text" onkeyup="showHint(this.value)">
-        </form>
-        <p>Suggestions: <span id="txtHint"></span></p>
-        <p id="resultsSelectionBox"></p>
-<!--        <select id="resultsSelectionBox"></select>-->
-    </div>
-
     <!-- Post area-->
     <div class="col-lg-8 col-md-8 col-sm-12">
         <!-- DYNAMIC POST -->
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 pull-left">
+            <div class="row" id="infinite-list">
+                <div class="col-md-12 col-sm-12 pull-left" onscroll="loadMore();">
                     <div id="post-layout">
                     <?php foreach ($posts as $post){?>
                         <div class="post-message col-md-9 col-sm-12 pull-left">
-                            <h2><a href="postReplies.php?postID=<?php echo $post->getID();?>&postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getTitle()?></a></h2>
+                            <h2><a class="output-title" href="postReplies.php?postID=<?php echo $post->getID();?>&postingUser=<?php echo $post->getPostingUser();?>"><?php echo $post->getTitle()?></a></h2>
                             <p><?php echo $post->getMessage()?></p>
                         </div>
                         <div id="stats-position" class="col-md-3 col-sm-12 pull-left col-md-pull-1">
