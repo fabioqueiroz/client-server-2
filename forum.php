@@ -4,8 +4,6 @@ require_once('Models/Topics/TopicDataSet.php');
 require_once('Models/Posts/PostDataSet.php');
 require_once('Models/Replies/ReplyDataSet.php');
 require_once ('Models/Watchlist/WatchlistDataSet.php');
-require_once ('liveSearch.php');
-
 
 $view = new stdClass();
 $topicDataSet = new TopicDataSet();
@@ -44,49 +42,14 @@ $end = min(($offset + $limit), $total);
 $posts = $postDataSet->makePageQuery($limit, $offset);
 //var_dump($posts);
 
-//// ******** Live Search ********
-//// get the q parameter, the text typed in, from URL
-////$q = $_POST['filter'];
-//$query = $_GET["q"];
-//$hint = "";
-//
-//// lookup all hints from array if $q is different from ""
-//if ($query !== "" && $hint !== "") {
-//    $query = strtolower($query);
-//    $length = strlen($query);
-//
-//    foreach ($posts as $post) {
-//        $titleName = $post->getTitle();
-//        var_dump($titleName);
-//
-//        if (!empty($titleName) && stristr($query, substr($titleName, 0, $length))) {
-//
-//            if ($hint === "") {
-//                $hint = $titleName;
-//
-//            } else {
-//                $hint .= ", $titleName";
-//            }
-//        }
-//
-//    }
-//
-//}
-
-
-// Output "no suggestion" if no hint was found or output results
-//echo $hint === "" ? "no suggestion" : json_encode($hint);
-//echo $hint === "" ? "no suggestion" : $hint;
-//echo '{"test","message"}';
-
 // Allow the user to filter the posts
-//if(isset($_POST['filter']) && !empty($_POST['filter'])) {
-//    $posts = $postDataSet->filterPostsByTitle(strip_tags(trim(($_POST['filter']))));
-//    unset($_POST);
-//    $view->isFiltered = true;
-//
-//} else {
-//    $view->erroMessage = true;
-//}
+if(isset($_POST['filter']) && !empty($_POST['filter'])) {
+    $posts = $postDataSet->filterPostsByTitle(strip_tags(trim(($_POST['filter']))));
+    unset($_POST);
+    $view->isFiltered = true;
+
+} else {
+    $view->erroMessage = true;
+}
 
 require_once('Views/forum.phtml');
