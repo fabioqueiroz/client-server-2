@@ -1,10 +1,10 @@
 <?php
 
 
-class Post
+class Post implements JsonSerializable
 {
     private $_ID, $_title, $_message, $_messageDate, $_topicSubject, $_postingUser;//, $_image;
-
+    //public $_title;
     public function __construct($dbRow)
     {
         $this->_ID = $dbRow['ID'];
@@ -65,4 +65,19 @@ class Post
         return $this->_messageDate;
     }
 
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'title' => $this->getTitle(),
+            'postId' => $this->getID(),
+            'postingUser' => $this->getPostingUser(),
+        ];
+    }
 }

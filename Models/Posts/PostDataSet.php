@@ -124,6 +124,24 @@ class PostDataSet extends BaseDataSet
         return $posts;
     }
 
+    public function getALiveSearchResults($title) {
+        $title = strip_tags(trim(($title)));
+
+        $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate , p.topicSubject, p.postingUser, 
+                            u.firstName, u.lastName, u.photo
+                     FROM laf873.users u, laf873.posts p
+                     WHERE p.postingUser = u.userID AND p.title LIKE '%$title%' ORDER BY messageDate DESC LIMIT 50";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute();
+
+        $posts = [];
+        while ($row = $statement->fetch()) {
+            $posts[] = new PostDisplay($row);
+        }
+        return $posts;
+    }
+
 
 
 

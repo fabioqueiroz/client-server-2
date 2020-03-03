@@ -12,7 +12,8 @@ function showHint(str) {
 
                 let uic = document.getElementById("resultsSelectionBox");
                 let names = this.responseText.split(", "); // ","
-                console.log(names);
+                //console.log(names);
+                let dom = new DOMParser();
 
 
                 if (this.response != "no suggestions") {
@@ -20,21 +21,28 @@ function showHint(str) {
                     uic.style.border = "1px solid #A5ACB2";
                     uic.style.width = "305px";
                     uic.style.marginTop = "-16px";
+                    console.log(this.responseText);
+                    let postNames = JSON.parse(this.responseText);
+                    console.log(postNames);
 
-                    // let postNames = JSON.parse(this.responseText);
-                    // console.log(postNames);
-                    //
-                    // names.forEach(function (obj) {
-                    //     uic.innerHTML = "<a href='#'>" + postNames + "</a><br/>";
-                    //     //console.log(obj.name);
-                    // });
+                    postNames.forEach(function (obj) {
+                        //uic.innerHTML += "<ul>" + obj.title + "</ul>";
+                        let suggestionBody = "<ul>" + obj.title + "</ul>";
+                        let suggestion = dom.parseFromString(suggestionBody, "text/html");
+                        // search for substitute for documentElement
+                        suggestion.documentElement.addEventListener('click', () => {
+                            window.location.href = "postReplies.php?postID=" + obj.postId + "&postingUser=" + obj.postingUser;
+                        });
+                        uic.appendChild(suggestion.documentElement);
+                        //console.log(obj.name);
+                    });
 
                 }
             }
         };
 
 
-        xmlhttp.open("GET", "forum.php?q=" + str, true);
+        xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
         xmlhttp.send();
     }
 }
