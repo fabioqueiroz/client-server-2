@@ -34,7 +34,7 @@ function showHint(str) {
         };
 
 
-        xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
+        xmlhttp.open("GET", "forum.php?q=" + str, true);
         xmlhttp.send();
     }
 }
