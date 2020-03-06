@@ -2,6 +2,8 @@ function showHint(str) {
     if (str.length === 0) {
         document.getElementById("txtHint").innerHTML = "";
         document.getElementById("txtHint").style.border = "0px";
+        document.getElementById("resultsSelectionBox").innerHTML = ""; //
+
         return;
 
     } else {
@@ -17,11 +19,10 @@ function showHint(str) {
 
                 if (this.response != "no suggestions") {
                     response.innerHTML = "<br/>";
-                    response.style.border = "1px solid #A5ACB2";
+                    response.style.border = "0px solid #A5ACB2"; // #A5ACB2
                     response.style.width = "305px";
                     response.style.marginTop = "-32px";
                     //response.style.backgroundColor = "white";
-                    response.style.zIndex = "-1";
 
                     //console.log(this.responseText);
                     let postNames = JSON.parse(this.responseText);
@@ -31,9 +32,6 @@ function showHint(str) {
 
                         let suggestionBody = "<div class=''><p class='suggestion-option list-group-item'>" + post.title + "</p></div>";
                         let suggestion = domParser.parseFromString(suggestionBody, "text/html");
-
-                        // TODO: search for substitute for documentElement
-                        //console.log(suggestion.documentElement.getElementsByClassName("suggestion")[0]);
 
                         // re-direct to the post
                         suggestion.documentElement.addEventListener('click', () => {
@@ -46,7 +44,6 @@ function showHint(str) {
                 }
             }
         };
-
 
         xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
         xmlhttp.send();

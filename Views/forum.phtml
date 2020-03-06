@@ -3,32 +3,37 @@
 <div>
 <!-- Search bar -->
 <div class="row forum-top-bar">
+    <div class="col-md-9">
         <div class="col-lg-5 col-xs-3 col-sm-2 col-md-2"><h3>Posts</h3>
-            <div class="pull-left">
-                <form method="get">
-                    <div class="suggestion-layout">
-                        <input id="hint-text" type="text" placeholder="Search Post" onkeyup="showHint(this.value)">
-                        <p><span id="txtHint"></span></p>
-                        <div id="resultsSelectionBox"></div>
-                    </div>
-                </form>
-            </div>
+
+        </div>
+
+        <!-- Search box -->
+        <div class="pull-left col-md-7">
+            <form method="get">
+                <div class="suggestion-layout">
+                    <input id="hint-text" type="text" placeholder="Search Post" onkeyup="showHint(this.value)">
+                    <p><span id="txtHint"></span></p>
+                    <div id="resultsSelectionBox"></div>
+                </div>
+            </form>
         </div>
 
 
         <!-- Search box -->
-        <div class="col-lg-4 search hidden-sm col-md-3 col-xs-4">
-            <div class="wrap search-box">
-                <form action="forum.php" method="post" class="form">
-                    <div class="pull-left txt">
-                        <?php if($view->isFiltered) {?>
-                        <button class="btn btn-group-justified" type="submit">Clear Search</button>
-                        <?php }?>
-                    </div>
-                </form>
-            </div>
-        </div>
+<!--        <div class="col-lg-4 search hidden-sm col-md-3 col-xs-4">-->
+<!--            <div class="wrap search-box">-->
+<!--                <form action="forum.php" method="post" class="form">-->
+<!--                    <div class="pull-left txt">-->
+<!--                        --><?php //if($view->isFiltered) {?>
+<!--                        <button class="btn btn-group-justified" type="submit">Clear Search</button>-->
+<!--                        --><?php //}?>
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
 
+    </div>
         <!-- New post area -->
         <div class="col-lg-3 col-xs-2 col-sm-5 col-md-4">
             <div class="start-topic pull-left">
