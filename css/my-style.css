@@ -262,6 +262,20 @@ th, td {
     border-left-style: inset;
 }
 
+.suggestion-option {
+    background-color: white;
+ }
+
+.suggestion-layout p:hover {
+    background-color: #428bca;
+    color: white;
+    cursor: pointer;
+}
+
+#hint-text {
+    width: 305px;
+}
+
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {
     .col-xs-6 {

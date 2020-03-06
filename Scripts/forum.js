@@ -10,31 +10,36 @@ function showHint(str) {
         xmlhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
 
-                let uic = document.getElementById("resultsSelectionBox");
-                let names = this.responseText.split(", "); // ","
+                let response = document.getElementById("resultsSelectionBox");
+                //let names = this.responseText.split(", "); // ","
                 //console.log(names);
-                let dom = new DOMParser();
-
+                let domParser = new DOMParser();
 
                 if (this.response != "no suggestions") {
-                    uic.innerHTML = "<br/>";
-                    uic.style.border = "1px solid #A5ACB2";
-                    uic.style.width = "305px";
-                    uic.style.marginTop = "-16px";
-                    console.log(this.responseText);
-                    let postNames = JSON.parse(this.responseText);
-                    console.log(postNames);
+                    response.innerHTML = "<br/>";
+                    response.style.border = "1px solid #A5ACB2";
+                    response.style.width = "305px";
+                    response.style.marginTop = "-16px";
+                    response.style.backgroundColor = "white";
 
-                    postNames.forEach(function (obj) {
-                        //uic.innerHTML += "<ul>" + obj.title + "</ul>";
-                        let suggestionBody = "<ul>" + obj.title + "</ul>";
-                        let suggestion = dom.parseFromString(suggestionBody, "text/html");
-                        // search for substitute for documentElement
+                    //console.log(this.responseText);
+                    let postNames = JSON.parse(this.responseText);
+                    //console.log(postNames);
+
+                    postNames.forEach((post) => {
+
+                        let suggestionBody = "<p class='suggestion-option'>" + post.title + "</p>";
+                        let suggestion = domParser.parseFromString(suggestionBody, "text/html");
+
+                        // TODO: search for substitute for documentElement
+                        //console.log(suggestion.documentElement.getElementsByClassName("suggestion")[0]);
+
+                        // re-direct to the post
                         suggestion.documentElement.addEventListener('click', () => {
-                            window.location.href = "postReplies.php?postID=" + obj.postId + "&postingUser=" + obj.postingUser;
+                            window.location.href = "postReplies.php?postID=" + post.postId + "&postingUser=" + post.postingUser;
                         });
-                        uic.appendChild(suggestion.documentElement);
-                        //console.log(obj.name);
+                        response.appendChild(suggestion.documentElement);
+
                     });
 
                 }

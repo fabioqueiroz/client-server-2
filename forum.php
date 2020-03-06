@@ -43,15 +43,15 @@ $end = min(($offset + $limit), $total);
 $posts = $postDataSet->makePageQuery($limit, $offset);
 //var_dump($posts);
 
-
+// **** Deactivated from the original navbar ****
 // Allow the user to filter the posts
-if(isset($_POST['filter']) && !empty($_POST['filter'])) {
-    $posts = $postDataSet->filterPostsByTitle(strip_tags(trim(($_POST['filter']))));
-    unset($_POST);
-    $view->isFiltered = true;
-
-} else {
-    $view->erroMessage = true;
-}
+//if(isset($_POST['filter']) && !empty($_POST['filter'])) {
+//    $posts = $postDataSet->filterPostsByTitle(strip_tags(trim(($_POST['filter']))));
+//    unset($_POST);
+//    $view->isFiltered = true;
+//
+//} else {
+//    $view->erroMessage = true;
+//}
 
 require_once('Views/forum.phtml');
