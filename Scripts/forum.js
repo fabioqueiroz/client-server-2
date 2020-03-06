@@ -19,8 +19,9 @@ function showHint(str) {
                     response.innerHTML = "<br/>";
                     response.style.border = "1px solid #A5ACB2";
                     response.style.width = "305px";
-                    response.style.marginTop = "-16px";
-                    response.style.backgroundColor = "white";
+                    response.style.marginTop = "-32px";
+                    //response.style.backgroundColor = "white";
+                    response.style.zIndex = "-1";
 
                     //console.log(this.responseText);
                     let postNames = JSON.parse(this.responseText);
@@ -28,7 +29,7 @@ function showHint(str) {
 
                     postNames.forEach((post) => {
 
-                        let suggestionBody = "<p class='suggestion-option'>" + post.title + "</p>";
+                        let suggestionBody = "<div class=''><p class='suggestion-option list-group-item'>" + post.title + "</p></div>";
                         let suggestion = domParser.parseFromString(suggestionBody, "text/html");
 
                         // TODO: search for substitute for documentElement
