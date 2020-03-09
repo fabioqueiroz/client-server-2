@@ -279,8 +279,7 @@ th, td {
 
 #hint-text {
     width: 305px;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
+    border-radius: 6px;
     height: 40px;
     font-size: 17px;
     text-align: center;

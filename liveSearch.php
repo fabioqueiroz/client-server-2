@@ -5,6 +5,7 @@ $postDataSet = new PostDataSet();
 $query = $_GET["q"];
 
 $posts = $postDataSet->getALiveSearchResults($query);
+
 //var_dump($posts);
 
 //$hint = "";
@@ -33,4 +34,5 @@ $posts = $postDataSet->getALiveSearchResults($query);
 // Output "no suggestion" if no hint was found or output results
 //echo $hint === "" ? ("no suggestion for " . $query) : json_encode($hint);
 
-echo json_encode($posts);
+//echo json_encode($posts);
+echo empty($posts) ? "no suggestion" : json_encode($posts);
