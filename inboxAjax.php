@@ -1,11 +1,15 @@
 <?php
-session_start();
-require_once('Models/Mailbox/MailboxDataSet.php');
+//session_start();
+//require_once('Models/Mailbox/MailboxDataSet.php');
 require_once('Models/Messages/MessageDataSet.php');
 
-$mailboxDataSet = new MailboxDataSet();
+//$mailboxDataSet = new MailboxDataSet();
 $messageDataSet = new MessageDataSet();
 
-$inbox = $messageDataSet->getInboxMail($_SESSION['userID']);
+$data = $messageDataSet->getInboxMail($_REQUEST['userID']);
 
-echo json_encode($inbox);
+echo json_encode($data);
+
+?>
+
+

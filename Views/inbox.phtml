@@ -1,5 +1,7 @@
 <?php require('template/header.phtml') ?>
-
+<script type="text/javascript">
+    let userId = '<?php echo $_SESSION["userID"]; ?>';
+</script>
 
 <form name="inbox-form" method="post" action="">
     <div class="container">
@@ -61,8 +63,8 @@
         </div>
         <!-- Ajax test -->
         <div class="row">
-<!--            <button onclick="getInboxMessages(this.userId);">Ajax result</button>-->
-            <p onload="getInboxMessages(this.userId);">Ajax result</p>
+            <button type="button" onclick="getInboxMessages(userId);">Ajax result</button>
+<!--            <p onload="getInboxMessages(this.userId);">Ajax result</p>-->
             <div id="inbox-messages"></div>
         </div>
 
@@ -76,7 +78,5 @@
     </div>
 </form>
 <br>
-<script type="text/javascript">
-    let userId = '<?php echo $_SESSION["userID"]; ?>';
-</script>
+<div><script src="Scripts/messaging.js" type="text/javascript" charset="utf-8"></script></div>
 <?php require('template/footer.phtml') ?>

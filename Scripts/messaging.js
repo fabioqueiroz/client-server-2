@@ -8,10 +8,10 @@ function getInboxMessages(id)
 
             let response = document.getElementById("inbox-messages");
             response.innerHTML = "<br/>";
+            console.log(this.responseText);
 
             let messages = JSON.parse(this.responseText);
             console.log(messages);
-            console.log("loading");
 
         }
 
