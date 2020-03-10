@@ -59,6 +59,13 @@
                 <?php }?>
             </div>
         </div>
+        <!-- Ajax test -->
+        <div class="row">
+<!--            <button onclick="getInboxMessages(this.userId);">Ajax result</button>-->
+            <p onload="getInboxMessages(this.userId);">Ajax result</p>
+            <div id="inbox-messages"></div>
+        </div>
+
         <div class="row">
             <?php if (empty($inbox)){?>
                 <div class="error-message">
@@ -69,5 +76,7 @@
     </div>
 </form>
 <br>
-
+<script type="text/javascript">
+    let userId = '<?php echo $_SESSION["userID"]; ?>';
+</script>
 <?php require('template/footer.phtml') ?>

@@ -1,7 +1,7 @@
 <?php
 
 
-class MessageDisplay extends Message
+class MessageDisplay extends Message implements JsonSerializable
 {
     private $_mboxID, $_mailbox, $_firstName, $_lastName;
 
@@ -49,5 +49,20 @@ class MessageDisplay extends Message
     public function getLastName()
     {
         return $this->_lastName;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'messageID' => $this->getMessageID(),
+            'message' => $this->getMessage(),
+            'sentBy' => $this->getSentBy(),
+            'sentTo' => $this->getSentTo(),
+            'messageDate' => $this->getMessageDate(),
+            'mboxID' => $this->getMboxID(),
+            'mailbox' => $this->getMailbox(),
+            'firstName' => $this->getFirstName(),
+            'lastName' => $this->getLastName(),
+        ];
     }
 }

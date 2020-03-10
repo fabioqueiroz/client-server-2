@@ -2,7 +2,7 @@ function showHint(str) {
     if (str.length === 0) {
         document.getElementById("txtHint").innerHTML = "";
         document.getElementById("txtHint").style.border = "0px";
-        document.getElementById("resultsSelectionBox").innerHTML = ""; //
+        document.getElementById("resultsSelectionBox").innerHTML = "";
 
         return;
 
@@ -22,7 +22,6 @@ function showHint(str) {
                     response.style.border = "0px solid #A5ACB2"; // #A5ACB2
                     response.style.width = "305px";
                     response.style.marginTop = "-32px";
-                    //response.style.backgroundColor = "white";
 
                     //console.log(this.responseText);
                     let postNames = JSON.parse(this.responseText);
