@@ -17,7 +17,7 @@ function getInboxMessages(id)
 
     }
 
-    xmlhttp.open("GET", "inboxAjax.php?userID=" + id, true);
+    xmlhttp.open("GET", "ajaxMessaging.php?userID=" + id, true);
     xmlhttp.send();
 }
 
