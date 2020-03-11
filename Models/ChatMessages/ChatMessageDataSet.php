@@ -10,4 +10,29 @@ class ChatMessageDataSet extends BaseDataSet
         parent::__construct();
     }
 
+    // Get all the messages sent to a user
+    public function getReceivedMessages($userID) {
+        $sqlQuery = "select c.chatMessageID, c.message, c.senderID, c.receiverID, c.messageDate
+                    from laf873.chats c
+                    where c.receiverID = ?
+                    order by c.messageDate desc";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$userID]);
+
+        $inbox = [];
+        while ($row = $statement->fetch()) {
+            $inbox[] = new ChatMessage($row);
+        }
+        return $inbox;
+    }
+
+    // Allow a user to message another user
+    public function sendNewMessage($message, $senderID, $receiverID) {
+        $sqlQuery = "INSERT INTO laf873.chats (message, senderID, receiverID, messageDate) VALUES (?,?,?,NOW())";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$message, $senderID, $receiverID]);
+    }
+
 }

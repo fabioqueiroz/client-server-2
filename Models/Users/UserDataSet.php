@@ -25,7 +25,7 @@ class UserDataSet extends BaseDataSet
 
     // Retrieve a list of all users
     public function getAllUsers() {
-        $sqlQuery = 'SELECT * FROM laf873.users';
+        $sqlQuery = 'SELECT * FROM laf873.users ORDER BY firstName';
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();

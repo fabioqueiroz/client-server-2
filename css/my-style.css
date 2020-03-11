@@ -290,6 +290,17 @@ th, td {
     z-index: 9999;
 }
 
+.user-chat-list {
+    max-height: 715px;
+    overflow: auto;
+    border-left-style: outset;
+    border-bottom-style: outset;
+}
+
+.user-chat-list p {
+    margin-left: 10px;
+}
+
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {
     .col-xs-6 {

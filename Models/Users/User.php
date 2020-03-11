@@ -1,7 +1,7 @@
 <?php
 
 
-class User
+class User implements JsonSerializable
 {
     private $_userID, $_firstName, $_lastName, $_email, $_password, $_photo, $_registrationDate, $_isAdmin;
 
@@ -107,5 +107,21 @@ class User
     public function getIsAdmin()
     {
         return $this->_isAdmin;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'Id' => $this->getUserID(),
+            'firstName' => $this->getFirstName(),
+            'lastName' => $this->getLastName(),
+        ];
     }
 }

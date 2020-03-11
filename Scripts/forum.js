@@ -13,8 +13,6 @@ function showHint(str) {
             if (this.readyState === 4 && this.status === 200) {
 
                 let response = document.getElementById("resultsSelectionBox");
-                //let names = this.responseText.split(", "); // ","
-                //console.log(names);
                 let domParser = new DOMParser();
 
                 if (this.response != "no suggestions") {
