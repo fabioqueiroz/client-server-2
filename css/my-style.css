@@ -308,6 +308,29 @@ th, td {
     cursor: pointer;
 }
 
+.chat-outer-area {
+    height: 715px;
+}
+
+/*chat-outer-area input {*/
+/*    width: 400px;*/
+/*    background-color: black;*/
+/*}*/
+
+.chat-input {
+    width: 370px;
+    border-radius: 10px;
+    height: 50px;
+}
+
+.chat-message-area {
+    height: 400px;
+    border-style: outset;
+    border-color: #428bca;
+    border-radius: 10px;
+    overflow: auto;
+}
+
 
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {

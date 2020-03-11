@@ -6,12 +6,20 @@
 <div class="row">
     <div class="col-md-9">
         <h3>Chat Messages</h3>
+        <div class="chat-outer-area">
+            <div class="chat-message-area">text area</div>
+            <div class="col-md-6">
+                <input class="chat-input" type="text" placeholder="Type your message here...">
+                <button type="button" class="btn btn-primary">Send</button>
+                <button type="button" class="btn btn-primary">Upload Image</button>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-3 pull-right">
         <h3>Users</h3>
         <div class="user-chat-list">
-            <button type="button" onclick="getChatUsers();">Display users</button>
+            <button type="button" class="btn btn-primary" onclick="getChatUsers();">Display users</button>
 <!--            <div onload="getChatUsers();">Display users</div>-->
             <div id="chat-user"></div>
 <!--            --><?php //foreach ($users as $user){?>

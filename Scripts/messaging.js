@@ -43,9 +43,9 @@ function getChatUsers() {
                 window.innerHTML += names.documentElement.innerText;
 
                 names.documentElement.addEventListener('click', () => {
-
                      //response.innerHTML += names;
-                    //window.location.href = "";
+                    //TODO: create a script to retrieve the chats by the id of the selected user on the list
+                    //window.location.href = "" + user.Id; // *** getMessagesBySenderId ***
 
                 });
 
