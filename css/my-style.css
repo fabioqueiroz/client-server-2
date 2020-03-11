@@ -298,8 +298,16 @@ th, td {
 }
 
 .user-chat-list p {
-    margin-left: 10px;
+    padding-left: 10px;
+    background-color: white;
 }
+
+.user-chat-list p:hover {
+    background-color: #428bca;
+    color: white;
+    cursor: pointer;
+}
+
 
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {

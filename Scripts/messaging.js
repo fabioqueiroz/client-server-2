@@ -31,21 +31,26 @@ function getChatUsers() {
             response.innerHTML = "<br/>";
 
             let users = JSON.parse(this.responseText);
-            //console.log(users);
+
             let domParser = new DOMParser();
 
             users.forEach((user) => {
 
-                let userDetails = "<p>" + user.firstName + " "+ user.lastName+ "</p>";
+                let userDetails = "<p class=''>" + user.firstName + " "+ user.lastName+ "</p>";
                 let names = domParser.parseFromString(userDetails, "text/html");
                 // console.log(names);
+
+                window.innerHTML += names.documentElement.innerText;
+
                 names.documentElement.addEventListener('click', () => {
-                    // window.location.href = "postReplies.php?postID=" + post.postId + "&postingUser=" + post.postingUser;
-                    response.innerHTML += names;
+
+                     //response.innerHTML += names;
+                    //window.location.href = "";
 
                 });
 
                 response.appendChild(names.documentElement);
+
             });
         }
 
