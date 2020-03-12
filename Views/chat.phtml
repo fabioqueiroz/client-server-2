@@ -1,35 +1,39 @@
 <?php require('template/header.phtml') ?>
-<script type="text/javascript">
+<script type="text/javascript" charset="utf-8">
     let userId = '<?php echo $_SESSION["userID"]; ?>';
 </script>
 
-<div class="row">
-    <div class="col-md-9">
-        <h3>Chat Messages</h3>
-        <div class="chat-outer-area">
-            <div class="chat-message-area">text area</div>
-            <div class="col-md-6">
-                <input class="chat-input" type="text" placeholder="Type your message here...">
-                <button type="button" class="btn btn-primary">Send</button>
-                <button type="button" class="btn btn-primary">Upload Image</button>
+<body onload="getChatUsers(userId)">
+
+    <div class="row">
+        <div class="col-md-9">
+            <h3>Chat Messages</h3>
+            <div class="chat-outer-area">
+                <div id="chat-message-display-area" class="chat-message-area" onclick="getInboxMessages(userId)"><p>text area</p></div>
+                <div class="col-md-6">
+                    <input class="chat-input" type="text" placeholder="Type your message here...">
+                    <button type="button" class="btn btn-primary">Send</button>
+                    <button type="button" class="btn btn-primary">Upload Image</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-3 pull-right">
-        <h3>Users</h3>
-        <div class="user-chat-list">
-            <button type="button" class="btn btn-primary" onclick="getChatUsers();">Display users</button>
-<!--            <div onload="getChatUsers();">Display users</div>-->
-            <div id="chat-user"></div>
-<!--            --><?php //foreach ($users as $user){?>
-<!--                <p>--><?php //echo $user->getFirstName(). " " .$user->getLastName()?><!--</p>-->
-<!--            --><?php //}?>
+        <div class="col-md-3 pull-right">
+            <h3>Users</h3>
+            <div class="user-chat-list">
+<!--                <button type="button" class="btn btn-primary" onclick="getChatUsers()">Display users</button>-->
+                <div id="chat-user"></div>
+            </div>
         </div>
-    </div>
 
-</div>
-<br>
-<br>
-<div><script src="Scripts/messaging.js" type="text/javascript" charset="utf-8"></script></div>
+    </div>
+    <br>
+    <br>
+    <div>
+
+        <script src="Scripts/messaging.js" type="text/javascript" charset="utf-8">
+            //let userId = '<?php //echo $_SESSION["userID"]; ?>//';
+        </script>
+    </div>
+</body>
 <?php require('template/footer.phtml') ?>

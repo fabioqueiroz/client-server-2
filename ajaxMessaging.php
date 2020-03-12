@@ -5,6 +5,9 @@ require_once('Models/ChatMessages/ChatMessageDataSet.php');
 //$userDataSet = new UserDataSet();
 $chatMessageDataSet = new ChatMessageDataSet();
 
-$receivedMessages = $chatMessageDataSet->getReceivedMessages($_REQUEST['userID']);
+//$receivedMessages = $chatMessageDataSet->getReceivedMessages($_REQUEST['userID']);
+
+// getMessagesBySenderId
+$receivedMessages = $chatMessageDataSet->getMessagesBySenderId($_REQUEST['userID'], $_REQUEST['senderID']);
 
 echo json_encode($receivedMessages);
