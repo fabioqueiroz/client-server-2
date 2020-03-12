@@ -27,12 +27,12 @@ class ChatMessageDataSet extends BaseDataSet
         return $inbox;
     }
 
-    // Get all the messages sent to a user
+    // Get all the messages sent to a user // *****   or (c.senderID = ? and c.receiverID = ?) - not working   ******
     public function getMessagesBySenderId($userID, $senderID) {
         $sqlQuery = "select c.chatMessageID, c.message, c.senderID, c.receiverID, c.messageDate
                     from laf873.chats c
-                    where c.receiverID = ? and c.senderID = ?
-                    order by c.messageDate desc";
+                    where (c.receiverID = ? and c.senderID = ?) 
+                    order by c.messageDate";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$userID,$senderID]);

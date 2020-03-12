@@ -9,9 +9,9 @@
         <div class="col-md-9">
             <h3>Chat Messages</h3>
             <div class="chat-outer-area">
-                <div id="chat-message-display-area" class="chat-message-area" onclick="getInboxMessages(userId)"><p>text area</p></div>
+                <div id="chat-message-display-area" class="chat-message-area"></div>
                 <div class="col-md-6">
-                    <input class="chat-input" type="text" placeholder="Type your message here...">
+                    <input id="new-chat-message" class="chat-input" type="text" placeholder="Type your message here..." onclick="createNewMessage()">
                     <button type="button" class="btn btn-primary">Send</button>
                     <button type="button" class="btn btn-primary">Upload Image</button>
                 </div>
