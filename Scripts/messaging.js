@@ -70,8 +70,11 @@ function getChatUsers(id) {
 
                         //window.location.href = "chat.php?userID=" + id + "&senderID="+ user.Id; //chat.php?userID=81&senderID=41
 
-                        // test - getInboxMessages
                         response.location = "" + getInboxMessages(id, user);
+
+                        // Fetch new messages
+                        setInterval(() => response.location = "" + getInboxMessages(id, user), 10000);
+                        loadingTimer();
 
                     });
 
@@ -122,4 +125,11 @@ function createNewMessage(userId, receiverId) {
 
     xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + newMessage + "&userID=" + userId + "&receiverID="+ receiverId, true); //ajaxCreateMessage.php?newChatMessage=test&userID=81&receiverID=41
     xmlhttp.send();
+}
+
+function loadingTimer() {
+    setInterval(() => document.getElementById("timer").innerHTML = "Loading messages..."
+        , 3000);
+    setInterval(() => document.getElementById("timer").innerHTML = " " + "<br/>"
+        , 7000);
 }
