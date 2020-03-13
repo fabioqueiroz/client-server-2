@@ -27,11 +27,11 @@ class ChatMessageDataSet extends BaseDataSet
         return $inbox;
     }
 
-    // Get all the messages sent to a user // *****   or (c.senderID = ? and c.receiverID = ?) - not working   ******
+    // Get all the messages sent to a user //
     public function getMessagesBySenderId($userID, $senderID) {
         $sqlQuery = "select c.chatMessageID, c.message, c.senderID, c.receiverID, c.messageDate
                     from laf873.chats c
-                    where (c.receiverID = ? and c.senderID = ?) 
+                    where (c.receiverID = ? and c.senderID = ?)
                     order by c.messageDate";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -43,6 +43,23 @@ class ChatMessageDataSet extends BaseDataSet
         }
         return $inbox;
     }
+
+//    // Get all the messages sent to a user // *****   or (c.senderID = ? and c.receiverID = ?) - not working   ******
+//    public function getMessagesBySenderId($userID, $senderID, $sender2ID, $user2ID) {
+//        $sqlQuery = "select c.chatMessageID, c.message, c.senderID, c.receiverID, c.messageDate
+//                    from laf873.chats c
+//                    where c.receiverID = ? and c.senderID = ? or c.senderID = ? and c.receiverID = ?
+//                    order by c.messageDate";
+//
+//        $statement = $this->_dbHandle->prepare($sqlQuery);
+//        $statement->execute([$userID,$senderID, $sender2ID, $user2ID]);
+//
+//        $inbox = [];
+//        while ($row = $statement->fetch()) {
+//            $inbox[] = new ChatMessage($row);
+//        }
+//        return $inbox;
+//    }
 
 
     // Allow a user to message another user
