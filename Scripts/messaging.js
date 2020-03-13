@@ -20,10 +20,10 @@ function getInboxMessages(userSessionId, sender) {
 
                 if(msg.receiverID === userSessionId) {
 
-                    messageInfo = "<p class=''>" + sender.firstName + ": "+ msg.message + "</p>";
+                    messageInfo = "<div class=''><p class='user-chat-div'>" + sender.firstName + ": "+ msg.message + "</p></div>";
 
                 } else {
-                    messageInfo = "<p class=''>" + "Me: " + ": "+ msg.message + "</p>";
+                    messageInfo = "<div class=''><p class='me-chat-div'>" + "Me: " + msg.message + "</p></div>";
                 }
 
                 let message = domParser.parseFromString(messageInfo, "text/html");

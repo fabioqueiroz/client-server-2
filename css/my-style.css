@@ -335,6 +335,21 @@ th, td {
     background-color: white;
 }
 
+. user-chat-div, me-chat-div {
+    font-size: 18px !important;
+}
+
+.user-chat-div {
+    background-color: darkcyan !important;
+    font-size: 18px !important;
+    color: whitesmoke;
+}
+
+.me-chat-div {
+    background-color: dodgerblue !important;
+    font-size: 18px !important;
+    color: whitesmoke;
+}
 
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {
