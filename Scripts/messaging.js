@@ -1,4 +1,6 @@
 let xmlhttp = new XMLHttpRequest();
+let recipientId = "";
+let myNewMessage = "";
 
 function getInboxMessages(userSessionId, sender) {
 
@@ -17,13 +19,15 @@ function getInboxMessages(userSessionId, sender) {
             messages.forEach((msg) => {
 
                 let messageInfo = "";
+                let date = new Date(msg.messageDate, "DD-MM-YYYY");
+                console.log(date)
 
                 if(msg.receiverID === userSessionId) {
 
-                    messageInfo = "<div class=''><p class='user-chat-div'>" + sender.firstName + ": "+ msg.message + "</p></div>";
+                    messageInfo = "<div class=''><p class='user-chat-div'>" + msg.messageDate + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
 
                 } else {
-                    messageInfo = "<div class=''><p class='me-chat-div'>" + "Me: " + msg.message + "</p></div>";
+                    messageInfo = "<div class=''><p class='me-chat-div'>" + msg.messageDate + "<br/>" + "Me: " + msg.message + "</p></div>";
                 }
 
                 let message = domParser.parseFromString(messageInfo, "text/html");
@@ -66,9 +70,7 @@ function getChatUsers(id) {
 
                     names.documentElement.addEventListener('click', () => {
 
-                        //window.location.href = "ajaxMessaging.php?userID=" + id + "&senderID="+ user.Id; //ajaxMessaging.php?userID=81&senderID=41
-
-                        //window.location.href = "chat.php?userID=" + id + "&senderID="+ user.Id; //chat.php?userID=81&senderID=41
+                        recipientId = user.Id;
 
                         response.location = "" + getInboxMessages(id, user);
 
@@ -90,41 +92,25 @@ function getChatUsers(id) {
     xmlhttp.send();
 }
 
-function createNewMessage(userId, receiverId) {
+function getMessageInput(input) {
+    //TODO: create a whitelist to sanitize the data
 
-    let newMessage = "";
+    return myNewMessage = input.trim();
+}
 
-    xmlhttp.onreadystatechange = function() {
+function createNewMessage(userId) {
 
-        if (this.readyState === 4 && this.status === 200) {
+    console.log("clicked:", myNewMessage)
 
-            newMessage = document.getElementById("new-chat-message");
+    if (myNewMessage !== "" && recipientId !== "") {
+        console.log("after")
+        document.getElementById("new-chat-message").innerHTML = "";
 
-            // let response = document.getElementById("chat-message-display-area");
-            // response.innerHTML = "<br/>";
-            // console.log(this.responseText);
-            //
-            // let messages = JSON.parse(this.responseText);
-            // console.log(messages);
-            //
-            // let domParser = new DOMParser();
-            //
-            // messages.forEach((msg) => {
-            //
-            //     let messageInfo = "<p class=''> Me: "+ msg.message + "</p>";
-            //     let message = domParser.parseFromString(messageInfo, "text/html");
-            //
-            //     window.innerHTML += message.documentElement.innerText;
-            //
-            //     response.appendChild(message.documentElement);
-            // });
+        xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true); //ajaxCreateMessage.php?newChatMessage=test&userID=81&receiverID=41
+        xmlhttp.send();
 
-        }
-
+        myNewMessage = "";
     }
-
-    xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + newMessage + "&userID=" + userId + "&receiverID="+ receiverId, true); //ajaxCreateMessage.php?newChatMessage=test&userID=81&receiverID=41
-    xmlhttp.send();
 }
 
 function loadingTimer() {
