@@ -1,6 +1,8 @@
 let xmlhttp = new XMLHttpRequest();
 let recipientId = "";
 let myNewMessage = "";
+let dbMessageCounter = "";
+let notificationCounter = "";
 
 function getInboxMessages(userSessionId, sender) {
 
@@ -15,6 +17,9 @@ function getInboxMessages(userSessionId, sender) {
             console.log(messages);
 
             let domParser = new DOMParser();
+
+            dbMessageCounter = messages.length;
+            console.log(dbMessageCounter)
 
             messages.forEach((msg) => {
 
@@ -63,7 +68,9 @@ function getChatUsers(id) {
 
                 if(user.Id !== id) {
 
-                    let userDetails = "<p class=''>" + user.firstName + " "+ user.lastName+ "</p>";
+                    let userDetails = "<p class=''>" + user.firstName + " " + user.lastName + "</p>";
+                    // if notificationCounter > dbMessageCounter
+                    // let userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
                     let names = domParser.parseFromString(userDetails, "text/html");
 
                     window.innerHTML += names.documentElement.innerText;
@@ -71,6 +78,7 @@ function getChatUsers(id) {
                     names.documentElement.addEventListener('click', () => {
 
                         recipientId = user.Id;
+                        // dbMessageCounter = notificationCounter;
 
                         response.location = "" + getInboxMessages(id, user);
 
@@ -100,22 +108,21 @@ function dateFormatter(sqlDate) {
 }
 
 function getMessageInput(input) {
-    //TODO: create a whitelist to sanitize the data
-
+    //TODO: sanitize the data
     return myNewMessage = input.trim();
 }
 
 function createNewMessage(userId) {
 
-    console.log("clicked:", myNewMessage)
+    if (myNewMessage !== "" && recipientId !== "") { //ajaxCreateMessage.php?newChatMessage=test&userID=81&receiverID=41
 
-    if (myNewMessage !== "" && recipientId !== "") {
-        console.log("after")
         document.getElementById("new-chat-message").innerHTML = "";
 
-        xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true); //ajaxCreateMessage.php?newChatMessage=test&userID=81&receiverID=41
+        xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
         xmlhttp.send();
 
+        notificationCounter = dbMessageCounter;
+        notificationCounter++;
         myNewMessage = "";
     }
 }
@@ -126,3 +133,13 @@ function loadingTimer() {
     setInterval(() => document.getElementById("timer").innerHTML = " " + "<br/>"
         , 7000);
 }
+
+function notificationChecker() {
+
+}
+
+// TODO: set notification
+// TODO: typing gif
+// TODO: upload image
+// TODO: refactor to class
+
