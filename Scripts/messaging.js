@@ -19,25 +19,15 @@ function getInboxMessages(userSessionId, sender) {
             messages.forEach((msg) => {
 
                 let messageInfo = "";
-                // let dateParts = msg.messageDate.split(" ");
-                // let day = dateParts[0].toString().split("-");
-                // let msgTime = dateParts[1];
-                //
-                // //console.log(dateParts[0], dateParts[1])
-                //
-                // let date = new Date(day[0], day[1] - 1, day[2].substr(0,2));
-                // console.log(date, "at ", msgTime)
 
-                let formattedDate = new Date(Date.parse(msg.messageDate.replace(/-/g, '/')));
-
-                console.log(formattedDate)
+                let date = dateFormatter(msg.messageDate);
 
                 if(msg.receiverID === userSessionId) {
 
-                    messageInfo = "<div class=''><p class='user-chat-div'>" + msg.messageDate + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+                    messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
 
                 } else {
-                    messageInfo = "<div class=''><p class='me-chat-div'>" + msg.messageDate + "<br/>" + "Me: " + msg.message + "</p></div>";
+                    messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
                 }
 
                 let message = domParser.parseFromString(messageInfo, "text/html");
@@ -100,6 +90,13 @@ function getChatUsers(id) {
 
     xmlhttp.open("GET", "ajaxUsers.php", true);
     xmlhttp.send();
+}
+
+function dateFormatter(sqlDate) {
+
+    let formattedDate = new Date(Date.parse(sqlDate.replace(/-/g, '/')));
+
+    return formattedDate.toLocaleString();
 }
 
 function getMessageInput(input) {
