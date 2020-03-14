@@ -19,8 +19,18 @@ function getInboxMessages(userSessionId, sender) {
             messages.forEach((msg) => {
 
                 let messageInfo = "";
-                let date = new Date(msg.messageDate, "DD-MM-YYYY");
-                console.log(date)
+                // let dateParts = msg.messageDate.split(" ");
+                // let day = dateParts[0].toString().split("-");
+                // let msgTime = dateParts[1];
+                //
+                // //console.log(dateParts[0], dateParts[1])
+                //
+                // let date = new Date(day[0], day[1] - 1, day[2].substr(0,2));
+                // console.log(date, "at ", msgTime)
+
+                let formattedDate = new Date(Date.parse(msg.messageDate.replace(/-/g, '/')));
+
+                console.log(formattedDate)
 
                 if(msg.receiverID === userSessionId) {
 
