@@ -68,9 +68,19 @@ function getChatUsers(id) {
 
                 if(user.Id !== id) {
 
-                    let userDetails = "<p class=''>" + user.firstName + " " + user.lastName + "</p>";
-                    // if notificationCounter > dbMessageCounter
-                    // let userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
+                    // let userDetails = "<p class=''>" + user.firstName + " " + user.lastName + "</p>";
+
+                    let userDetails = "";
+
+                    if (notificationCounter > dbMessageCounter) {
+
+                        userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
+                        notificationCounter = dbMessageCounter;
+
+                    } else {
+                        userDetails = "<p class=''>" + user.firstName + " " + user.lastName + "</p>";
+                    }
+
                     let names = domParser.parseFromString(userDetails, "text/html");
 
                     window.innerHTML += names.documentElement.innerText;
@@ -122,24 +132,37 @@ function createNewMessage(userId) {
         xmlhttp.send();
 
         notificationCounter = dbMessageCounter;
-        notificationCounter++;
+        notificationCounter += 2;
         myNewMessage = "";
     }
 }
 
 function loadingTimer() {
-    setInterval(() => document.getElementById("timer").innerHTML = "Loading messages..."
-        , 3000);
-    setInterval(() => document.getElementById("timer").innerHTML = " " + "<br/>"
-        , 7000);
+
+    function getDots() {
+        let count = 0;
+        setInterval(function() {
+            count++;
+            document.getElementById('timer').innerHTML = "Loading messages." + new Array(count % 5).join('.');
+        }, 500);
+
+        setInterval(function() {
+            document.getElementById('timer').innerHTML = " " + "<br/>";
+        }, 10000);
+
+    }
+
+    getDots();
+
+    // setInterval(() => document.getElementById("timer").innerHTML = "Loading messages..."
+    //     , 3000);
+
+    // setInterval(() => document.getElementById("timer").innerHTML = " " + "<br/>"
+    //     , 7000);
 }
 
-function notificationChecker() {
-
-}
 
 // TODO: set notification
-// TODO: typing gif
 // TODO: upload image
 // TODO: refactor to class
 
