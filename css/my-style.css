@@ -98,9 +98,9 @@ th, td {
     text-align: left;
 }
 
-input[type='file'] {
-    color: transparent;
-}
+/*input[type='file'] {*/
+/*    color: transparent;*/
+/*}*/
 
 .dropdown-position {
     padding-top: 24px;

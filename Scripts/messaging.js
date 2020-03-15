@@ -1,8 +1,37 @@
 let xmlhttp = new XMLHttpRequest();
+
 let recipientId = "";
 let myNewMessage = "";
 let dbMessageCounter = "";
 let notificationCounter = "";
+
+let isImageUploaded = false;
+
+const url = 'imageProcessor.php';
+const form = document.querySelector('form');
+
+// Listen for form submit for file uploading
+form.addEventListener('submit', e => {
+    e.preventDefault()
+
+    const files = document.querySelector('[type=file]').files;
+    const formData = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+
+        formData.append('files[]', file)
+    }
+
+    fetch(url + "?userID=" + userId + "&receiverID="+ recipientId , {
+        method: 'POST',
+        body: formData,
+    }).then(response => {
+        isImageUploaded = true;
+        console.log(response)
+
+    })
+})
 
 function getInboxMessages(userSessionId, sender) {
 
@@ -29,10 +58,29 @@ function getInboxMessages(userSessionId, sender) {
 
                 if(msg.receiverID === userSessionId) {
 
-                    messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+                    // messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+
+                    if (msg.message === null) {
+
+                        messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.image + "</p></div>";
+
+                    } else {
+                        messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+                    }
+
 
                 } else {
-                    messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
+
+                    // messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
+
+                    if (msg.message === null) {
+
+                        messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.image + "</p></div>";
+
+                    } else {
+                        messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
+                    }
+
                 }
 
                 let message = domParser.parseFromString(messageInfo, "text/html");
@@ -139,7 +187,7 @@ function createNewMessage(userId) {
 
 function loadingTimer() {
 
-    function getDots() {
+    function moveDots() {
         let count = 0;
         setInterval(function() {
             count++;
@@ -152,7 +200,7 @@ function loadingTimer() {
 
     }
 
-    getDots();
+    moveDots();
 
     // setInterval(() => document.getElementById("timer").innerHTML = "Loading messages..."
     //     , 3000);
@@ -163,7 +211,44 @@ function loadingTimer() {
 
 // TODO: upload image
 function imageUploader() {
-    // id="image-loader"
+
+    // window.addEventListener('click', function() {
+    //     document.querySelector('input[type="file"]').addEventListener('change', function() {
+    //         if (this.files && this.files[0]) {
+    //             // let img = document.querySelector('img');
+    //              let img = document.querySelector('#file-name');
+    //             // let img = document.getElementById('image-loader');
+    //             img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+    //
+    //             console.log(img.src)
+    //         }
+    //     });
+    // });
+
+    const url = 'imageProcessor.php';
+    const form = document.querySelector('form');
+
+// Listen for form submit for file uploading
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+
+        const files = document.querySelector('[type=file]').files
+        const formData = new FormData()
+
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i]
+
+            formData.append('files[]', file)
+        }
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        }).then(response => {
+            console.log(response)
+        })
+    })
+
 }
 
 

@@ -12,7 +12,7 @@ class ChatMessage implements JsonSerializable
         $this->_senderID = $dbRow['senderID'];
         $this->_receiverID = $dbRow['receiverID'];
         $this->_messageDate = $dbRow['messageDate'];
-        //$this->_image = $dbRow['image'];
+        $this->_image = $dbRow['image'];
     }
 
     /**
@@ -78,6 +78,7 @@ class ChatMessage implements JsonSerializable
             'senderID' => $this->getSenderID(),
             'receiverID' => $this->getReceiverID(),
             'messageDate' => $this->getMessageDate(),
+            'image' => $this->getImage(),
         ];
     }
 
