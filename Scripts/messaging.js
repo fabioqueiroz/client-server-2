@@ -161,8 +161,13 @@ function loadingTimer() {
     //     , 7000);
 }
 
-
-// TODO: set notification
 // TODO: upload image
+function imageUploader() {
+    // id="image-loader"
+}
+
+
+
+// TODO: fix notification
 // TODO: refactor to class
 

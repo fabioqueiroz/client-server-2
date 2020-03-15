@@ -13,8 +13,11 @@
                 <div id="chat-message-display-area" class="chat-message-area"></div>
                 <div class="col-md-6">
                     <input id="new-chat-message" class="chat-input" type="text" placeholder="Type your message here..." onkeyup="getMessageInput(this.value)">
-                    <button type="button" class="btn btn-primary" onclick="createNewMessage(userId)">Send</button>
-                    <button type="button" class="btn btn-primary">Upload Image</button>
+                    <div class="col-md-9">
+                        <input id="image-loader" type='file' class="pull-right"/>
+                        <button type="button" class="btn btn-primary" onclick="createNewMessage(userId)">Send</button>
+                        <button type="button" class="btn btn-primary" onclick="imageUploader()">Upload Image</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -98,12 +98,16 @@ th, td {
     text-align: left;
 }
 
+input[type='file'] {
+    color: transparent;
+}
+
 .dropdown-position {
     padding-top: 24px;
     font-size: 18px;
 }
 
-.dropdown-position ,.link-text {
+.dropdown-position, .link-text {
   color: black;
 }
 
