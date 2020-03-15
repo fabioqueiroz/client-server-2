@@ -56,13 +56,16 @@ function getInboxMessages(userSessionId, sender) {
 
                 let date = dateFormatter(msg.messageDate);
 
+                let myImage = new Image(100, 100);
+                myImage.src = msg.image;
+
                 if(msg.receiverID === userSessionId) {
 
                     // messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
 
                     if (msg.message === null) {
 
-                        messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.image + "</p></div>";
+                        messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + "<img width='100' height='100' src=' " + myImage.src + "'/>" + "</p></div>";
 
                     } else {
                         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
@@ -75,7 +78,7 @@ function getInboxMessages(userSessionId, sender) {
 
                     if (msg.message === null) {
 
-                        messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.image + "</p></div>";
+                        messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + "<img width='100' height='100' src=' " + myImage.src + "'/>" + "</p></div>";
 
                     } else {
                         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
