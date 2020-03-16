@@ -2,7 +2,7 @@
 require_once('Models/ChatMessages/ChatMessageDataSet.php');
 $chatMessageDataSet = new ChatMessageDataSet();
 
-print_r($_FILES);
+//print_r($_FILES);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['files'])) {

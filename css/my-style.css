@@ -343,6 +343,11 @@ th, td {
     font-size: 18px !important;
 }
 
+#img-size {
+    max-width: 90%;
+    height: auto;
+}
+
 .user-chat-div {
     background-color: darkcyan !important;
     font-size: 18px !important;

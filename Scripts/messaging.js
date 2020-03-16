@@ -5,8 +5,6 @@ let myNewMessage = "";
 let dbMessageCounter = "";
 let notificationCounter = "";
 
-let isImageUploaded = false;
-
 const url = 'imageProcessor.php';
 const form = document.querySelector('form');
 
@@ -27,10 +25,12 @@ form.addEventListener('submit', e => {
         method: 'POST',
         body: formData,
     }).then(response => {
-        isImageUploaded = true;
-        console.log(response)
+        return response.text();
+        //console.log(response)
 
-    })
+    }).catch(function (error) {
+        files.innerText ='Error: ' + error;
+    });
 })
 
 function getInboxMessages(userSessionId, sender) {
@@ -65,7 +65,7 @@ function getInboxMessages(userSessionId, sender) {
 
                     if (msg.message === null) {
 
-                        messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + "<img width='100' height='100' src=' " + myImage.src + "'/>" + "</p></div>";
+                        messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
 
                     } else {
                         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
@@ -78,7 +78,7 @@ function getInboxMessages(userSessionId, sender) {
 
                     if (msg.message === null) {
 
-                        messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + "<img width='100' height='100' src=' " + myImage.src + "'/>" + "</p></div>";
+                        messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
 
                     } else {
                         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
@@ -211,49 +211,6 @@ function loadingTimer() {
     // setInterval(() => document.getElementById("timer").innerHTML = " " + "<br/>"
     //     , 7000);
 }
-
-// TODO: upload image
-function imageUploader() {
-
-    // window.addEventListener('click', function() {
-    //     document.querySelector('input[type="file"]').addEventListener('change', function() {
-    //         if (this.files && this.files[0]) {
-    //             // let img = document.querySelector('img');
-    //              let img = document.querySelector('#file-name');
-    //             // let img = document.getElementById('image-loader');
-    //             img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-    //
-    //             console.log(img.src)
-    //         }
-    //     });
-    // });
-
-    const url = 'imageProcessor.php';
-    const form = document.querySelector('form');
-
-// Listen for form submit for file uploading
-    form.addEventListener('submit', e => {
-        e.preventDefault()
-
-        const files = document.querySelector('[type=file]').files
-        const formData = new FormData()
-
-        for (let i = 0; i < files.length; i++) {
-            let file = files[i]
-
-            formData.append('files[]', file)
-        }
-
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-        }).then(response => {
-            console.log(response)
-        })
-    })
-
-}
-
 
 
 // TODO: fix notification
