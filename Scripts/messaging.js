@@ -33,6 +33,7 @@ form.addEventListener('submit', e => {
     });
 })
 
+// create class
 function getInboxMessages(userSessionId, sender) {
 
     xmlhttp.onreadystatechange = function() {
@@ -52,41 +53,46 @@ function getInboxMessages(userSessionId, sender) {
 
             messages.forEach((msg) => {
 
-                let messageInfo = "";
-
                 let date = dateFormatter(msg.messageDate);
 
                 let myImage = new Image(100, 100);
                 myImage.src = msg.image;
 
-                if(msg.receiverID === userSessionId) {
+                let userChatMessage = new UserChatMessage(msg, userSessionId, sender, date, myImage);
 
-                    // messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+                let message = domParser.parseFromString(userChatMessage.displayMessage(), "text/html");
 
-                    if (msg.message === null) {
-
-                        messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
-
-                    } else {
-                        messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
-                    }
-
-
-                } else {
-
-                    // messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
-
-                    if (msg.message === null) {
-
-                        messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
-
-                    } else {
-                        messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
-                    }
-
-                }
-
-                let message = domParser.parseFromString(messageInfo, "text/html");
+                // let messageInfo = "";
+                //
+                // // create class for this conversion
+                // if(msg.receiverID === userSessionId) {
+                //
+                //     // messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+                //
+                //     if (msg.message === null) {
+                //
+                //         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
+                //
+                //     } else {
+                //         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+                //     }
+                //
+                //
+                // } else {
+                //
+                //     // messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
+                //
+                //     if (msg.message === null) {
+                //
+                //         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
+                //
+                //     } else {
+                //         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
+                //     }
+                //
+                // }
+                //
+                // let message = domParser.parseFromString(messageInfo, "text/html");
 
                 window.innerHTML += message.documentElement.innerText;
 
@@ -144,7 +150,7 @@ function getChatUsers(id) {
                         response.location = "" + getInboxMessages(id, user);
 
                         // Fetch new messages
-                        setInterval(() => response.location = "" + getInboxMessages(id, user), 10000);
+                       // setInterval(() => response.location = "" + getInboxMessages(id, user), 10000);
                         loadingTimer();
 
                     });
@@ -215,4 +221,70 @@ function loadingTimer() {
 
 // TODO: fix notification
 // TODO: refactor to class
+
+class UserChatMessage {
+
+    constructor(msg, userSessionId, sender, date, myImage) {
+        this._msg = msg;
+        this._userSessionId = userSessionId;
+        this._sender = sender;
+        this._date = date;
+        this._myImage = myImage;
+    }
+
+    get message() {
+        return this._msg;
+    }
+
+    get userSessionId() {
+        return this._userSessionId;
+    }
+
+    get sender() {
+        return this._sender;
+    }
+
+    get date() {
+        return this._date;
+    }
+
+    get myImage() {
+        return this._myImage;
+    }
+
+     displayMessage(msg) {
+
+        let messageInfo = "";
+
+        // create class for this conversion
+        if(this._msg.receiverID === this._userSessionId ) {
+
+            // messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+
+            if (this._msg.message === null) {
+
+                messageInfo = "<div class=''><p class='user-chat-div'>" + this._date + "<br/>" + this._sender.firstName + "<img id='img-size' src='" + this._myImage.src + "'/>" + "</p></div>";
+
+            } else {
+                messageInfo = "<div class=''><p class='user-chat-div'>" + this._date + "<br/>" + this._sender.firstName + ": "+ this._msg.message + "</p></div>";
+            }
+
+
+        } else {
+
+            // messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
+
+            if (this._msg.message === null) {
+
+                messageInfo = "<div class=''><p class='me-chat-div'>" + this._date + "<br/>" + "Me: " + "<img id='img-size' src='" + this._myImage.src + "'/>" + "</p></div>";
+
+            } else {
+                messageInfo = "<div class=''><p class='me-chat-div'>" + this._date + "<br/>" + "Me: " + this._msg.message + "</p></div>";
+            }
+
+        }
+
+        return messageInfo;
+    }
+}
 

@@ -346,6 +346,18 @@ th, td {
 #img-size {
     max-width: 90%;
     height: auto;
+    transition:transform 0.25s ease;
+}
+
+#img-size:hover {
+    -webkit-transform: scale(3,3);
+    transform: scale(3,3);
+    cursor: move;
+    cursor: grab;
+}
+
+#img-size:active {
+    cursor: grabbing;
 }
 
 .user-chat-div {
