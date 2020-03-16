@@ -112,7 +112,7 @@ function getMessageInput(input) {
 
 function createNewMessage(userId) {
 
-    if (myNewMessage !== "" && recipientId !== "") { //ajaxCreateMessage.php?newChatMessage=test&userID=81&receiverID=41
+    if (myNewMessage !== "" && recipientId !== "") {
 
         document.getElementById("new-chat-message").innerHTML = "";
 
@@ -137,31 +137,10 @@ class UserChatMessage {
         this._myImage = myImage;
     }
 
-    get message() {
-        return this._msg;
-    }
-
-    get userSessionId() {
-        return this._userSessionId;
-    }
-
-    get sender() {
-        return this._sender;
-    }
-
-    get date() {
-        return this._date;
-    }
-
-    get myImage() {
-        return this._myImage;
-    }
-
      displayMessage() {
 
         let messageInfo = "";
 
-        // create class for this conversion
         if(this._msg.receiverID === this._userSessionId ) {
 
             if (this._msg.message === null) {
@@ -213,6 +192,7 @@ class InboxManager {
 
                 dbMessageCounter = messages.length;
                 console.log(dbMessageCounter)
+                console.log("notificationCounter", notificationCounter)
 
                 messages.forEach((msg) => {
 
@@ -266,7 +246,7 @@ class InboxManager {
 }
 
 
-// TODO: ////////////////////////// replaced method  ///////////////////////////////////
+// TODO: ////////////////////////// replaced methods  ///////////////////////////////////
 
 // function getInboxMessages(userSessionId, sender) {
 //
@@ -341,13 +321,13 @@ class InboxManager {
 //     xmlhttp.send();
 // }
 
-// function loadingTimer() {
+// function typingTimer() {
 //
 //     function moveDots() {
 //         let count = 0;
 //         setInterval(function() {
 //             count++;
-//             document.getElementById('timer').innerHTML = "Loading messages." + new Array(count % 5).join('.');
+//             document.getElementById('timer').innerHTML = "." + new Array(count % 5).join('.');
 //         }, 500);
 //
 //         setInterval(function() {

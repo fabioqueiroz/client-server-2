@@ -14,13 +14,11 @@
                 <div class="col-md-6">
                     <input id="new-chat-message" class="chat-input" type="text" placeholder="Type your message here..." onkeyup="getMessageInput(this.value)">
                     <div class="col-md-9">
-<!--                        <input id="image-loader" type='file' class="pull-right"/> <span id='file-name'></span>-->
                         <form method="post" enctype="multipart/form-data">
                             <input type="file" name="files[]" multiple />
                             <input type="submit" value="Upload Image" name="submit" class="btn btn-info"/>
                         </form>
                         <button type="button" class="btn btn-primary" onclick="createNewMessage(userId)">Send</button>
-<!--                        <button type="submit" class="btn btn-primary" onclick="imageUploader()">Upload File</button>-->
                     </div>
                 </div>
             </div>
@@ -29,7 +27,6 @@
         <div class="col-md-3 pull-right">
             <h3>Users</h3>
             <div class="user-chat-list">
-<!--                <button type="button" class="btn btn-primary" onclick="getChatUsers()">Display users</button>-->
                 <div id="chat-user"></div>
             </div>
         </div>
@@ -39,9 +36,8 @@
     <br>
     <div>
 
-        <script src="Scripts/messaging.js" type="text/javascript" charset="utf-8">
-            //let userId = '<?php //echo $_SESSION["userID"]; ?>//';
-        </script>
+        <script src="Scripts/messaging.js" type="text/javascript" charset="utf-8"></script>
+
     </div>
 </body>
 <?php require('template/footer.phtml') ?>
