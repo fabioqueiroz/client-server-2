@@ -63,4 +63,16 @@ class ChatMessageDataSet extends BaseDataSet
         $statement->execute([$senderID, $receiverID, $image]);
     }
 
+    // Check the number of messages in the inbox
+    public function messageCounter($receiverID) {
+        $sqlQuery = "select count(c.chatMessageID) from laf873.chats c where c.receiverID = ?"; // select count(c.chatMessageID) from laf873.chats c where c.receiverID = 81;
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$receiverID]);
+
+        $total = $statement->fetchColumn();
+
+        return $total;
+    }
+
 }

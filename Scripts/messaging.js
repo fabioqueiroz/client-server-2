@@ -4,13 +4,14 @@ let recipientId = "";
 let myNewMessage = "";
 let dbMessageCounter = "";
 let notificationCounter = "";
+let selectedUser = "";
 
 const url = 'imageProcessor.php';
 const form = document.querySelector('form');
 
 // Listen for form submit on file uploading
 form.addEventListener('submit', e => {
-    e.preventDefault()
+    e.preventDefault();
 
     const files = document.querySelector('[type=file]').files;
     const formData = new FormData();
@@ -18,7 +19,7 @@ form.addEventListener('submit', e => {
     for (let i = 0; i < files.length; i++) {
         let file = files[i];
 
-        formData.append('files[]', file)
+        formData.append('files[]', file);
     }
 
     fetch(url + "?userID=" + userId + "&receiverID="+ recipientId , {
@@ -37,6 +38,7 @@ form.addEventListener('submit', e => {
 // Load users when the page opens
 function getChatUsers(id) {
 
+    //getInboxCounter(id);
     xmlhttp.onreadystatechange = function() {
 
         if (this.readyState === 4 && this.status === 200) {
@@ -63,8 +65,9 @@ function getChatUsers(id) {
                         notificationCounter = dbMessageCounter;
 
                     } else {
-                        userDetails = "<p class=''>" + user.firstName + " " + user.lastName + "</p>";
+                        userDetails = "<div onclick='displayActiveName()'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
                     }
+
 
                     let names = domParser.parseFromString(userDetails, "text/html");
 
@@ -74,15 +77,17 @@ function getChatUsers(id) {
 
                         recipientId = user.Id;
 
-                        // response.location = "" + getInboxMessages(id, user);
+                        response.location = "" + getInboxMessages(id, user);
 
                         let inbox = new InboxManager(id, user);
-                        response.location = "" + inbox.getInboxMessages();
+                        //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
 
                         // Fetch new messages
-                        // setInterval(() => response.location = "" + getInboxMessages(id, user), 10000);
-                        setInterval(() => response.location = "" + inbox.getInboxMessages(), 10000);
+                         //setInterval(() => response.location = "" + getInboxMessages(id, user), 10000);
+                        //setInterval(() => response.location = "" + inbox.getInboxMessages(), 10000);
                         inbox.loadingTimer();
+
+                        selectedUser = user.firstName + " " + user.lastName;
 
                     });
 
@@ -96,6 +101,13 @@ function getChatUsers(id) {
 
     xmlhttp.open("GET", "ajaxUsers.php", true);
     xmlhttp.send();
+}
+
+function displayActiveName() {
+
+    let selectedName = document.getElementById("selected-user");
+    selectedName.innerHTML = selectedUser + "<br/>";
+    selectedName.classList.add("user-active-name");
 }
 
 function dateFormatter(sqlDate) {
@@ -119,8 +131,7 @@ function createNewMessage(userId) {
         xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
         xmlhttp.send();
 
-        notificationCounter = dbMessageCounter;
-        notificationCounter += 2;
+        notificationCounter = dbMessageCounter + 2;
         myNewMessage = "";
     }
 }
@@ -191,8 +202,8 @@ class InboxManager {
                 let domParser = new DOMParser();
 
                 dbMessageCounter = messages.length;
-                console.log(dbMessageCounter)
-                console.log("notificationCounter", notificationCounter)
+                console.log("dbMessageCounter: ", dbMessageCounter)
+                //console.log("notificationCounter", notificationCounter)
 
                 messages.forEach((msg) => {
 
@@ -245,81 +256,101 @@ class InboxManager {
 
 }
 
+// TODO: ////////////////////////// load initial data  ///////////////////////////////////
+
+function getInboxCounter(sessionId) {
+    let inboxCounter = document.getElementById("inbox-counter");
+    let counterDiv = document.getElementById("inbox-counter-div");
+    inboxCounter.innerHTML = notificationCounter;
+    console.log(inboxCounter.innerHTML);
+
+    // if (counterDiv.style.display === "block") { // inboxCounter.innerHTML !== "" // counterDiv.style.display === "block"
+    //     counterDiv.style.display = "none";
+    //
+    // } else {
+    //     counterDiv.style.display = "block";
+    // }
+
+    xmlhttp.open("GET", "ajaxNotification.php?userID=" + sessionId, true);
+    xmlhttp.send();
+
+}
+
 
 // TODO: ////////////////////////// replaced methods  ///////////////////////////////////
 
-// function getInboxMessages(userSessionId, sender) {
-//
-//     xmlhttp.onreadystatechange = function() {
-//
-//         if (this.readyState === 4 && this.status === 200) {
-//
-//             let response = document.getElementById("chat-message-display-area");
-//             response.innerHTML = "<br/>";
-//
-//             let messages = JSON.parse(this.responseText);
-//             console.log(messages);
-//
-//             let domParser = new DOMParser();
-//
-//             dbMessageCounter = messages.length;
-//             console.log(dbMessageCounter)
-//
-//             messages.forEach((msg) => {
-//
-//                 let date = dateFormatter(msg.messageDate);
-//
-//                 let myImage = new Image(100, 100);
-//                 myImage.src = msg.image;
-//
-//                 let userChatMessage = new UserChatMessage(msg, userSessionId, sender, date, myImage);
-//
-//                 let message = domParser.parseFromString(userChatMessage.displayMessage(), "text/html");
-//
-//                 // let messageInfo = "";
-//                 //
-//                 // // create class for this conversion
-//                 // if(msg.receiverID === userSessionId) {
-//                 //
-//                 //     // messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
-//                 //
-//                 //     if (msg.message === null) {
-//                 //
-//                 //         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
-//                 //
-//                 //     } else {
-//                 //         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
-//                 //     }
-//                 //
-//                 //
-//                 // } else {
-//                 //
-//                 //     // messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
-//                 //
-//                 //     if (msg.message === null) {
-//                 //
-//                 //         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
-//                 //
-//                 //     } else {
-//                 //         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
-//                 //     }
-//                 //
-//                 // }
-//                 //
-//                 // let message = domParser.parseFromString(messageInfo, "text/html");
-//
-//                 window.innerHTML += message.documentElement.innerText;
-//
-//                 response.appendChild(message.documentElement);
-//             });
-//
-//         }
-//
-//     }
-//
-//     xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id, true);
-//     xmlhttp.send();
-// }
+function getInboxMessages(userSessionId, sender) {
+
+    xmlhttp.onreadystatechange = function() {
+
+        if (this.readyState === 4 && this.status === 200) {
+
+            let response = document.getElementById("chat-message-display-area");
+            response.innerHTML = "<br/>";
+
+            let messages = JSON.parse(this.responseText);
+            console.log(messages);
+
+            let domParser = new DOMParser();
+
+            dbMessageCounter = messages.length;
+            console.log(dbMessageCounter)
+
+            messages.forEach((msg) => {
+
+                let date = dateFormatter(msg.messageDate);
+
+                let myImage = new Image(100, 100);
+                myImage.src = msg.image;
+
+                let userChatMessage = new UserChatMessage(msg, userSessionId, sender, date, myImage);
+
+                let message = domParser.parseFromString(userChatMessage.displayMessage(), "text/html");
+
+                // let messageInfo = "";
+                //
+                // // create class for this conversion
+                // if(msg.receiverID === userSessionId) {
+                //
+                //     // messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+                //
+                //     if (msg.message === null) {
+                //
+                //         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
+                //
+                //     } else {
+                //         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
+                //     }
+                //
+                //
+                // } else {
+                //
+                //     // messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
+                //
+                //     if (msg.message === null) {
+                //
+                //         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
+                //
+                //     } else {
+                //         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
+                //     }
+                //
+                // }
+                //
+                // let message = domParser.parseFromString(messageInfo, "text/html");
+
+                window.innerHTML += message.documentElement.innerText;
+
+                response.appendChild(message.documentElement);
+            });
+
+        }
+
+    }
+
+    xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id, true);
+    xmlhttp.send();
+}
 
 // function typingTimer() {
 //

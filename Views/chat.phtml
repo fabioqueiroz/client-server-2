@@ -8,7 +8,10 @@
     <div class="row">
         <div class="col-md-9">
             <h3>Chat Messages</h3>
-            <div id="timer"><br/></div>
+            <div class="col-md-12">
+                <div id="timer" class="col-md-9"><br/></div>
+                <div id="selected-user" class="col-md-3 pull-right"></div>
+            </div>
             <div class="chat-outer-area">
                 <div id="chat-message-display-area" class="chat-message-area"></div>
                 <div class="col-md-6">
@@ -25,9 +28,20 @@
         </div>
 
         <div class="col-md-3 pull-right">
-            <h3>Users</h3>
-            <div class="user-chat-list">
-                <div id="chat-user"></div>
+            <div class="col-md-6">
+                <h3>Users</h3>
+            </div>
+            <div class="col-md-6 pull-right">
+                <div class="notification" onclick="getInboxCounter(userId)">
+                    <span>Inbox</span>
+                    <div id="inbox-counter-div" class="badge"><span id="inbox-counter">?</span></div>
+<!--                    <div class="badge"><span id="inbox-counter">--><?php //echo $myInboxCounter; ?><!--</span></div>-->
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="user-chat-list">
+                    <div id="chat-user"></div>
+                </div>
             </div>
         </div>
 

@@ -313,6 +313,14 @@ th, td {
     cursor: pointer;
 }
 
+.user-active-name {
+    background-color: darkcyan;
+    color: white;
+    text-align: center;
+    margin-bottom: 2px;
+    border-radius: 10px;
+}
+
 .chat-outer-area {
     height: 715px;
 }
@@ -376,6 +384,36 @@ th, td {
     font-size: 18px !important;
     color: whitesmoke;
 }
+
+.notification {
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    padding: 15px 26px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.notification:hover {
+    background: #428bca;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.notification .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
+
+/*.notification .badge:active {*/
+/*    visibility: hidden;*/
+/*}*/
 
 <!-- Mobile Medias -->
 @media all and (max-width: 770px) {
