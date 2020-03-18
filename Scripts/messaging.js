@@ -83,7 +83,7 @@ function getChatUsers(id) {
                         //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
 
                         // Fetch new messages
-                         //setInterval(() => response.location = "" + getInboxMessages(id, user), 10000);
+                        setInterval(() => response.location = "" + getInboxMessages(id, user), 10000);
                         //setInterval(() => response.location = "" + inbox.getInboxMessages(), 10000);
                         inbox.loadingTimer();
 
@@ -138,9 +138,10 @@ function createNewMessage(userId) {
 
 // TODO: ////////////////////////// classes  ///////////////////////////////////
 
-class UserChatMessage {
+class UserChatMessage { // extends InboxManager
 
     constructor(msg, userSessionId, sender, date, myImage) {
+        //super(userSessionId, sender)
         this._msg = msg;
         this._userSessionId = userSessionId;
         this._sender = sender;
@@ -256,7 +257,7 @@ class InboxManager {
 
 }
 
-// TODO: ////////////////////////// load initial data  ///////////////////////////////////
+// TODO: ////////////////////////// notification  ///////////////////////////////////
 
 function getInboxCounter(sessionId) {
     let inboxCounter = document.getElementById("inbox-counter");
@@ -277,7 +278,7 @@ function getInboxCounter(sessionId) {
 }
 
 
-// TODO: ////////////////////////// replaced methods  ///////////////////////////////////
+// TODO: ////////////////////////// working get inbox method  ///////////////////////////////////
 
 function getInboxMessages(userSessionId, sender) {
 
@@ -352,26 +353,8 @@ function getInboxMessages(userSessionId, sender) {
     xmlhttp.send();
 }
 
-// function typingTimer() {
-//
-//     function moveDots() {
-//         let count = 0;
-//         setInterval(function() {
-//             count++;
-//             document.getElementById('timer').innerHTML = "." + new Array(count % 5).join('.');
-//         }, 500);
-//
-//         setInterval(function() {
-//             document.getElementById('timer').innerHTML = " " + "<br/>";
-//         }, 10000);
-//
-//     }
-//
-//     moveDots();
-//
-//     // setInterval(() => document.getElementById("timer").innerHTML = "Loading messages..."
-//     //     , 3000);
-//
-//     // setInterval(() => document.getElementById("timer").innerHTML = " " + "<br/>"
-//     //     , 7000);
-// }
+// TODO: ////////////////////////// bugs to fix ///////////////////////////////////
+
+// TODO: 1) when using the classes the UI does not show different user colors, not even extending
+// TODO: 2) notification not working
+// TODO: 3) fix timer
