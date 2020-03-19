@@ -2,7 +2,8 @@ let xmlhttp = new XMLHttpRequest();
 
 let recipientId = "";
 let myNewMessage = "";
-let dbMessageCounter = "";
+let dbMessageCounter = ""; // returns the number of messages between 2 users
+let totalNoOfMessagesInDb = "";
 let notificationCounter = "";
 let selectedUser = "";
 
@@ -38,7 +39,9 @@ form.addEventListener('submit', e => {
 // Load users when the page opens
 function getChatUsers(id) {
 
-    //getInboxCounter(id);
+     //getInboxCounter(id);
+    notificationChecker(id);
+
     xmlhttp.onreadystatechange = function() {
 
         if (this.readyState === 4 && this.status === 200) {
@@ -126,13 +129,12 @@ function createNewMessage(userId) {
 
     if (myNewMessage !== "" && recipientId !== "") {
 
-        document.getElementById("new-chat-message").innerHTML = "";
-
         xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
         xmlhttp.send();
 
-        notificationCounter = dbMessageCounter + 2;
-        myNewMessage = "";
+        document.getElementById("new-chat-message").innerHTML = "";
+
+        // notificationCounter = dbMessageCounter + 2;
     }
 }
 
@@ -260,10 +262,11 @@ class InboxManager {
 // TODO: ////////////////////////// notification  ///////////////////////////////////
 
 function getInboxCounter(sessionId) {
-    let inboxCounter = document.getElementById("inbox-counter");
-    let counterDiv = document.getElementById("inbox-counter-div");
-    inboxCounter.innerHTML = notificationCounter;
-    console.log(inboxCounter.innerHTML);
+    //let inboxCounter = document.getElementById("inbox-counter");
+    //let counterDiv = document.getElementById("inbox-counter-div");
+    //inboxCounter.innerHTML = dbMessageCounter;
+    console.log("getInboxCounter clicked")
+    //console.log(inboxCounter.innerHTML);
 
     // if (counterDiv.style.display === "block") { // inboxCounter.innerHTML !== "" // counterDiv.style.display === "block"
     //     counterDiv.style.display = "none";
@@ -275,6 +278,22 @@ function getInboxCounter(sessionId) {
     xmlhttp.open("GET", "ajaxNotification.php?userID=" + sessionId, true);
     xmlhttp.send();
 
+}
+
+function notificationChecker(sessionId) {
+    // compare the previous stored number of messages with the new one after querying the db
+    let currentNumber = getInboxCounter(sessionId);
+    console.log(currentNumber);
+
+    // if(currentNumber > dbMessageCounter) {
+    //     // find how many new messages have been sent since the last call to the db
+    //     notificationCounter = currentNumber - dbMessageCounter;
+    //
+    //     console.log("new");
+    // }
+
+    // query periodically
+    //setInterval(() => getInboxCounter(sessionId), 3000);
 }
 
 
@@ -295,7 +314,9 @@ function getInboxMessages(userSessionId, sender) {
             let domParser = new DOMParser();
 
             dbMessageCounter = messages.length;
-            console.log(dbMessageCounter)
+            console.log("dbMessageCounter: ", dbMessageCounter);
+
+            totalNoOfMessagesInDb = messages;
 
             messages.forEach((msg) => {
 
