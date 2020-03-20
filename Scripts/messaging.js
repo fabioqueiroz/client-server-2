@@ -1,9 +1,10 @@
 let xmlhttp = new XMLHttpRequest();
 
+let mySessionId = "";
 let recipientId = "";
 let myNewMessage = "";
 let dbMessageCounter = ""; // returns the number of messages between 2 users
-let totalNoOfMessagesInDb = "";
+let totalNoOfMessagesInDb = ""; // returns the total number of messages sent to the session user
 let notificationCounter = "";
 let selectedUser = "";
 
@@ -36,11 +37,19 @@ form.addEventListener('submit', e => {
 })
 
 
+async function notificationChecker(sessionId)
+{
+    let response = await fetch(`ajaxNotification.php?userID=${sessionId}`);
+    let data = await response.json();
+    return data;
+}
+
+
 // Load users when the page opens
 function getChatUsers(id) {
 
-     //getInboxCounter(id);
-    notificationChecker(id);
+    notificationChecker(id)
+        .then(data => console.log(data));
 
     xmlhttp.onreadystatechange = function() {
 
@@ -62,10 +71,9 @@ function getChatUsers(id) {
 
                     let userDetails = "";
 
-                    if (notificationCounter > dbMessageCounter) {
+                    if (notificationCounter > totalNoOfMessagesInDb) {
 
                         userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
-                        notificationCounter = dbMessageCounter;
 
                     } else {
                         userDetails = "<div onclick='displayActiveName()'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
@@ -280,22 +288,6 @@ function getInboxCounter(sessionId) {
 
 }
 
-function notificationChecker(sessionId) {
-    // compare the previous stored number of messages with the new one after querying the db
-    let currentNumber = getInboxCounter(sessionId);
-    console.log(currentNumber);
-
-    // if(currentNumber > dbMessageCounter) {
-    //     // find how many new messages have been sent since the last call to the db
-    //     notificationCounter = currentNumber - dbMessageCounter;
-    //
-    //     console.log("new");
-    // }
-
-    // query periodically
-    //setInterval(() => getInboxCounter(sessionId), 3000);
-}
-
 
 // TODO: ////////////////////////// working get inbox method  ///////////////////////////////////
 
@@ -315,8 +307,6 @@ function getInboxMessages(userSessionId, sender) {
 
             dbMessageCounter = messages.length;
             console.log("dbMessageCounter: ", dbMessageCounter);
-
-            totalNoOfMessagesInDb = messages;
 
             messages.forEach((msg) => {
 
