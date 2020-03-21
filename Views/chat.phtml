@@ -15,13 +15,13 @@
             <div class="chat-outer-area">
                 <div id="chat-message-display-area" class="chat-message-area"></div>
                 <div class="col-md-6">
-                    <input id="new-chat-message" class="chat-input" type="text" placeholder="Type your message here..." onkeyup="getMessageInput(this.value)">
+                    <input id="new-chat-message" class="chat-input" type="text" placeholder="Type your message here..." onkeyup="UserChatMessage.getMessageInput(this.value)">
                     <div class="col-md-9">
                         <form method="post" enctype="multipart/form-data">
                             <input type="file" name="files[]" multiple />
                             <input type="submit" value="Upload Image" name="submit" class="btn btn-info"/>
                         </form>
-                        <button type="button" class="btn btn-primary" onclick="createNewMessage(userId)">Send</button>
+                        <button type="button" class="btn btn-primary" onclick="UserChatMessage.createNewMessage(userId)">Send</button>
                     </div>
                 </div>
             </div>
@@ -34,8 +34,7 @@
             <div class="col-md-6 pull-right">
                 <div class="notification" onclick="getInboxCounter(userId)">
                     <span>Inbox</span>
-                    <div id="inbox-counter-div" class="badge"><span id="inbox-counter">?</span></div>
-<!--                    <div class="badge"><span id="inbox-counter">--><?php //echo $myInboxCounter; ?><!--</span></div>-->
+                    <div id="inbox-counter-div" class="badge"><span id="inbox-counter"></span></div>
                 </div>
             </div>
             <div class="col-md-12">

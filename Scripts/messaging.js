@@ -1,6 +1,5 @@
 let xmlhttp = new XMLHttpRequest();
 
-let mySessionId = "";
 let recipientId = "";
 let myNewMessage = "";
 let dbMessageCounter = ""; // returns the number of messages between 2 users
@@ -36,21 +35,29 @@ form.addEventListener('submit', e => {
     });
 })
 
-
+// Get the total number of messages sent to the session user
 async function notificationChecker(sessionId)
 {
     let response = await fetch(`ajaxNotification.php?userID=${sessionId}`);
     let data = await response.json();
+    document.getElementById('inbox-counter').innerHTML = "" + data;
+    totalNoOfMessagesInDb = data;
     return data;
 }
 
 
 // Load users when the page opens
-function getChatUsers(id) {
+function getChatUsers(sessionId) {
 
-    notificationChecker(id)
-        .then(data => console.log(data));
+    // Check the total number of messages when the page loads
+    notificationChecker(sessionId)
+        .then(data => console.log(data))
+        .catch((error) => {
+            Error(error);
+            console.log(error)
+        });
 
+    // Retrieve and output a list of all the users
     xmlhttp.onreadystatechange = function() {
 
         if (this.readyState === 4 && this.status === 200) {
@@ -65,7 +72,7 @@ function getChatUsers(id) {
 
             users.forEach((user) => {
 
-                if(user.Id !== id) {
+                if(user.Id !== sessionId) {
 
                     // let userDetails = "<p class=''>" + user.firstName + " " + user.lastName + "</p>";
 
@@ -76,7 +83,7 @@ function getChatUsers(id) {
                         userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
 
                     } else {
-                        userDetails = "<div onclick='displayActiveName()'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
+                        userDetails = "<div onclick='HelperClass.displayActiveName()'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
                     }
 
 
@@ -84,17 +91,18 @@ function getChatUsers(id) {
 
                     window.innerHTML += names.documentElement.innerText;
 
+                    let inbox = "";
                     names.documentElement.addEventListener('click', () => {
 
                         recipientId = user.Id;
 
-                        response.location = "" + getInboxMessages(id, user);
+                        response.location = "" + getInboxMessages(sessionId, user);
 
-                        let inbox = new InboxManager(id, user);
+                        inbox = new InboxManager(sessionId, user);
                         //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
 
                         // Fetch new messages
-                        setInterval(() => response.location = "" + getInboxMessages(id, user), 10000);
+                        setInterval(() => response.location = "" + getInboxMessages(sessionId, user), 5000);
                         //setInterval(() => response.location = "" + inbox.getInboxMessages(), 10000);
                         inbox.loadingTimer();
 
@@ -112,38 +120,9 @@ function getChatUsers(id) {
 
     xmlhttp.open("GET", "ajaxUsers.php", true);
     xmlhttp.send();
-}
 
-function displayActiveName() {
-
-    let selectedName = document.getElementById("selected-user");
-    selectedName.innerHTML = selectedUser + "<br/>";
-    selectedName.classList.add("user-active-name");
-}
-
-function dateFormatter(sqlDate) {
-
-    let formattedDate = new Date(Date.parse(sqlDate.replace(/-/g, '/')));
-
-    return formattedDate.toLocaleString();
-}
-
-function getMessageInput(input) {
-    //TODO: sanitize the data
-    return myNewMessage = input.trim();
-}
-
-function createNewMessage(userId) {
-
-    if (myNewMessage !== "" && recipientId !== "") {
-
-        xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
-        xmlhttp.send();
-
-        document.getElementById("new-chat-message").innerHTML = "";
-
-        // notificationCounter = dbMessageCounter + 2;
-    }
+    // *** breaks after a certain amount of calls ****
+    //setInterval(() => this.getChatUsers(sessionId), 60000)
 }
 
 // TODO: ////////////////////////// classes  ///////////////////////////////////
@@ -187,6 +166,23 @@ class UserChatMessage { // extends InboxManager
         }
 
         return messageInfo;
+     }
+
+    static getMessageInput(input) {
+        //TODO: sanitize the data
+        return myNewMessage = input.trim();
+    }
+
+    static createNewMessage(userId) {
+
+        if (myNewMessage !== "" && recipientId !== "") {
+
+            xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
+            xmlhttp.send();
+
+            document.getElementById("new-chat-message").innerHTML = "";
+
+        }
     }
 }
 
@@ -218,7 +214,7 @@ class InboxManager {
 
                 messages.forEach((msg) => {
 
-                    let date = dateFormatter(msg.messageDate);
+                    let date = HelperClass.dateFormatter(msg.messageDate);
 
                     let myImage = new Image(100, 100);
                     myImage.src = msg.image;
@@ -267,26 +263,42 @@ class InboxManager {
 
 }
 
-// TODO: ////////////////////////// notification  ///////////////////////////////////
+class HelperClass {
 
-function getInboxCounter(sessionId) {
-    //let inboxCounter = document.getElementById("inbox-counter");
-    //let counterDiv = document.getElementById("inbox-counter-div");
-    //inboxCounter.innerHTML = dbMessageCounter;
-    console.log("getInboxCounter clicked")
-    //console.log(inboxCounter.innerHTML);
+    static displayActiveName() {
+        let selectedName = document.getElementById("selected-user");
+        selectedName.innerHTML = selectedUser + "<br/>";
+        selectedName.classList.add("user-active-name");
+    }
 
-    // if (counterDiv.style.display === "block") { // inboxCounter.innerHTML !== "" // counterDiv.style.display === "block"
-    //     counterDiv.style.display = "none";
-    //
-    // } else {
-    //     counterDiv.style.display = "block";
-    // }
+    static dateFormatter(sqlDate) {
 
-    xmlhttp.open("GET", "ajaxNotification.php?userID=" + sessionId, true);
-    xmlhttp.send();
+        let formattedDate = new Date(Date.parse(sqlDate.replace(/-/g, '/')));
+
+        return formattedDate.toLocaleString();
+    }
 
 }
+// TODO: ////////////////////////// notification  ///////////////////////////////////
+
+// function getInboxCounter(sessionId) {
+//     //let inboxCounter = document.getElementById("inbox-counter");
+//     //let counterDiv = document.getElementById("inbox-counter-div");
+//     //inboxCounter.innerHTML = dbMessageCounter;
+//     console.log("getInboxCounter clicked")
+//     //console.log(inboxCounter.innerHTML);
+//
+//     // if (counterDiv.style.display === "block") { // inboxCounter.innerHTML !== "" // counterDiv.style.display === "block"
+//     //     counterDiv.style.display = "none";
+//     //
+//     // } else {
+//     //     counterDiv.style.display = "block";
+//     // }
+//
+//     xmlhttp.open("GET", "ajaxNotification.php?userID=" + sessionId, true);
+//     xmlhttp.send();
+//
+// }
 
 
 // TODO: ////////////////////////// working get inbox method  ///////////////////////////////////
@@ -308,9 +320,10 @@ function getInboxMessages(userSessionId, sender) {
             dbMessageCounter = messages.length;
             console.log("dbMessageCounter: ", dbMessageCounter);
 
+
             messages.forEach((msg) => {
 
-                let date = dateFormatter(msg.messageDate);
+                let date = HelperClass.dateFormatter(msg.messageDate);
 
                 let myImage = new Image(100, 100);
                 myImage.src = msg.image;
@@ -318,38 +331,6 @@ function getInboxMessages(userSessionId, sender) {
                 let userChatMessage = new UserChatMessage(msg, userSessionId, sender, date, myImage);
 
                 let message = domParser.parseFromString(userChatMessage.displayMessage(), "text/html");
-
-                // let messageInfo = "";
-                //
-                // // create class for this conversion
-                // if(msg.receiverID === userSessionId) {
-                //
-                //     // messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
-                //
-                //     if (msg.message === null) {
-                //
-                //         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
-                //
-                //     } else {
-                //         messageInfo = "<div class=''><p class='user-chat-div'>" + date + "<br/>" + sender.firstName + ": "+ msg.message + "</p></div>";
-                //     }
-                //
-                //
-                // } else {
-                //
-                //     // messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
-                //
-                //     if (msg.message === null) {
-                //
-                //         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + "<img id='img-size' src='" + myImage.src + "'/>" + "</p></div>"; // width='100' height='100'
-                //
-                //     } else {
-                //         messageInfo = "<div class=''><p class='me-chat-div'>" + date + "<br/>" + "Me: " + msg.message + "</p></div>";
-                //     }
-                //
-                // }
-                //
-                // let message = domParser.parseFromString(messageInfo, "text/html");
 
                 window.innerHTML += message.documentElement.innerText;
 
@@ -367,5 +348,4 @@ function getInboxMessages(userSessionId, sender) {
 // TODO: ////////////////////////// bugs to fix ///////////////////////////////////
 
 // TODO: 1) when using the classes the UI does not show different user colors, not even extending
-// TODO: 2) notification not working
-// TODO: 3) fix timer
+// TODO: 2) fix timer
