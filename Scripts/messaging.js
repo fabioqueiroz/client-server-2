@@ -35,7 +35,7 @@ form.addEventListener('submit', e => {
     });
 })
 
-// Get the total number of messages sent to the session user
+// Notification, get the total number of messages sent to the session user
 async function notificationChecker(sessionId)
 {
     let response = await fetch(`ajaxNotification.php?userID=${sessionId}`);
@@ -127,65 +127,6 @@ function getChatUsers(sessionId) {
 
 // TODO: ////////////////////////// classes  ///////////////////////////////////
 
-class UserChatMessage { // extends InboxManager
-
-    constructor(msg, userSessionId, sender, date, myImage) {
-        //super(userSessionId, sender)
-        this._msg = msg;
-        this._userSessionId = userSessionId;
-        this._sender = sender;
-        this._date = date;
-        this._myImage = myImage;
-    }
-
-     displayMessage() {
-
-        let messageInfo = "";
-
-        if(this._msg.receiverID === this._userSessionId ) {
-
-            if (this._msg.message === null) {
-
-                messageInfo = "<div class=''><p class='user-chat-div'>" + this._date + "<br/>" + this._sender.firstName + "<img id='img-size' src='" + this._myImage.src + "'/>" + "</p></div>";
-
-            } else {
-                messageInfo = "<div class=''><p class='user-chat-div'>" + this._date + "<br/>" + this._sender.firstName + ": "+ this._msg.message + "</p></div>";
-            }
-
-
-        } else {
-
-            if (this._msg.message === null) {
-
-                messageInfo = "<div class=''><p class='me-chat-div'>" + this._date + "<br/>" + "Me: " + "<img id='img-size' src='" + this._myImage.src + "'/>" + "</p></div>";
-
-            } else {
-                messageInfo = "<div class=''><p class='me-chat-div'>" + this._date + "<br/>" + "Me: " + this._msg.message + "</p></div>";
-            }
-
-        }
-
-        return messageInfo;
-     }
-
-    static getMessageInput(input) {
-        //TODO: sanitize the data
-        return myNewMessage = input.trim();
-    }
-
-    static createNewMessage(userId) {
-
-        if (myNewMessage !== "" && recipientId !== "") {
-
-            xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
-            xmlhttp.send();
-
-            document.getElementById("new-chat-message").innerHTML = "";
-
-        }
-    }
-}
-
 class InboxManager {
 
     constructor(userSessionId, sender) {
@@ -263,6 +204,65 @@ class InboxManager {
 
 }
 
+class UserChatMessage { // extends InboxManager
+
+    constructor(msg, userSessionId, sender, date, myImage) {
+        //super(userSessionId, sender)
+        this._msg = msg;
+        this._userSessionId = userSessionId;
+        this._sender = sender;
+        this._date = date;
+        this._myImage = myImage;
+    }
+
+     displayMessage() {
+
+        let messageInfo = "";
+
+        if(this._msg.receiverID === this._userSessionId ) {
+
+            if (this._msg.message === null) {
+
+                messageInfo = "<div class=''><p class='user-chat-div'>" + this._date + "<br/>" + this._sender.firstName + "<img id='img-size' src='" + this._myImage.src + "'/>" + "</p></div>";
+
+            } else {
+                messageInfo = "<div class=''><p class='user-chat-div'>" + this._date + "<br/>" + this._sender.firstName + ": "+ this._msg.message + "</p></div>";
+            }
+
+
+        } else {
+
+            if (this._msg.message === null) {
+
+                messageInfo = "<div class=''><p class='me-chat-div'>" + this._date + "<br/>" + "Me: " + "<img id='img-size' src='" + this._myImage.src + "'/>" + "</p></div>";
+
+            } else {
+                messageInfo = "<div class=''><p class='me-chat-div'>" + this._date + "<br/>" + "Me: " + this._msg.message + "</p></div>";
+            }
+
+        }
+
+        return messageInfo;
+     }
+
+    static getMessageInput(input) {
+        //TODO: sanitize the data
+        return myNewMessage = input.trim();
+    }
+
+    static createNewMessage(userId) {
+
+        if (myNewMessage !== "" && recipientId !== "") {
+
+            xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
+            xmlhttp.send();
+
+            document.getElementById("new-chat-message").value = "";
+
+        }
+    }
+}
+
 class HelperClass {
 
     static displayActiveName() {
@@ -277,8 +277,8 @@ class HelperClass {
 
         return formattedDate.toLocaleString();
     }
-
 }
+
 // TODO: ////////////////////////// notification  ///////////////////////////////////
 
 // function getInboxCounter(sessionId) {
