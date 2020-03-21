@@ -6,6 +6,7 @@ let dbMessageCounter = ""; // returns the number of messages between 2 users
 let totalNoOfMessagesInDb = ""; // returns the total number of messages sent to the session user
 let notificationCounter = "";
 let selectedUser = "";
+let chatUser = "";
 
 const url = 'imageProcessor.php';
 const form = document.querySelector('form');
@@ -46,7 +47,85 @@ async function notificationChecker(sessionId)
 }
 
 
-// Load users when the page opens
+// // Load users when the page opens
+// function getChatUsers(sessionId) {
+//
+//     // Check the total number of messages when the page loads
+//     notificationChecker(sessionId)
+//         .then(data => console.log(data))
+//         .catch((error) => {
+//             Error(error);
+//             console.log(error)
+//         });
+//
+//     // Retrieve and output a list of all the users
+//     xmlhttp.onreadystatechange = function() {
+//
+//         if (this.readyState === 4 && this.status === 200) {
+//
+//             let response = document.getElementById("chat-user");
+//             response.innerHTML = "<br/>";
+//
+//             let users = JSON.parse(this.responseText);
+//             //console.log(users);
+//
+//             let domParser = new DOMParser();
+//
+//             users.forEach((user) => {
+//
+//                 if(user.Id !== sessionId) {
+//
+//                     // let userDetails = "<p class=''>" + user.firstName + " " + user.lastName + "</p>";
+//
+//                     let userDetails = "";
+//
+//                     if (notificationCounter > totalNoOfMessagesInDb) {
+//
+//                         userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
+//
+//                     } else {
+//                         userDetails = "<div onclick='HelperClass.displayActiveName()'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
+//                     }
+//
+//
+//                     let names = domParser.parseFromString(userDetails, "text/html");
+//
+//                     window.innerHTML += names.documentElement.innerText;
+//
+//                     names.documentElement.addEventListener('click', () => {
+//
+//                         recipientId = user.Id;
+//
+//                         response.location = "" + getInboxMessages(sessionId, user);
+//
+//                         let inbox = new InboxManager(sessionId, user);
+//                         //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
+//
+//                         // Fetch new messages
+//                         setInterval(() => response.location = "" + getInboxMessages(sessionId, user), 5000);
+//                         //setInterval(() => response.location = "" + inbox.getInboxMessages(), 10000);
+//                         inbox.loadingTimer();
+//
+//                         selectedUser = user.firstName + " " + user.lastName;
+//
+//                     });
+//
+//                     response.appendChild(names.documentElement);
+//                 }
+//
+//             });
+//         }
+//
+//     }
+//
+//     xmlhttp.open("GET", "ajaxUsers.php", true);
+//     xmlhttp.send();
+//
+//     // *** breaks after a certain amount of calls ****
+//     //setInterval(() => this.getChatUsers(sessionId), 60000)
+// }
+
+// Load users when the page opens - *** VERSION 2 ***
 function getChatUsers(sessionId) {
 
     // Check the total number of messages when the page loads
@@ -57,18 +136,21 @@ function getChatUsers(sessionId) {
             console.log(error)
         });
 
+    let response = "";
     // Retrieve and output a list of all the users
     xmlhttp.onreadystatechange = function() {
 
         if (this.readyState === 4 && this.status === 200) {
 
-            let response = document.getElementById("chat-user");
+            response = document.getElementById("chat-user");
             response.innerHTML = "<br/>";
 
             let users = JSON.parse(this.responseText);
             //console.log(users);
 
             let domParser = new DOMParser();
+
+            let inbox = "";
 
             users.forEach((user) => {
 
@@ -91,10 +173,10 @@ function getChatUsers(sessionId) {
 
                     window.innerHTML += names.documentElement.innerText;
 
-                    let inbox = "";
                     names.documentElement.addEventListener('click', () => {
 
                         recipientId = user.Id;
+                        chatUser = user;
 
                         response.location = "" + getInboxMessages(sessionId, user);
 
@@ -102,7 +184,6 @@ function getChatUsers(sessionId) {
                         //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
 
                         // Fetch new messages
-                        setInterval(() => response.location = "" + getInboxMessages(sessionId, user), 5000);
                         //setInterval(() => response.location = "" + inbox.getInboxMessages(), 10000);
                         inbox.loadingTimer();
 
@@ -120,6 +201,8 @@ function getChatUsers(sessionId) {
 
     xmlhttp.open("GET", "ajaxUsers.php", true);
     xmlhttp.send();
+
+    setInterval(() => response.location = "" + getInboxMessages(sessionId, chatUser), 5000);
 
     // *** breaks after a certain amount of calls ****
     //setInterval(() => this.getChatUsers(sessionId), 60000)
@@ -341,8 +424,14 @@ function getInboxMessages(userSessionId, sender) {
 
     }
 
-    xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id, true);
-    xmlhttp.send();
+    if (sender.Id !== undefined) {
+
+        xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id, true);
+        xmlhttp.send();
+    }
+
+    // xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id, true);
+    // xmlhttp.send();
 }
 
 // TODO: ////////////////////////// bugs to fix ///////////////////////////////////
