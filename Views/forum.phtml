@@ -1,4 +1,8 @@
 <?php require('template/header.phtml') ?>
+<?php
+    $token = substr(str_shuffle(md5(microtime())), 0, 24);
+    $_SESSION["live-search-token"] = $token;
+?>
 
 <div>
 <!-- Search bar -->
@@ -13,6 +17,7 @@
             <form method="get">
                 <div class="suggestion-layout">
                     <input id="hint-text" type="text" placeholder="Search Post" onkeyup="showHint(this.value)">
+                    <input id="live-search-checker" type="hidden" value="<?php echo $token; ?>" name="search-checker" />
                     <p><span id="txtHint"></span></p>
                     <div id="resultsSelectionBox"></div>
                 </div>

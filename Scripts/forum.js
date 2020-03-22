@@ -20,7 +20,7 @@ function showHint(str) {
 
                     if (this.response != "no suggestions") {
                         response.innerHTML = "<br/>";
-                        response.style.border = "0px solid #A5ACB2"; // #A5ACB2
+                        response.style.border = "0px solid #A5ACB2";
                         response.style.width = "305px";
                         response.style.marginTop = "-32px";
 
@@ -45,7 +45,10 @@ function showHint(str) {
                 }
             };
 
-            xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
+            let newToken = document.getElementById("live-search-checker").value;
+
+            xmlhttp.open("GET", "liveSearch.php?q=" + str + "&token=" + newToken, true); // using token
+            //xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
             xmlhttp.send();
         }
 
