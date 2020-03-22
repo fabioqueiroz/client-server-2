@@ -297,6 +297,8 @@ th, td {
 #resultsSelectionBox {
     position: absolute;
     z-index: 9999;
+    max-height: 600px;
+    overflow: auto;
 }
 
 .user-chat-list {

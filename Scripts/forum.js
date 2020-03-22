@@ -48,7 +48,7 @@ function showHint(str) {
                             });
 
                         } catch (e) {
-                            console.log(e);
+                            console.log(e.message);
                         }
 
                     } else {
