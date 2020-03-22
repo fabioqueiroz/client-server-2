@@ -271,6 +271,11 @@ th, td {
     color: white;
  }
 
+.no-suggestion-option {
+    background-color: #991E1E;
+    color: white;
+}
+
 .suggestion-layout {
     padding-top: 13px;
 }

@@ -18,29 +18,45 @@ function showHint(str) {
                     let response = document.getElementById("resultsSelectionBox");
                     let domParser = new DOMParser();
 
-                    if (this.response != "no suggestions") {
-                        response.innerHTML = "<br/>";
-                        response.style.border = "0px solid #A5ACB2";
-                        response.style.width = "305px";
-                        response.style.marginTop = "-32px";
+                    response.innerHTML = "<br/>";
+                    response.style.border = "0px solid #A5ACB2";
+                    response.style.width = "305px";
+                    response.style.marginTop = "-32px";
 
-                        //console.log(this.responseText);
-                        let postNames = JSON.parse(this.responseText);
-                        //console.log(postNames);
+                    let suggestionBody = "";
+                    let suggestion = "";
 
-                        postNames.forEach((post) => {
+                    if (this.response != "No suggestions") {
 
-                            let suggestionBody = "<div class=''><p class='suggestion-option list-group-item'>" + post.title + "</p></div>";
-                            let suggestion = domParser.parseFromString(suggestionBody, "text/html");
+                        try{
 
-                            // re-direct to the post
-                            suggestion.documentElement.addEventListener('click', () => {
-                                window.location.href = "postReplies.php?postID=" + post.postId + "&postingUser=" + post.postingUser;
+                            let postNames = JSON.parse(this.responseText);
+                            //console.log(postNames);
+
+                            postNames.forEach((post) => {
+
+                                suggestionBody = "<div class=''><p class='suggestion-option list-group-item'>" + post.title + "</p></div>";
+                                suggestion = domParser.parseFromString(suggestionBody, "text/html");
+
+                                // re-direct to the post
+                                suggestion.documentElement.addEventListener('click', () => {
+                                    window.location.href = "postReplies.php?postID=" + post.postId + "&postingUser=" + post.postingUser;
+                                });
+
+                                response.appendChild(suggestion.documentElement);
+
                             });
-                            response.appendChild(suggestion.documentElement);
 
-                        });
+                        } catch (e) {
+                            console.log(e);
+                        }
 
+                    } else {
+
+                        suggestionBody = "<div class=''><p class='no-suggestion-option list-group-item'>" + "No matches found" + "</p></div>";
+                        suggestion = domParser.parseFromString(suggestionBody, "text/html");
+
+                        response.appendChild(suggestion.documentElement);
                     }
                 }
             };

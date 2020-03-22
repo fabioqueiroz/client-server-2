@@ -21,7 +21,7 @@ if(!isset($_GET["token"]) || $_GET["token"] != $token) {
 
     $posts = $postDataSet->getLiveSearchResults($query);
 
-    echo empty($posts) ? "no suggestion" : json_encode($posts);
+    echo empty($posts) ? "No suggestions" : json_encode($posts);
 }
 
 //$posts = $postDataSet->getLiveSearchResults($query);
