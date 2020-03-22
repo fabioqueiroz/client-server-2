@@ -124,7 +124,7 @@ class PostDataSet extends BaseDataSet
         return $posts;
     }
 
-    public function getALiveSearchResults($title) {
+    public function getLiveSearchResults($title) {
         $title = strip_tags(trim(($title)));
 
         $sqlQuery = "SELECT p.ID, p.title, p.message, p.messageDate , p.topicSubject, p.postingUser, 

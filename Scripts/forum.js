@@ -7,43 +7,48 @@ function showHint(str) {
         return;
 
     } else {
-        let xmlhttp = new XMLHttpRequest();
 
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
+        if(str.length > 2) {
 
-                let response = document.getElementById("resultsSelectionBox");
-                let domParser = new DOMParser();
+            let xmlhttp = new XMLHttpRequest();
 
-                if (this.response != "no suggestions") {
-                    response.innerHTML = "<br/>";
-                    response.style.border = "0px solid #A5ACB2"; // #A5ACB2
-                    response.style.width = "305px";
-                    response.style.marginTop = "-32px";
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
 
-                    //console.log(this.responseText);
-                    let postNames = JSON.parse(this.responseText);
-                    //console.log(postNames);
+                    let response = document.getElementById("resultsSelectionBox");
+                    let domParser = new DOMParser();
 
-                    postNames.forEach((post) => {
+                    if (this.response != "no suggestions") {
+                        response.innerHTML = "<br/>";
+                        response.style.border = "0px solid #A5ACB2"; // #A5ACB2
+                        response.style.width = "305px";
+                        response.style.marginTop = "-32px";
 
-                        let suggestionBody = "<div class=''><p class='suggestion-option list-group-item'>" + post.title + "</p></div>";
-                        let suggestion = domParser.parseFromString(suggestionBody, "text/html");
+                        //console.log(this.responseText);
+                        let postNames = JSON.parse(this.responseText);
+                        //console.log(postNames);
 
-                        // re-direct to the post
-                        suggestion.documentElement.addEventListener('click', () => {
-                            window.location.href = "postReplies.php?postID=" + post.postId + "&postingUser=" + post.postingUser;
+                        postNames.forEach((post) => {
+
+                            let suggestionBody = "<div class=''><p class='suggestion-option list-group-item'>" + post.title + "</p></div>";
+                            let suggestion = domParser.parseFromString(suggestionBody, "text/html");
+
+                            // re-direct to the post
+                            suggestion.documentElement.addEventListener('click', () => {
+                                window.location.href = "postReplies.php?postID=" + post.postId + "&postingUser=" + post.postingUser;
+                            });
+                            response.appendChild(suggestion.documentElement);
+
                         });
-                        response.appendChild(suggestion.documentElement);
 
-                    });
-
+                    }
                 }
-            }
-        };
+            };
 
-        xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
-        xmlhttp.send();
+            xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
+            xmlhttp.send();
+        }
+
     }
 }
 

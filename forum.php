@@ -19,7 +19,7 @@ $topics = $topicDataSet->getAllTopics();
 $total = $postDataSet->getTotalNoOfPosts();
 
 // Define the limit per page
-$limit = 20;
+$limit = 50;
 
 // Calculate the number of pages to be displayed
 $pages = ceil($total / $limit);
