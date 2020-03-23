@@ -427,6 +427,7 @@ th, td {
     align-items: center;
     display: flex;
     height: 17px;
+    padding-left: 10px;
 }
 
 .ticontainer .tidot {

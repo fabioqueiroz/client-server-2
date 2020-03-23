@@ -276,8 +276,6 @@ class HelperClass {
         let selectedName = document.getElementById("selected-user");
         selectedName.innerHTML = selectedUser + "<br/>";
         selectedName.classList.add("user-active-name");
-
-
     }
 
     static displayDots() {
