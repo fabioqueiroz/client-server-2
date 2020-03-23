@@ -60,6 +60,7 @@ function getChatUsers(sessionId) {
 
     let response = "";
     let inbox = "";
+
     // Retrieve and output a list of all the users
     xmlhttp.onreadystatechange = function() {
 
@@ -191,7 +192,6 @@ class InboxManager {
         xmlhttp.send();
     }
 
-    // TODO: fix notification
     loadingTimer() {
 
         function moveDots() {
@@ -203,7 +203,7 @@ class InboxManager {
 
             setInterval(function() {
                 document.getElementById('timer').innerHTML = " " + "<br/>";
-            }, 10000);
+            }, 5000);
 
         }
 
@@ -286,28 +286,6 @@ class HelperClass {
     }
 }
 
-// TODO: ////////////////////////// notification  ///////////////////////////////////
-
-// function getInboxCounter(sessionId) {
-//     //let inboxCounter = document.getElementById("inbox-counter");
-//     //let counterDiv = document.getElementById("inbox-counter-div");
-//     //inboxCounter.innerHTML = dbMessageCounter;
-//     console.log("getInboxCounter clicked")
-//     //console.log(inboxCounter.innerHTML);
-//
-//     // if (counterDiv.style.display === "block") { // inboxCounter.innerHTML !== "" // counterDiv.style.display === "block"
-//     //     counterDiv.style.display = "none";
-//     //
-//     // } else {
-//     //     counterDiv.style.display = "block";
-//     // }
-//
-//     xmlhttp.open("GET", "ajaxNotification.php?userID=" + sessionId, true);
-//     xmlhttp.send();
-//
-// }
-
-
 // TODO: ////////////////////////// working get inbox method  ///////////////////////////////////
 
 function getInboxMessages(userSessionId, sender) {
@@ -356,6 +334,3 @@ function getInboxMessages(userSessionId, sender) {
 
 }
 
-// TODO: ////////////////////////// bugs to fix ///////////////////////////////////
-
-// TODO: 1) when using the classes the UI does not show different user colors, not even extending
