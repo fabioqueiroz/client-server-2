@@ -34,7 +34,7 @@ form.addEventListener('submit', e => {
     }).catch(function (error) {
         files.innerText ='Error: ' + error;
     });
-})
+});
 
 // Notification, get the total number of messages sent to the session user
 async function notificationChecker(sessionId)
@@ -47,7 +47,7 @@ async function notificationChecker(sessionId)
 }
 
 
-// Load users when the page opens - *** VERSION 2 ***
+// Load users when the page opens
 function getChatUsers(sessionId) {
 
     // Check the total number of messages when the page loads
@@ -78,7 +78,7 @@ function getChatUsers(sessionId) {
 
                 if(user.Id !== sessionId) {
 
-                    // let userDetails = "<div onclick='HelperClass.displayActiveName()'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
+                    // let userDetails = "<div onclick='HelperClass.displayActiveName(); HelperClass.displayDots();'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
 
                     let userDetails = "";
 
@@ -105,8 +105,6 @@ function getChatUsers(sessionId) {
                         inbox = new InboxManager(sessionId, user);
                         //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
 
-                        //inbox.loadingTimer();
-
                         selectedUser = user.firstName + " " + user.lastName;
 
                     });
@@ -123,6 +121,8 @@ function getChatUsers(sessionId) {
     xmlhttp.send();
 
     setInterval(() => {
+
+        InboxManager.loadingTimer();
 
         // // **** Uncomment to update the inbox counter ****
         // notificationChecker(sessionId)
@@ -147,7 +147,6 @@ class InboxManager {
     constructor(userSessionId, sender) {
         this._userSessionId = userSessionId;
         this._sender = sender;
-
     }
 
     // Not identifying the user's message colour
@@ -192,13 +191,13 @@ class InboxManager {
         xmlhttp.send();
     }
 
-    loadingTimer() {
+    static loadingTimer() {
 
         function moveDots() {
             let count = 0;
             setInterval(function() {
                 count++;
-                document.getElementById('timer').innerHTML = "Loading messages." + new Array(count % 5).join('.');
+                document.getElementById('timer').innerHTML = "Checking for new messages." + new Array(count % 5).join('.');
             }, 500);
 
             setInterval(function() {
@@ -273,6 +272,7 @@ class UserChatMessage extends InboxManager {
 class HelperClass {
 
     static displayActiveName() {
+
         let selectedName = document.getElementById("selected-user");
         selectedName.innerHTML = selectedUser + "<br/>";
         selectedName.classList.add("user-active-name");
@@ -280,6 +280,7 @@ class HelperClass {
 
     static displayDots() {
 
+        // Display the 3 moving message dots
         let dotsContainer = document.getElementById("dots-container");
         dotsContainer.classList.add("ticontainer");
 
@@ -294,6 +295,9 @@ class HelperClass {
 
         let singleDotThree = document.getElementById("dots-single-dot-3");
         singleDotThree.classList.add("tidot");
+
+        // Hide the timer
+        document.getElementById('timer').style.display = "none";
     }
 
     static dateFormatter(sqlDate) {
