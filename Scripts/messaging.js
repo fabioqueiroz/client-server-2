@@ -59,6 +59,7 @@ function getChatUsers(sessionId) {
         });
 
     let response = "";
+    let inbox = "";
     // Retrieve and output a list of all the users
     xmlhttp.onreadystatechange = function() {
 
@@ -98,13 +99,11 @@ function getChatUsers(sessionId) {
                         recipientId = user.Id;
                         chatUser = user;
 
-                        response.location = "" + getInboxMessages(sessionId, chatUser);
+                        response.location = "" + getInboxMessages(sessionId, chatUser); // working correctly
 
-                        let inbox = new InboxManager(sessionId, user);
+                        inbox = new InboxManager(sessionId, user);
                         //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
 
-                        // Fetch new messages
-                        //setInterval(() => response.location = "" + inbox.getInboxMessages(), 10000);
                         inbox.loadingTimer();
 
                         selectedUser = user.firstName + " " + user.lastName;
@@ -132,7 +131,9 @@ function getChatUsers(sessionId) {
         //         console.log(error)
         //     });
 
-        response.location = "" + getInboxMessages(sessionId, chatUser);
+        // Fetch new messages
+        response.location = "" + getInboxMessages(sessionId, chatUser); // working correctly
+        //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
 
     }, 5000);
 
@@ -148,6 +149,7 @@ class InboxManager {
 
     }
 
+    // Not identifying the user's message colour
     getInboxMessages() {
 
         xmlhttp.onreadystatechange = function() {
@@ -164,7 +166,6 @@ class InboxManager {
 
                 dbMessageCounter = messages.length;
                 console.log("dbMessageCounter: ", dbMessageCounter)
-                //console.log("notificationCounter", notificationCounter)
 
                 messages.forEach((msg) => {
 
@@ -208,22 +209,15 @@ class InboxManager {
 
         moveDots();
 
-        // setInterval(() => document.getElementById("timer").innerHTML = "Loading messages..."
-        //     , 3000);
-
-        // setInterval(() => document.getElementById("timer").innerHTML = " " + "<br/>"
-        //     , 7000);
     }
 
 }
 
-class UserChatMessage { // extends InboxManager
+class UserChatMessage extends InboxManager {
 
     constructor(msg, userSessionId, sender, date, myImage) {
-        //super(userSessionId, sender)
+        super(userSessionId, sender)
         this._msg = msg;
-        this._userSessionId = userSessionId;
-        this._sender = sender;
         this._date = date;
         this._myImage = myImage;
     }
