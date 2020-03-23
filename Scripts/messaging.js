@@ -87,7 +87,7 @@ function getChatUsers(sessionId) {
                         userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
 
                     } else {
-                        userDetails = "<div onclick='HelperClass.displayActiveName()'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
+                        userDetails = "<div onclick='HelperClass.displayActiveName(); HelperClass.displayDots();'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
                     }
 
 
@@ -105,7 +105,7 @@ function getChatUsers(sessionId) {
                         inbox = new InboxManager(sessionId, user);
                         //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
 
-                        inbox.loadingTimer();
+                        //inbox.loadingTimer();
 
                         selectedUser = user.firstName + " " + user.lastName;
 
@@ -276,6 +276,26 @@ class HelperClass {
         let selectedName = document.getElementById("selected-user");
         selectedName.innerHTML = selectedUser + "<br/>";
         selectedName.classList.add("user-active-name");
+
+
+    }
+
+    static displayDots() {
+
+        let dotsContainer = document.getElementById("dots-container");
+        dotsContainer.classList.add("ticontainer");
+
+        let dotsBlock = document.getElementById("dots-block");
+        dotsBlock.classList.add("tiblock");
+
+        let singleDot = document.getElementById("dots-single-dot");
+        singleDot.classList.add("tidot");
+
+        let singleDotTwo = document.getElementById("dots-single-dot-2");
+        singleDotTwo.classList.add("tidot");
+
+        let singleDotThree = document.getElementById("dots-single-dot-3");
+        singleDotThree.classList.add("tidot");
     }
 
     static dateFormatter(sqlDate) {
