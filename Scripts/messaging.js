@@ -366,12 +366,13 @@ function getInboxMessages(userSessionId, sender) {
 
 // TODO: ////////////////////////// notification test  ///////////////////////////////////
 
-
+let info = "";
 // Notification, get the last message sent to the session user
 async function findLastMessage(sessionId)
 {
     let response = await fetch(`ajaxAlert.php?userID=${sessionId}`);
     let data = await response.json();
+    info = data[0].firstName + " at " + HelperClass.dateFormatter(data[0].messageDate);
 
     return data;
 }
@@ -387,7 +388,7 @@ function notifyMe(sessionId) {
         // // If it's okay let's create a notification
         // let notification = new Notification("Hi there!");
 
-        let messageInfo = "";
+        let messageInfo = [];
         // Query the last entry in the db
         findLastMessage(sessionId)
             .then(data => console.log(data))
@@ -397,10 +398,13 @@ function notifyMe(sessionId) {
                 console.log(error)
             });
 
-        console.log(messageInfo.firstName)
-        //const name = JSON.stringify(messageInfo.firstName);
+
         // If it's okay let's create a notification
-        let notification = new Notification(`Last message from: ${messageInfo.firstName}`);
+        let notification = new Notification(`Last message from: ${info}`);
+        notification.onshow = () => new Notification(`Last message from:`, {
+            body: `${info}`
+        });
+
 
     }
 
