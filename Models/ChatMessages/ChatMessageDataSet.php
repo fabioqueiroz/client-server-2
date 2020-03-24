@@ -2,6 +2,7 @@
 require_once ('Models/Database.php');
 require_once ('Models/BaseDataSet.php');
 require_once ('Models/ChatMessages/ChatMessage.php');
+require_once ('Models/ChatMessages/ChatAlert.php');
 
 class ChatMessageDataSet extends BaseDataSet
 {
@@ -73,6 +74,25 @@ class ChatMessageDataSet extends BaseDataSet
         $total = $statement->fetchColumn();
 
         return $total;
+    }
+
+    // Get all the last message sent to a user //
+    public function getLastReceivedMessage($userID) {
+        $sqlQuery = "select u.firstName, u.lastName, c.messageDate
+                    from laf873.chats c
+                    inner join laf873.users u where c.senderID = u.userID
+                    and c.receiverID = ?
+                    order by c.chatMessageID desc limit 1";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute([$userID]);
+
+        $inbox = [];
+
+        while ($row = $statement->fetch()) {
+            $inbox[] = new ChatAlert($row);
+        }
+        return $inbox;
     }
 
 }

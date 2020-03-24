@@ -364,3 +364,67 @@ function getInboxMessages(userSessionId, sender) {
 
 }
 
+// TODO: ////////////////////////// notification test  ///////////////////////////////////
+
+
+// Notification, get the last message sent to the session user
+async function findLastMessage(sessionId)
+{
+    let response = await fetch(`ajaxAlert.php?userID=${sessionId}`);
+    let data = await response.json();
+
+    return data;
+}
+
+function notifyMe(sessionId) {
+    // Check if the browser supports notifications
+    if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+    }
+
+    // Check whether notification permissions have already been granted
+    else if (Notification.permission === "granted") {
+        // // If it's okay let's create a notification
+        // let notification = new Notification("Hi there!");
+
+        let messageInfo = "";
+        // Query the last entry in the db
+        findLastMessage(sessionId)
+            .then(data => console.log(data))
+            .then(data => messageInfo = data)
+            .catch((error) => {
+                Error(error);
+                console.log(error)
+            });
+
+        console.log(messageInfo.firstName)
+        //const name = JSON.stringify(messageInfo.firstName);
+        // If it's okay let's create a notification
+        let notification = new Notification(`Last message from: ${messageInfo.firstName}`);
+
+    }
+
+    // Otherwise ask the user for permission
+    else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(function (permission) {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+                let notification = new Notification("Hi there!");
+            }
+        });
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
