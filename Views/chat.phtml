@@ -1,4 +1,9 @@
 <?php require('template/header.phtml') ?>
+<?php
+$chatToken = substr(str_shuffle(md5(microtime())), 0, 24);
+$_SESSION["chat-token"] = $chatToken;
+?>
+
 <script type="text/javascript" charset="utf-8">
     let userId = '<?php echo $_SESSION["userID"]; ?>';
 </script>
@@ -24,6 +29,7 @@
                 <div id="chat-message-display-area" class="chat-message-area"></div>
                 <div class="col-md-6">
                     <input id="new-chat-message" class="chat-input" type="text" placeholder="Type your message here..." onkeyup="UserChatMessage.getMessageInput(this.value)">
+                    <input id="chat-checker" type="hidden" value="<?php echo $chatToken; ?>" name="chat-name-checker" />
                     <div class="col-md-9">
                         <form method="post" enctype="multipart/form-data">
                             <input type="file" name="files[]" multiple />

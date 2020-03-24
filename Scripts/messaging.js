@@ -78,18 +78,17 @@ function getChatUsers(sessionId) {
 
                 if(user.Id !== sessionId) {
 
-                    // let userDetails = "<div onclick='HelperClass.displayActiveName(); HelperClass.displayDots();'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
+                    // let userDetails = "";
+                    //
+                    // if (notificationCounter > totalNoOfMessagesInDb) {
+                    //
+                    //     userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
+                    //
+                    // } else {
+                    //     userDetails = "<div onclick='HelperClass.displayActiveName(); HelperClass.displayDots();'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
+                    // }
 
-                    let userDetails = "";
-
-                    if (notificationCounter > totalNoOfMessagesInDb) {
-
-                        userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
-
-                    } else {
-                        userDetails = "<div onclick='HelperClass.displayActiveName(); HelperClass.displayDots();'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
-                    }
-
+                    let userDetails = "<div onclick='HelperClass.displayActiveName(); HelperClass.displayDots();'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
 
                     let names = domParser.parseFromString(userDetails, "text/html");
 
@@ -117,6 +116,9 @@ function getChatUsers(sessionId) {
 
     }
 
+    //let newChatToken = document.getElementById("chat-checker").value;
+
+    //xmlhttp.open("GET", "ajaxUsers.php" + "&chatToken=" + newChatToken, true); // token not working
     xmlhttp.open("GET", "ajaxUsers.php", true);
     xmlhttp.send();
 
@@ -260,7 +262,10 @@ class UserChatMessage extends InboxManager {
 
         if (myNewMessage !== "" && recipientId !== "") {
 
-            xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
+            let newChatToken = document.getElementById("chat-checker").value;
+
+            xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId + "&chatToken=" + newChatToken, true);
+            // xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
             xmlhttp.send();
 
             document.getElementById("new-chat-message").value = "";
@@ -350,7 +355,10 @@ function getInboxMessages(userSessionId, sender) {
 
     if (sender.Id !== undefined) {
 
-        xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id, true);
+        let newChatToken = document.getElementById("chat-checker").value;
+
+        xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id + "&chatToken=" + newChatToken, true);
+        // xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id, true);
         xmlhttp.send();
     }
 

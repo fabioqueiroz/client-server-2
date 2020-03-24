@@ -1,13 +1,31 @@
 <?php
+session_start();
 require_once('Models/ChatMessages/ChatMessageDataSet.php');
-//require_once('Models/Users/UserDataSet.php');
 
-//$userDataSet = new UserDataSet();
-$chatMessageDataSet = new ChatMessageDataSet();
+$chatToken = "";
 
-//$receivedMessages = $chatMessageDataSet->getReceivedMessages($_REQUEST['userID']);
+if(isset($_SESSION["chat-token"])) {
+    $chatToken = $_SESSION["chat-token"];
+}
 
-// getMessagesBySenderId
-$receivedMessages = $chatMessageDataSet->getMessagesBySenderId($_REQUEST['userID'], $_REQUEST['senderID']);
+if(!isset($_GET["chatToken"]) || $_GET["chatToken"] != $chatToken) {
 
-echo json_encode($receivedMessages);
+    $errorData = new stdClass();
+    $errorData->error = "No data available";
+
+    echo json_encode($errorData);
+
+} else {
+
+    $chatMessageDataSet = new ChatMessageDataSet();
+    $receivedMessages = $chatMessageDataSet->getMessagesBySenderId($_REQUEST['userID'], $_REQUEST['senderID']);
+
+    echo json_encode($receivedMessages);
+}
+
+//$chatMessageDataSet = new ChatMessageDataSet();
+//
+//$receivedMessages = $chatMessageDataSet->getMessagesBySenderId($_REQUEST['userID'], $_REQUEST['senderID']);
+//
+//echo json_encode($receivedMessages);
+
