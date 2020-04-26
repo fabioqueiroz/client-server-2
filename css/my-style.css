@@ -307,6 +307,7 @@ th, td {
     border-left-style: outset;
     border-bottom-style: outset;
     border-top-style: inset;
+    box-shadow: 5px 10px 18px #888888;
 }
 
 .user-chat-list p {
@@ -348,6 +349,7 @@ th, td {
     border-color: #428bca;
     border-radius: 10px;
     overflow: auto;
+    box-shadow: 5px 10px 18px #888888;
 }
 
 .chat-message-area p {
