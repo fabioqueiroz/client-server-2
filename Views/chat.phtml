@@ -30,10 +30,10 @@ $_SESSION["chat-token"] = $chatToken;
                 <div class="col-md-6">
                     <input id="new-chat-message" class="chat-input" type="text" placeholder="Type your message here..." onkeyup="UserChatMessage.getMessageInput(this.value)">
                     <input id="chat-checker" type="hidden" value="<?php echo $chatToken; ?>" name="chat-name-checker" />
-                    <div class="col-md-9">
+                    <div class="col-md-9 button-position">
                         <form method="post" enctype="multipart/form-data">
                             <input type="file" name="files[]" multiple />
-                            <input type="submit" value="Upload Image" name="submit" class="btn btn-info"/>
+                            <input type="submit" value="Upload Image" name="submit" class="btn btn-info button-position"/>
                         </form>
                         <button type="button" class="btn btn-primary" onclick="UserChatMessage.createNewMessage(userId)">Send</button>
                     </div>
@@ -51,7 +51,7 @@ $_SESSION["chat-token"] = $chatToken;
                     <div id="inbox-counter-div" class="badge"><span id="inbox-counter"></span></div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 col-sm-12 pull-left"">
                 <div class="user-chat-list">
                     <div id="chat-user"></div>
                 </div>
