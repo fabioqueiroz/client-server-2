@@ -63,27 +63,12 @@ function showHint(str) {
 
             let newToken = document.getElementById("live-search-checker").value;
 
-            xmlhttp.open("GET", "liveSearch.php?q=" + str + "&token=" + newToken, true); // using token
-            //xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
+            xmlhttp.open("GET", "liveSearch.php?q=" + str + "&token=" + newToken, true);
             xmlhttp.send();
         }
 
     }
 }
-
-function onClickSearchHandler(event) {
-    document.getElementById('txtHint').innerText = 'fetching...';
-    fetch('../forum.php').then(function (response) {
-        return response.text(); }).then(function (data) {
-        document.getElementById('txtHint').innerText = data;
-        console.log(data);
-    }).catch(function (error) {
-        document.getElementById('txtHint').innerText ='Error: ' + error;
-    });
-}
-
- //document.getElementById('txtHint').addEventListener('input', onClickSearchHandler, false);
-
 
 // // **** draft infinite scrolling ****
 // let listElm = document.querySelector('#infinite-list');

@@ -4,9 +4,9 @@ let recipientId = "";
 let myNewMessage = "";
 let dbMessageCounter = ""; // returns the number of messages between 2 users
 let totalNoOfMessagesInDb = ""; // returns the total number of messages sent to the session user
-let notificationCounter = "";
 let selectedUser = "";
 let chatUser = "";
+let info = "";
 
 const url = 'imageProcessor.php';
 const form = document.querySelector('form');
@@ -78,16 +78,6 @@ function getChatUsers(sessionId) {
 
                 if(user.Id !== sessionId) {
 
-                    // let userDetails = "";
-                    //
-                    // if (notificationCounter > totalNoOfMessagesInDb) {
-                    //
-                    //     userDetails = "<p class=''>" + user.firstName + " " + user.lastName + " " + "<span class='badge'>New</span></p>";
-                    //
-                    // } else {
-                    //     userDetails = "<div onclick='HelperClass.displayActiveName(); HelperClass.displayDots();'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
-                    // }
-
                     let userDetails = "<div onclick='HelperClass.displayActiveName(); HelperClass.displayDots();'><p class=''>" + user.firstName + " " + user.lastName + "</p></div>";
 
                     let names = domParser.parseFromString(userDetails, "text/html");
@@ -102,7 +92,7 @@ function getChatUsers(sessionId) {
                         response.location = "" + getInboxMessages(sessionId, chatUser); // working correctly
 
                         inbox = new InboxManager(sessionId, user);
-                        //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
+                        //response.location = "" + inbox.getInboxMessages();
 
                         selectedUser = user.firstName + " " + user.lastName;
 
@@ -116,9 +106,6 @@ function getChatUsers(sessionId) {
 
     }
 
-    //let newChatToken = document.getElementById("chat-checker").value;
-
-    //xmlhttp.open("GET", "ajaxUsers.php" + "&chatToken=" + newChatToken, true); // token not working
     xmlhttp.open("GET", "ajaxUsers.php", true);
     xmlhttp.send();
 
@@ -136,14 +123,13 @@ function getChatUsers(sessionId) {
 
         // Fetch new messages
         response.location = "" + getInboxMessages(sessionId, chatUser); // working correctly
-        //response.location = "" + inbox.getInboxMessages(); // TODO: ***** bug not showing sender name ****
+        //response.location = "" + inbox.getInboxMessages();
 
     }, 5000);
 
 }
 
-// TODO: ////////////////////////// classes  ///////////////////////////////////
-
+// Class definitions
 class InboxManager {
 
     constructor(userSessionId, sender) {
@@ -265,7 +251,6 @@ class UserChatMessage extends InboxManager {
             let newChatToken = document.getElementById("chat-checker").value;
 
             xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId + "&chatToken=" + newChatToken, true);
-            // xmlhttp.open("POST", "ajaxCreateMessage.php?newChatMessage=" + myNewMessage + "&userID=" + userId + "&receiverID="+ recipientId, true);
             xmlhttp.send();
 
             document.getElementById("new-chat-message").value = "";
@@ -313,8 +298,7 @@ class HelperClass {
     }
 }
 
-// TODO: ////////////////////////// working get inbox method  ///////////////////////////////////
-
+// Retrieve messages in the inbox
 function getInboxMessages(userSessionId, sender) {
 
     xmlhttp.onreadystatechange = function() {
@@ -325,13 +309,12 @@ function getInboxMessages(userSessionId, sender) {
             response.innerHTML = "<br/>";
 
             let messages = JSON.parse(this.responseText);
-            console.log(messages);
+            //console.log(messages);
 
             let domParser = new DOMParser();
 
             dbMessageCounter = messages.length;
-            console.log("dbMessageCounter: ", dbMessageCounter);
-
+            //console.log("dbMessageCounter: ", dbMessageCounter);
 
             messages.forEach((msg) => {
 
@@ -358,16 +341,13 @@ function getInboxMessages(userSessionId, sender) {
         let newChatToken = document.getElementById("chat-checker").value;
 
         xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id + "&chatToken=" + newChatToken, true);
-        // xmlhttp.open("GET", "ajaxMessaging.php?userID=" + userSessionId + "&senderID="+ sender.Id, true);
         xmlhttp.send();
     }
 
 }
 
-// TODO: ////////////////////////// notification test  ///////////////////////////////////
-
-let info = "";
-// Notification, get the last message sent to the session user
+// Notification
+// Get the last message sent to the session user
 async function findLastMessage(sessionId)
 {
     let response = await fetch(`ajaxAlert.php?userID=${sessionId}`);
@@ -385,8 +365,6 @@ function notifyMe(sessionId) {
 
     // Check whether notification permissions have already been granted
     else if (Notification.permission === "granted") {
-        // // If it's okay let's create a notification
-        // let notification = new Notification("Hi there!");
 
         let messageInfo = [];
         // Query the last entry in the db
@@ -399,7 +377,7 @@ function notifyMe(sessionId) {
             });
 
 
-        // If it's okay let's create a notification
+        // If it's ok create a notification
         let notification = new Notification(`Last message from: ${info}`);
         notification.onshow = () => new Notification(`Last message from:`, {
             body: `${info}`
