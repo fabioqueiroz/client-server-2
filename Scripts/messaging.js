@@ -113,13 +113,13 @@ function getChatUsers(sessionId) {
 
         InboxManager.loadingTimer();
 
-        // // **** Uncomment to update the inbox counter ****
-        // notificationChecker(sessionId)
-        //     .then(data => console.log(data))
-        //     .catch((error) => {
-        //         Error(error);
-        //         console.log(error)
-        //     });
+        // **** Uncomment to update the inbox counter ****
+        notificationChecker(sessionId)
+            .then(data => console.log(data))
+            .catch((error) => {
+                Error(error);
+                console.log(error)
+            });
 
         // Fetch new messages
         response.location = "" + getInboxMessages(sessionId, chatUser); // working correctly
@@ -240,7 +240,7 @@ class UserChatMessage extends InboxManager {
      }
 
     static getMessageInput(input) {
-        //TODO: sanitize the data
+
         return myNewMessage = input.trim();
     }
 
